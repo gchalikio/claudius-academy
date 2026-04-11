@@ -30,62 +30,42 @@ shooting.
 
 ## Steps
 
-1. **Use the Examples deck**, not your personal one. The screenshots
-   ship in the public repo.
+1. **Run the script.** Screenshot capture is fully automated via
+   `scripts/take-screenshots.js` — it boots the static server on a free
+   port, drives headless Chromium through the examples deck, and writes
+   all 5 PNGs into `docs/screenshots/`.
 
-   ```text
-   index.html?deck=examples
+   ```bash
+   npm run screenshots
    ```
 
-2. **Set up a clean shooting environment.**
-   - Browser at 1280×800 or larger.
-   - Hide bookmarks bar (`Cmd+Shift+B` in Chrome).
-   - Press `F` for fullscreen if you want a chromeless shot.
-   - Make sure no DevTools panel is open.
-   - Make sure the timer (`T`) and notes (`N`) are _closed_.
+   First-time only: `npm install && npm run test:install` to fetch the
+   chromium binary Playwright needs.
 
-3. **Capture each shot in turn.**
+2. **What the script captures** (kept in sync with the README):
 
-   **`intro.png`**
-   - Reload `index.html?deck=examples` (no `?nointro`).
-   - Wait until the title types out and the laurels glow.
-   - Take the shot before the screen fades.
+   | Shot             | How it's produced                                           |
+   | ---------------- | ----------------------------------------------------------- |
+   | `intro.png`      | Loads `?deck=examples`, waits 1.5s into the intro animation |
+   | `slide.png`      | Jumps to `#/hello` (the canonical text slide)               |
+   | `diagram.png`    | Jumps to `#/diagram-example/3` (all elements drawn)         |
+   | `code-modal.png` | On `#/hello`, presses `c` to open the snippets media modal  |
+   | `overview.png`   | Presses `Escape` to open the overview grid                  |
 
-   **`slide.png`**
-   - Navigate to the `hello` slide (any text slide will do).
-   - Take a shot of the full slide area.
+3. **If you add or rename a screenshot in the README**, update
+   `scripts/take-screenshots.js` to match — add a new `shoot()` block,
+   or rename the output path. Re-run `npm run screenshots` to verify.
 
-   **`diagram.png`**
-   - Navigate to `diagram-example`.
-   - Press `→` until all 3 elements are drawn.
-   - Take a shot.
-
-   **`code-modal.png`**
-   - On the `hello` slide, press `C`.
-   - Make sure both tabs are visible (`config.js`, `deck.js`).
-   - Take a shot of the modal panel.
-
-   **`overview.png`**
-   - Press `Esc` from any slide.
-   - Take a shot showing several cards.
-
-4. **Crop and downsize if needed.**
-   - Aim for 1600×1000 max — the README renders at half that size.
-   - PNG, no transparency needed.
-   - Strip metadata if you care about repo size.
-
-5. **Drop them in `docs/screenshots/`** with the exact filenames above.
-
-6. **Verify the README renders.**
+4. **Verify the README renders.**
 
    ```bash
    open README.md
    ```
 
    (or view it on github.com after pushing). Broken image icons mean a
-   filename mismatch.
+   filename mismatch between the README and the script output.
 
-7. **Stop. Do NOT commit.**
+5. **Stop. Do NOT commit.**
    Per the global rule in `CLAUDE.md`, no skill commits or pushes
    without explicit user confirmation per operation. Report back to the
    user with the list of files added and the commit message you'd

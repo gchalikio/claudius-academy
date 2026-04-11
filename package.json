@@ -11,6 +11,7 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:install": "playwright install --with-deps chromium",
+    "screenshots": "node scripts/take-screenshots.js",
     "lint": "eslint . && markdownlint-cli2 \"**/*.md\" \"!node_modules\" && prettier --check .",
     "lint:js": "eslint .",
     "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\"",
