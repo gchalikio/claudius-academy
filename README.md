@@ -30,6 +30,17 @@
 
 ## Quick start
 
+**Claude-first (recommended).** Just cloned the repo? Ask Claude Code:
+
+```text
+/setup-locally
+```
+
+It installs dependencies, runs the Playwright install, boots the server,
+and leaves you on the picker.
+
+**Manual:**
+
 ```bash
 npm start          # node static server on :8000
 # or just:
@@ -42,6 +53,18 @@ Visit `http://localhost:8000` and pick a deck, or jump straight in with
 ---
 
 ## Make a new deck (60 seconds)
+
+**Claude-first (recommended).** This repo is Claude-first — every common
+flow ships as a skill. Just ask Claude Code:
+
+```text
+/add-presentation
+```
+
+It'll prompt you for the deck id/title, scaffold `presentations/<id>/`,
+register it, and leave you with a runnable starting point.
+
+**Manual fallback:**
 
 ```bash
 cp -r presentations/examples presentations/my-talk
@@ -67,6 +90,16 @@ entry in `presentations/local/decks.js`. The loader handles the rest.
 ---
 
 ## Slide builders
+
+**Claude-first (recommended).** To add or edit a slide, ask Claude Code:
+
+```text
+/add-slide        # any slide type
+/write-diagram    # progressive SVG diagramSlide
+```
+
+The skills pick the right builder, place the slide in the correct act,
+wire up notes/snippets, and verify it renders.
 
 All builders live on `window.Builders`. Open the **Examples** deck to see
 each one live; the snippets below show the minimum to get a slide on screen.
@@ -239,6 +272,15 @@ Everything per-deck lives in `presentations/<deck>/config.js`:
 
 ## Theming
 
+**Claude-first (recommended).** Ask Claude Code:
+
+```text
+/theme-deck
+```
+
+It customises colors, fonts, and intro decorations for a single deck
+without touching engine CSS.
+
 90% of theming is just overriding CSS variables in `config.js`:
 
 ```js
@@ -287,6 +329,15 @@ overridable. **Never edit files under `css/` for a single deck.**
 ---
 
 ## Tests
+
+**Claude-first (recommended).** When something breaks or lint is red:
+
+```text
+/fix-a-bug       # reproduce, fix, and add a regression test
+/lint-and-fix    # run linters and auto-fix what's fixable
+```
+
+**Manual:**
 
 ```bash
 npm install              # one-time
