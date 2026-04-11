@@ -44,6 +44,7 @@ window.DECK_CONFIG = {
       { keys: ["N"], label: "notes" },
       { keys: ["T"], label: "timer" },
       { keys: ["Esc"], label: "overview" },
+      { keys: ["⇧", "0"], label: "start over" },
     ],
   },
 

@@ -13,15 +13,13 @@
  *     onLeave?(ctx)            — when the slide is left
  *   }
  *
- * State is persisted to localStorage AND reflected in the URL hash so a refresh
- * lands you on the same slide+step.
+ * State lives in the URL hash. A refresh keeps you in place; clearing the
+ * URL (fresh visit, no hash) starts from the first slide on purpose.
  *
  * Reusable: this engine knows nothing about the content. Drop a new slides[]
  * array into js/slides.js and you have a new presentation.
  */
 (function () {
-  const STORAGE_KEY = "deck:position";
-
   const Router = {
     slides: [],
     index: 0,
@@ -33,10 +31,8 @@
       this.slides = slides;
       this.container = container;
 
-      // Restore from URL hash first, then localStorage, then defaults.
-      const fromHash = this._parseHash();
-      const fromStore = this._loadStored();
-      const start = fromHash || fromStore || { id: slides[0]?.id, step: 0 };
+      // Hash is the source of truth. No hash → start from the first slide.
+      const start = this._parseHash() || { id: slides[0]?.id, step: 0 };
 
       const idx = Math.max(
         0,
@@ -163,7 +159,6 @@
       const ctx = this._ctx();
       this.listeners.forEach((fn) => fn(ctx));
       this._writeHash();
-      this._store();
     },
 
     _parseHash() {
@@ -181,24 +176,6 @@
       }
     },
 
-    _store() {
-      try {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ id: this.current().id, step: this.step })
-        );
-      } catch {
-        // localStorage may be unavailable (private mode, quota); ignore.
-      }
-    },
-
-    _loadStored() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY));
-      } catch {
-        return null;
-      }
-    },
   };
 
   window.Router = Router;

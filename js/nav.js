@@ -92,6 +92,11 @@
           case "?":
             document.getElementById("hints").hidden = !document.getElementById("hints").hidden;
             break;
+          case "Home":
+          case ")":
+            e.preventDefault();
+            Router.goTo(0, 0);
+            break;
         }
       });
 

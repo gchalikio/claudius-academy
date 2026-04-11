@@ -66,12 +66,13 @@
       const stage = document.getElementById("stage");
       const skipIntro =
         new URLSearchParams(location.search).has("nointro") ||
+        location.hash.length > 1 ||
         localStorage.getItem("deck:skipIntro") === "1";
 
       const startDeck = () => {
         stage.hidden = false;
-        Router.init(window.SLIDES, stage);
         Nav.init();
+        Router.init(window.SLIDES, stage);
         Nav.show();
       };
 
