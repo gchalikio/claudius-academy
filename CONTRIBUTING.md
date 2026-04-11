@@ -7,8 +7,8 @@ proposing changes.
 ## Project principles
 
 - **No build step.** The project must keep working when you double-click
-  `index.html`. Anything that requires `npm install` to *run* the deck is a
-  no-go. Tooling for *development* (Playwright tests, type checking) is fine.
+  `index.html`. Anything that requires `npm install` to _run_ the deck is a
+  no-go. Tooling for _development_ (Playwright tests, type checking) is fine.
 - **Engine and content are separate.** Anything generic goes under `js/` or
   `css/`. Anything talk-specific goes under `presentations/<deck>/`.
 - **No new runtime dependencies.** Vanilla JS, vanilla CSS, vanilla HTML.
@@ -58,14 +58,14 @@ CI runs the same suite on every push and pull request via
 5. **Update the README and `types.d.ts`** when you add or rename anything in
    the public surface (slide builders, config keys, key bindings).
 6. **Run the test suite locally** before pushing.
-7. **Open a PR** with a clear description of *what* and *why*. Reference the
+7. **Open a PR** with a clear description of _what_ and _why_. Reference the
    issue if there is one.
 
 ## Style
 
 - Indentation: 2 spaces (enforced by `.editorconfig`).
 - Module pattern: each engine file is a single IIFE that attaches one global.
-- No comments that restate code. Comments explain *why*, not *what*.
+- No comments that restate code. Comments explain _why_, not _what_.
 - No emojis in source files unless the user explicitly asks for them.
 - CSS: prefer CSS variables over hardcoded colors. New tokens go in
   `css/theme.css` so they can be overridden per deck.
@@ -92,7 +92,7 @@ Open an issue with:
 
 ## Asking for a feature
 
-Open an issue describing the *use case*, not just the feature. "I want to
+Open an issue describing the _use case_, not just the feature. "I want to
 present in a co-pilot/audience layout" is more useful than "add a presenter
 view."
 

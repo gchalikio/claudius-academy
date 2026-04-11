@@ -29,8 +29,8 @@ For a known bug you're already fixing, use `fix-a-bug`.
    - Browser + version
    - Expected vs actual
    - Console errors
-   Do not start investigating until you have these. Speculative
-   investigation wastes time.
+     Do not start investigating until you have these. Speculative
+     investigation wastes time.
 
 2. **Reproduce locally.**
    Open the page, follow the steps, see the bug yourself. **If you can't
@@ -79,6 +79,7 @@ For a known bug you're already fixing, use `fix-a-bug`.
 
 7. **Propose 1–3 solutions to the user, with tradeoffs.**
    Format:
+
    ```
    Option A — <one-line description>
      Pros: <...>
@@ -88,6 +89,7 @@ For a known bug you're already fixing, use `fix-a-bug`.
    Option B — <...>
      ...
    ```
+
    **Wait for the user to pick one before changing any code.** If
    there's an obvious right answer, say so and mark it as your
    recommendation, but still wait for the OK on non-trivial changes.
@@ -103,9 +105,11 @@ For a known bug you're already fixing, use `fix-a-bug`.
    feasible — say so explicitly and document the manual repro instead.
 
 10. **Run the test suite.**
+
     ```bash
     npm test
     ```
+
     Confirm the new test passes and nothing else regressed.
 
 11. **Smoke-test in the browser.**
@@ -127,6 +131,6 @@ For a known bug you're already fixing, use `fix-a-bug`.
 - Don't apply a fix without asking when there's more than one valid
   option. The user owns the design decisions.
 - Don't classify everything as `priority/high`. Most things are medium.
-- Don't skip the test. If you can't write one, say *why* — don't just
+- Don't skip the test. If you can't write one, say _why_ — don't just
   ship the fix.
 - Don't refactor adjacent code as part of the fix. One concern per change.

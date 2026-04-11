@@ -14,8 +14,8 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
 ## Hard rules (do not violate)
 
 1. **No build step.** The project must keep working when someone double-clicks
-   `index.html`. Anything that requires `npm install` to *run the deck* is a
-   hard no. Tooling for *development* (Playwright tests, type checking via
+   `index.html`. Anything that requires `npm install` to _run the deck_ is a
+   hard no. Tooling for _development_ (Playwright tests, type checking via
    JSDoc + tsconfig) is allowed because it doesn't affect end users.
 2. **No runtime dependencies.** Vanilla JS, vanilla CSS, vanilla HTML only.
    `node_modules` exists for tests, never for the site itself.
@@ -36,8 +36,8 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
    shared state without an explicit user confirmation per operation.**
    Mutating local files in the working tree is fine. Anything that
    touches `git`, `gh`, or a remote requires the user's explicit OK
-   *for that specific operation* — not a blanket "yes." Even if a skill
-   is *about* committing (e.g. `cut-release`, `work-github-issue`), each
+   _for that specific operation_ — not a blanket "yes." Even if a skill
+   is _about_ committing (e.g. `cut-release`, `work-github-issue`), each
    git/gh step inside it stops to confirm before running.
 
 ## Project layout
@@ -79,7 +79,7 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
 - **Module pattern:** every engine file is a single IIFE that attaches one
   global to `window`. Don't introduce ES modules; the no-build constraint
   forbids them.
-- **Comments:** explain *why*, not *what*. No comments that restate code.
+- **Comments:** explain _why_, not _what_. No comments that restate code.
   No JSDoc that just types out what an identifier already says.
 - **CSS variables over hardcoded values.** New tokens go in `css/theme.css`
   so they can be overridden per-deck via `theme: { ... }` in config.
@@ -98,24 +98,24 @@ every common user/contributor flow. **If you're an AI assistant, prefer
 these skills over freeform editing** — they encode the project rules as
 concrete steps.
 
-| Skill                    | Use it when…                                              |
-| ------------------------ | --------------------------------------------------------- |
-| `setup-locally`          | The user just cloned the repo and wants to start using it |
-| `add-presentation`       | Authoring a brand new deck                                |
-| `add-slide`              | Adding/editing a single slide in an existing deck         |
-| `write-diagram`          | Authoring a progressive SVG `diagramSlide`                |
-| `theme-deck`             | Customising colors, fonts, intro decorations              |
-| `add-video`              | Wiring a video file into the V key modal                  |
-| `outline-to-deck`        | Turning a written outline into a draft deck               |
-| `rehearse-talk`          | Pre-talk rehearsal flow with timer + notes                |
-| `take-screenshots`       | Capturing the README screenshots                          |
-| `add-slide-type`         | Adding a new reusable slide kind to the engine            |
-| `add-feature`            | Adding any other engine feature (key binding, modal, config option) |
-| `triage-issue`           | Local: classify a bug/issue, propose options, fix it      |
-| `work-github-issue`      | GitHub: fetch an issue, fix it, open a PR, comment + label both |
-| `fix-a-bug`              | Triaging, reproducing, fixing, and testing a known bug    |
-| `lint-and-fix`           | Run all linters, auto-fix what's fixable, triage the rest |
-| `cut-release`            | Cutting a tagged release of the engine                    |
+| Skill               | Use it when…                                                        |
+| ------------------- | ------------------------------------------------------------------- |
+| `setup-locally`     | The user just cloned the repo and wants to start using it           |
+| `add-presentation`  | Authoring a brand new deck                                          |
+| `add-slide`         | Adding/editing a single slide in an existing deck                   |
+| `write-diagram`     | Authoring a progressive SVG `diagramSlide`                          |
+| `theme-deck`        | Customising colors, fonts, intro decorations                        |
+| `add-video`         | Wiring a video file into the V key modal                            |
+| `outline-to-deck`   | Turning a written outline into a draft deck                         |
+| `rehearse-talk`     | Pre-talk rehearsal flow with timer + notes                          |
+| `take-screenshots`  | Capturing the README screenshots                                    |
+| `add-slide-type`    | Adding a new reusable slide kind to the engine                      |
+| `add-feature`       | Adding any other engine feature (key binding, modal, config option) |
+| `triage-issue`      | Local: classify a bug/issue, propose options, fix it                |
+| `work-github-issue` | GitHub: fetch an issue, fix it, open a PR, comment + label both     |
+| `fix-a-bug`         | Triaging, reproducing, fixing, and testing a known bug              |
+| `lint-and-fix`      | Run all linters, auto-fix what's fixable, triage the rest           |
+| `cut-release`       | Cutting a tagged release of the engine                              |
 
 ## Public API surface (what's stable)
 
@@ -128,7 +128,7 @@ If you're adding/renaming any of these, update **all four** of:
   `current`, `onChange`, `index`, `slides`, `step`
 - **`window.DECK_CONFIG`** schema — see `types.d.ts` for the shape
 - **Slide config schema** — `{ id, type, title?, notes?, snippets?, steps?,
-  render(root), onEnter?, onStep?, onUnstep?, onLeave? }`
+render(root), onEnter?, onStep?, onUnstep?, onLeave? }`
 - **Key bindings** — listed in the README
 - **URL params** — `?deck=<id>`, `?nointro`, hash route `#/<slide-id>[/<step>]`
 

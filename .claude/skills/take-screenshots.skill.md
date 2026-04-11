@@ -17,13 +17,13 @@ makes the existing screenshots out of date.
 
 ## Filenames the README expects
 
-| File                          | What it captures                          |
-| ----------------------------- | ----------------------------------------- |
-| `docs/screenshots/intro.png`  | The Claudius intro animation (mid-anim)   |
-| `docs/screenshots/slide.png`  | A representative text slide               |
-| `docs/screenshots/diagram.png`| The fullscreen progressive diagram        |
-| `docs/screenshots/code-modal.png` | The code snippet modal open with tabs |
-| `docs/screenshots/overview.png` | The overview grid (`Esc` view)          |
+| File                              | What it captures                        |
+| --------------------------------- | --------------------------------------- |
+| `docs/screenshots/intro.png`      | The Claudius intro animation (mid-anim) |
+| `docs/screenshots/slide.png`      | A representative text slide             |
+| `docs/screenshots/diagram.png`    | The fullscreen progressive diagram      |
+| `docs/screenshots/code-modal.png` | The code snippet modal open with tabs   |
+| `docs/screenshots/overview.png`   | The overview grid (`Esc` view)          |
 
 If the README has been edited, re-check it for the exact list before
 shooting.
@@ -32,6 +32,7 @@ shooting.
 
 1. **Use the Examples deck**, not your personal one. The screenshots
    ship in the public repo.
+
    ```
    index.html?deck=examples
    ```
@@ -41,7 +42,7 @@ shooting.
    - Hide bookmarks bar (`Cmd+Shift+B` in Chrome).
    - Press `F` for fullscreen if you want a chromeless shot.
    - Make sure no DevTools panel is open.
-   - Make sure the timer (`T`) and notes (`N`) are *closed*.
+   - Make sure the timer (`T`) and notes (`N`) are _closed_.
 
 3. **Capture each shot in turn.**
 
@@ -76,9 +77,11 @@ shooting.
 5. **Drop them in `docs/screenshots/`** with the exact filenames above.
 
 6. **Verify the README renders.**
+
    ```bash
    open README.md
    ```
+
    (or view it on github.com after pushing). Broken image icons mean a
    filename mismatch.
 

@@ -32,8 +32,8 @@ use it when the diagram IS the slide and there's no need for a title.
 ## Steps
 
 1. **Confirm what the diagram is showing.**
-   Make the user say it in one sentence. *"The flow of context from
-   sources into Claude and back out again via skills."* If the answer is
+   Make the user say it in one sentence. _"The flow of context from
+   sources into Claude and back out again via skills."_ If the answer is
    vague, push back — a vague diagram drawn live is worse than no diagram.
 
 2. **Sketch the layout on paper or in text first.**
@@ -61,7 +61,7 @@ use it when the diagram IS the slide and there's no need for a title.
 6. **Sequence the steps.**
    - Each step is one beat of your narration. The more steps, the slower
      the diagram unfolds.
-   - Order matters: introduce a node *before* any arrow that references it.
+   - Order matters: introduce a node _before_ any arrow that references it.
    - Aim for 5–10 steps. More than 12 and the audience loses track.
 
 7. **Add arrows last.**
@@ -92,10 +92,10 @@ use it when the diagram IS the slide and there's no need for a title.
     the centerpiece of an act, give it its own slide id like
     `<act>-diagram` and consider `fullscreen: true`.
 
-11. **If the diagram is in the *public* deck, add a test** that asserts:
+11. **If the diagram is in the _public_ deck, add a test** that asserts:
     - The slide renders.
     - At least one node appears after one `→`.
-    See `tests/diagram.spec.js` for the pattern.
+      See `tests/diagram.spec.js` for the pattern.
 
 ## Don't
 

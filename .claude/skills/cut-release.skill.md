@@ -21,8 +21,8 @@ skill handles the local steps that trigger it.
 
 **Every git operation stops to confirm.** Per the global rule in
 `CLAUDE.md`, no skill commits, tags, or pushes without an explicit
-user OK *for that specific operation*. Even though this skill is
-*about* releasing, each mutating step is a gate: show what you're
+user OK _for that specific operation_. Even though this skill is
+_about_ releasing, each mutating step is a gate: show what you're
 about to run, wait for "yes," then run it. Read-only `git status`,
 `npm test`, and reading files are fine without asking.
 
@@ -34,20 +34,24 @@ about to run, wait for "yes," then run it. Read-only `git status`,
    - **minor** (`0.1.0 → 0.2.0`) — new features, no breaking changes
    - **major** (`0.1.0 → 1.0.0`) — breaking changes (slide config shape,
      keybindings removed, builders removed)
-   If the user is unsure, look at the `[Unreleased]` section of
-   `CHANGELOG.md` and decide based on the contents.
+     If the user is unsure, look at the `[Unreleased]` section of
+     `CHANGELOG.md` and decide based on the contents.
 
 2. **Verify a clean working tree.**
+
    ```bash
    git status
    ```
+
    Stop and ask if there are uncommitted changes. Don't release a dirty
    tree — the tag will capture WIP.
 
 3. **Verify all tests pass.**
+
    ```bash
    npm test
    ```
+
    Do not release on a red build. If anything fails, switch to the
    `fix-a-bug` skill.
 
@@ -66,21 +70,24 @@ about to run, wait for "yes," then run it. Read-only `git status`,
    Change the `"version"` field manually (don't run `npm version` — it
    creates its own tag and we want control over that).
 
-6. **Commit the bump.** *(needs OK)*
+6. **Commit the bump.** _(needs OK)_
    Show the user the staged files and the proposed message. Wait for
    confirmation, then:
+
    ```bash
    git add CHANGELOG.md package.json
    git commit -m "release: v<new-version>"
    ```
 
-7. **Tag.** *(needs OK)*
+7. **Tag.** _(needs OK)_
+
    ```bash
    git tag v<new-version>
    ```
 
-8. **Push commit + tag.** *(needs OK — push remote state changes are
-   visible to the world)*
+8. **Push commit + tag.** _(needs OK — push remote state changes are
+   visible to the world)_
+
    ```bash
    git push origin main
    git push origin v<new-version>

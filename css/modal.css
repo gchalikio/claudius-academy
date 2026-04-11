@@ -48,7 +48,9 @@
   color: var(--gold-500);
   font-size: 1.1rem;
 }
-.modal__close:hover { color: var(--parchment-100); }
+.modal__close:hover {
+  color: var(--parchment-100);
+}
 
 .modal video {
   display: block;
@@ -60,8 +62,21 @@
   background: #000;
 }
 
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes panel-in {
-  from { opacity: 0; transform: translateY(20px) scale(0.97); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

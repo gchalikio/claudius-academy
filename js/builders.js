@@ -95,8 +95,10 @@
       const h = window.innerHeight;
       const padX = w * 0.16;
       const padY = h * 0.14;
-      const x1 = padX, x2 = w - padX;
-      const y1 = padY, y2 = h - padY;
+      const x1 = padX,
+        x2 = w - padX;
+      const y1 = padY,
+        y2 = h - padY;
       lineA.setAttribute("x1", x2);
       lineA.setAttribute("y1", y1);
       lineA.setAttribute("x2", x1);
@@ -185,9 +187,7 @@
       render(root) {
         root.classList.add("slide--list");
         const tag = ordered ? "ol" : "ul";
-        const lis = items
-          .map((it) => `<li class="list__item">${it}</li>`)
-          .join("");
+        const lis = items.map((it) => `<li class="list__item">${it}</li>`).join("");
         root.innerHTML = `
           ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
           ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
@@ -196,9 +196,7 @@
         listEl = root.querySelector(".list");
       },
       onEnter() {
-        listEl?.querySelectorAll(".list__item").forEach((el) =>
-          el.classList.remove("is-revealed")
-        );
+        listEl?.querySelectorAll(".list__item").forEach((el) => el.classList.remove("is-revealed"));
       },
       onStep(stepIndex) {
         const items = listEl?.querySelectorAll(".list__item");

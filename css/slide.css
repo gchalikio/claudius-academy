@@ -14,7 +14,9 @@
   display: none;
   animation: slide-in var(--t-med) var(--ease-out);
 }
-.slide.is-active { display: block; }
+.slide.is-active {
+  display: block;
+}
 
 .slide__eyebrow {
   font-family: var(--font-pixel);
@@ -39,10 +41,14 @@
   color: var(--ink-700);
 }
 
-.slide__body p + p { margin-top: 0.8em; }
+.slide__body p + p {
+  margin-top: 0.8em;
+}
 
 /* Quote slide */
-.slide--quote { text-align: center; }
+.slide--quote {
+  text-align: center;
+}
 .slide--quote blockquote {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
@@ -58,8 +64,16 @@
   font-size: 2em;
   line-height: 0;
 }
-.slide--quote blockquote::before { content: "“"; margin-right: 0.1em; vertical-align: -0.4em; }
-.slide--quote blockquote::after  { content: "”"; margin-left: 0.1em; vertical-align: -0.4em; }
+.slide--quote blockquote::before {
+  content: "“";
+  margin-right: 0.1em;
+  vertical-align: -0.4em;
+}
+.slide--quote blockquote::after {
+  content: "”";
+  margin-left: 0.1em;
+  vertical-align: -0.4em;
+}
 .slide--quote cite {
   font-family: var(--font-pixel);
   font-style: normal;
@@ -106,7 +120,9 @@
 }
 
 /* Section / pillar divider */
-.slide--section { text-align: center; }
+.slide--section {
+  text-align: center;
+}
 .section__inner {
   display: grid;
   gap: 18px;
@@ -161,7 +177,9 @@
   padding-left: 36px;
   opacity: 0;
   transform: translateX(-12px);
-  transition: opacity 360ms var(--ease-out), transform 360ms var(--ease-out);
+  transition:
+    opacity 360ms var(--ease-out),
+    transform 360ms var(--ease-out);
 }
 .list__item::before {
   content: "❦";
@@ -175,7 +193,9 @@
   opacity: 1;
   transform: translateX(0);
 }
-.slide--list ol.list { counter-reset: li; }
+.slide--list ol.list {
+  counter-reset: li;
+}
 .slide--list ol.list .list__item::before {
   counter-increment: li;
   content: counter(li, upper-roman) ".";
@@ -204,7 +224,9 @@
 
 /* Big text slide — layout only applies when active so the slide-router's
    display:none default still hides inactive bigtext slides. */
-.slide--bigtext { text-align: center; }
+.slide--bigtext {
+  text-align: center;
+}
 .slide--bigtext.is-active {
   display: grid;
   place-items: center;
@@ -218,7 +240,9 @@
   max-width: 22ch;
   color: var(--ink-900);
   letter-spacing: 0.04em;
-  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  transition:
+    opacity 600ms var(--ease-out),
+    transform 600ms var(--ease-out);
 }
 .bigtext__foot {
   font-family: var(--font-pixel);
@@ -235,6 +259,12 @@
 }
 
 @keyframes slide-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

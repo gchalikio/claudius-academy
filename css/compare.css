@@ -22,8 +22,12 @@
   color: var(--parchment-100);
 }
 
-.compare__col--wrong .compare__head { background: #8b2e2e; }
-.compare__col--right .compare__head { background: #2e7a3f; }
+.compare__col--wrong .compare__head {
+  background: #8b2e2e;
+}
+.compare__col--right .compare__head {
+  background: #2e7a3f;
+}
 
 .compare__list {
   list-style: none;

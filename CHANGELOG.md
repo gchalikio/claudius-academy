@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0]
 
 ### Added
+
 - Vanilla-JS, no-build presentation engine.
 - Slide router with hash routing, step-aware navigation, and localStorage
   position persistence.

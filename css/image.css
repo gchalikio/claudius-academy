@@ -33,9 +33,7 @@
   stroke-width: 28;
   stroke-linecap: round;
   fill: none;
-  filter:
-    drop-shadow(0 0 14px #ff3030)
-    drop-shadow(0 0 32px #ff5050)
+  filter: drop-shadow(0 0 14px #ff3030) drop-shadow(0 0 32px #ff5050)
     drop-shadow(0 0 60px rgba(255, 0, 0, 0.55));
 }
 
@@ -47,5 +45,7 @@
 }
 
 @keyframes laser-fire {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }

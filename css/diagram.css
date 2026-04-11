@@ -41,7 +41,9 @@
   stroke-linecap: round;
   marker-end: url(#arrowhead);
 }
-.diagram .arrow--accent { stroke: var(--crimson-600); }
+.diagram .arrow--accent {
+  stroke: var(--crimson-600);
+}
 
 .diagram .label {
   font-family: var(--font-pixel);
@@ -57,8 +59,14 @@
   animation: node-in 360ms var(--ease-out) both;
 }
 @keyframes node-in {
-  from { opacity: 0; transform: scale(0.6); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .diagram .is-entering.arrow {
@@ -67,7 +75,9 @@
   animation: arrow-draw 600ms var(--ease-out) forwards;
 }
 @keyframes arrow-draw {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .diagram .is-entering.label {

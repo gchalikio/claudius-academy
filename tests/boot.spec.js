@@ -6,9 +6,7 @@ test.describe("boot", () => {
   test("picker is shown when no deck is in the URL", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator(".deck-picker")).toBeVisible();
-    await expect(page.locator(".deck-picker__panel h2")).toContainText(
-      /presentation/i
-    );
+    await expect(page.locator(".deck-picker__panel h2")).toContainText(/presentation/i);
   });
 
   test("picker lists all registered decks", async ({ page }) => {

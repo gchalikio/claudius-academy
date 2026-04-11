@@ -24,9 +24,11 @@ not a vague "looks good."
    red past 100%.
 
 2. **Open the deck cleanly.**
+
    ```bash
    python3 -m http.server 8000
    ```
+
    Visit `http://localhost:8000?deck=<deck-id>&nointro` to skip the intro
    for rehearsal speed. Press `T` to show the timer. Press `N` to open
    the speaker notes pane (close it again before screen-sharing!).

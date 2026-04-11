@@ -39,9 +39,17 @@
         // Code modal: tab + jump shortcuts intercept arrows/digits/c only.
         // Everything else (F, V, ?, etc.) falls through to the main switch.
         if (codeOpen) {
-          if (e.key === "ArrowRight") { e.preventDefault(); return Code.nextTab(); }
-          if (e.key === "ArrowLeft")  { e.preventDefault(); return Code.prevTab(); }
-          if (/^[1-9]$/.test(e.key))  { return Code.jumpTab(Number(e.key) - 1); }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            return Code.nextTab();
+          }
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            return Code.prevTab();
+          }
+          if (/^[1-9]$/.test(e.key)) {
+            return Code.jumpTab(Number(e.key) - 1);
+          }
           if (e.key === "c" || e.key === "C") return Code.close();
         }
 
@@ -88,8 +96,7 @@
       });
 
       const counterFormat =
-        window.DECK_CONFIG?.nav?.counterFormat ||
-        ((i, total) => `${i + 1} / ${total}`);
+        window.DECK_CONFIG?.nav?.counterFormat || ((i, total) => `${i + 1} / ${total}`);
 
       // Reflect router state in chrome
       Router.onChange((ctx) => {

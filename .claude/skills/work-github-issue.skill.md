@@ -24,6 +24,7 @@ For known bugs you're already fixing, use `fix-a-bug`.
 ```bash
 gh auth status
 ```
+
 If `gh` isn't authenticated, ask the user to run `gh auth login` before
 proceeding.
 
@@ -31,8 +32,8 @@ proceeding.
 
 **Every git/gh operation stops to confirm.** Per the global rule in
 `CLAUDE.md`, no skill commits, branches, pushes, opens PRs, comments,
-or applies labels without an explicit user OK *for that specific
-operation*. Even though this skill is *about* moving an issue through
+or applies labels without an explicit user OK _for that specific
+operation_. Even though this skill is _about_ moving an issue through
 to a PR, each mutating step is a gate: show what you're about to run,
 wait for "yes," then run it. Read-only `gh issue view` and `git
 status` are fine without asking.
@@ -40,27 +41,32 @@ status` are fine without asking.
 ## Steps
 
 1. **Fetch the issue.** (read-only — no confirmation needed)
+
    ```bash
    gh issue view <number> --json number,title,body,labels,state,author,comments
    ```
+
    Read the title, body, every comment, and the existing labels.
    If the issue is closed, stop and ask the user whether to reopen.
 
-2. **Acknowledge the issue with a triage comment.** *(needs OK)*
+2. **Acknowledge the issue with a triage comment.** _(needs OK)_
    Show the user the proposed comment and label change, then wait for
    confirmation. Only after they say yes:
+
    ```bash
    gh issue comment <number> --body "Picking this up — investigating now."
    gh issue edit <number> --add-label "status/in-progress" --remove-label "status/needs-triage"
    ```
 
 3. **Classify type and priority** if the issue doesn't already have them.
-   *(needs OK before applying labels)*
+   _(needs OK before applying labels)_
    Pick one type and one priority from `.github/labels.yml`, propose
    them to the user with one-line reasoning, wait for confirmation:
+
    ```bash
    gh issue edit <number> --add-label "type/<x>" --add-label "priority/<x>"
    ```
+
    See `triage-issue` for how to pick.
 
 4. **Reproduce locally.**
@@ -80,10 +86,11 @@ status` are fine without asking.
      approach and wait for thumbs-up before writing code. Vague issues
      deserve a sketch in the issue thread before a PR appears.
 
-7. **Create a branch.** *(needs OK)*
+7. **Create a branch.** _(needs OK)_
    Propose the branch name (`<type>/<short-description>`, type one of
    `fix`, `feat`, `docs`, `refactor`, `perf`, `test`, `chore`), wait
    for confirmation:
+
    ```bash
    git checkout -b fix/picker-keyboard-loop
    ```
@@ -98,14 +105,17 @@ status` are fine without asking.
    instead.
 
 10. **Run the test suite.**
+
     ```bash
     npm test
     ```
+
     Don't move on until everything passes.
 
-11. **Commit.** *(needs OK — show the message first)*
+11. **Commit.** _(needs OK — show the message first)_
     Show the user the proposed commit message and the list of staged
     files. Wait for confirmation, then run:
+
     ```bash
     git add <files>
     git commit -m "$(cat <<'EOF'
@@ -119,15 +129,18 @@ status` are fine without asking.
     EOF
     )"
     ```
+
     Use `feat:` / `docs:` / `refactor:` / `perf:` / `test:` / `chore:`
     instead of `fix:` for non-bug work.
 
-12. **Push the branch.** *(needs OK)*
+12. **Push the branch.** _(needs OK)_
+
     ```bash
     git push -u origin fix/picker-keyboard-loop
     ```
 
-13. **Open a PR.** *(needs OK — show title + body first)*
+13. **Open a PR.** _(needs OK — show title + body first)_
+
     ```bash
     gh pr create \
       --title "fix: <short description>" \
@@ -150,14 +163,17 @@ status` are fine without asking.
     EOF
     )"
     ```
+
     Capture the PR URL from the output.
 
-14. **Apply labels to the PR** matching the issue. *(needs OK)*
+14. **Apply labels to the PR** matching the issue. _(needs OK)_
+
     ```bash
     gh pr edit <pr-number> --add-label "type/<x>" --add-label "priority/<x>"
     ```
 
-15. **Comment on the issue with the PR link.** *(needs OK)*
+15. **Comment on the issue with the PR link.** _(needs OK)_
+
     ```bash
     gh issue comment <issue-number> --body "Opened #<pr-number> with a fix — please take a look."
     ```
@@ -176,11 +192,11 @@ status` are fine without asking.
 - Don't `git push --force` to a branch the user didn't create. The user
   owns force pushes; flag a need for one and let them do it.
 - Don't merge the PR yourself unless the user explicitly asks. Approval
-  + merge is the user's call.
+  - merge is the user's call.
 - Don't close the issue manually. The PR's `Fixes #N` line will close it
   on merge.
 - Don't apply `priority/critical` to anything you didn't reproduce in
-  under 60 seconds. Critical means *obviously, immediately broken*.
+  under 60 seconds. Critical means _obviously, immediately broken_.
 - Don't skip the issue comment. The reporter deserves to know what
   happened to their report.
 - Don't comment "fixed" without linking the PR. Actionable links beat

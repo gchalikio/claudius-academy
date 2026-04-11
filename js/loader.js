@@ -61,9 +61,7 @@
     // Decks marked `local: true` in the registry live under
     // presentations/local/<id>/ instead of presentations/<id>/.
     const entry = (window.DECKS || []).find((d) => d.id === deckId);
-    const base = entry?.local
-      ? `presentations/local/${deckId}`
-      : `presentations/${deckId}`;
+    const base = entry?.local ? `presentations/local/${deckId}` : `presentations/${deckId}`;
     window.DECK_PATH = base;
 
     // 1. Config first — defines everything else.
@@ -73,8 +71,7 @@
     injectFonts(window.DECK_CONFIG?.fonts);
 
     // 3. Per-deck stylesheet (default convention OR explicit path).
-    const stylesheet =
-      window.DECK_CONFIG?.stylesheet ?? `${base}/theme.css`;
+    const stylesheet = window.DECK_CONFIG?.stylesheet ?? `${base}/theme.css`;
     if (stylesheet) await loadStylesheet(stylesheet);
 
     // 4. Deck content

@@ -105,7 +105,10 @@
       // Hand-drawn wobble — turbulence + displacement
       const filter = el("filter", {
         id: "sketch",
-        x: "-10%", y: "-10%", width: "120%", height: "120%",
+        x: "-10%",
+        y: "-10%",
+        width: "120%",
+        height: "120%",
       });
       filter.appendChild(
         el("feTurbulence", {
@@ -143,15 +146,13 @@
         layers,
         steps: [],
         nodes: new Map(), // id → {data, el}
-        drawn: [],        // stack of {step, els[]} for unplay
+        drawn: [], // stack of {step, els[]} for unplay
         playedTo: 0,
       };
 
       function drawNode(step, animate) {
         const g = el("g", {
-          class: "node" +
-            (step.accent ? " node--accent" : "") +
-            (step.ghost ? " node--ghost" : ""),
+          class: "node" + (step.accent ? " node--accent" : "") + (step.ghost ? " node--ghost" : ""),
         });
         const shapeWrap = el("g");
         if (step.shape === "circle") {
@@ -238,8 +239,10 @@
 
       function applyStep(step, { animate }) {
         switch (step.type) {
-          case "node":  return drawNode(step, animate);
-          case "arrow": return drawArrow(step, animate);
+          case "node":
+            return drawNode(step, animate);
+          case "arrow":
+            return drawArrow(step, animate);
           default:
             console.warn("Diagram: unknown step type", step);
             return [];

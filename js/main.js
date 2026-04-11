@@ -41,9 +41,7 @@
       if (hintsEl) {
         const items = (cfg.hints.items || [])
           .map((item) => {
-            const keys = (item.keys || [])
-              .map((k) => `<kbd>${k}</kbd>`)
-              .join("+");
+            const keys = (item.keys || []).map((k) => `<kbd>${k}</kbd>`).join("+");
             return `<li>${keys} ${item.label || ""}</li>`;
           })
           .join("");

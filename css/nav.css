@@ -24,10 +24,18 @@
   display: grid;
   place-items: center;
   font-size: 1.1rem;
-  transition: background var(--t-fast) var(--ease-out), color var(--t-fast);
+  transition:
+    background var(--t-fast) var(--ease-out),
+    color var(--t-fast);
 }
-.nav__btn:hover { background: var(--gold-500); color: var(--ink-900); }
-.nav__btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.nav__btn:hover {
+  background: var(--gold-500);
+  color: var(--ink-900);
+}
+.nav__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 
 .nav__meta {
   display: flex;
@@ -39,7 +47,10 @@
   color: var(--ink-700);
   min-width: 90px;
 }
-.nav__step { color: var(--gold-700); font-size: 0.75rem; }
+.nav__step {
+  color: var(--gold-700);
+  font-size: 0.75rem;
+}
 
 .progress {
   position: fixed;
@@ -70,8 +81,19 @@
   font-family: var(--font-pixel);
   font-size: 0.85rem;
 }
-.hints h3 { color: var(--gold-500); margin: 0 0 8px; font-family: var(--font-pixel); letter-spacing: 0.2em; }
-.hints ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.hints h3 {
+  color: var(--gold-500);
+  margin: 0 0 8px;
+  font-family: var(--font-pixel);
+  letter-spacing: 0.2em;
+}
+.hints ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
 
 .author-tag {
   position: fixed;

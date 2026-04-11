@@ -49,7 +49,9 @@
   border: 1px solid var(--gold-700);
   border-radius: var(--radius-sm);
   outline: none;
-  transition: background var(--t-fast), color var(--t-fast);
+  transition:
+    background var(--t-fast),
+    color var(--t-fast);
 }
 .deck-picker__panel a:hover,
 .deck-picker__panel a:focus,

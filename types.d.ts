@@ -135,11 +135,11 @@ export interface NodeStep {
   shape: "circle" | "ellipse" | "rect";
   x: number;
   y: number;
-  r?: number;          // circle
-  rx?: number;         // ellipse
-  ry?: number;         // ellipse
-  w?: number;          // rect
-  h?: number;          // rect
+  r?: number; // circle
+  rx?: number; // ellipse
+  ry?: number; // ellipse
+  w?: number; // rect
+  h?: number; // rect
   label?: string;
   accent?: boolean;
   ghost?: boolean;
@@ -151,7 +151,7 @@ export interface ArrowStep {
   to: string;
   label?: string;
   accent?: boolean;
-  curve?: number;      // -1..1, perpendicular bend as fraction of chord
+  curve?: number; // -1..1, perpendicular bend as fraction of chord
 }
 
 /* ─── Builders API ─────────────────────────────────────────────── */

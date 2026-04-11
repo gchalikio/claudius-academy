@@ -24,15 +24,18 @@ Use this when the user wants to start a brand new talk in this repo.
 2. **Copy the examples folder into the right place.**
 
    **Public deck:**
+
    ```bash
    cp -r presentations/examples presentations/<deck-id>
    ```
 
    **Personal deck:**
+
    ```bash
    mkdir -p presentations/local
    cp -r presentations/examples presentations/local/<deck-id>
    ```
+
    The whole `presentations/local/` tree is gitignored, so nothing
    inside it ever gets committed.
 
@@ -59,9 +62,10 @@ Use this when the user wants to start a brand new talk in this repo.
 5. **Register the deck.**
 
    **Public deck** → edit `presentations/index.js`:
+
    ```js
    window.DECKS = [
-     { id: "examples",  title: "Examples — every builder" },
+     { id: "examples", title: "Examples — every builder" },
      { id: "<deck-id>", title: "Human Title" },
    ];
    ```
@@ -69,6 +73,7 @@ Use this when the user wants to start a brand new talk in this repo.
    **Personal deck** → create or edit `presentations/local/decks.js`
    (the whole `local/` folder is gitignored). Set `local: true` so the
    loader looks under `presentations/local/<id>/`:
+
    ```js
    if (window.DECKS) {
      window.DECKS.push({
@@ -96,7 +101,7 @@ Use this when the user wants to start a brand new talk in this repo.
 ## Don't
 
 - Don't put deck content in `js/` or `css/`.
-- Don't edit `js/builders.js` to add a slide type *for one specific deck* —
+- Don't edit `js/builders.js` to add a slide type _for one specific deck_ —
   use `Builders.register("name", factory)` from inside the deck file. Only
   add to `js/builders.js` if the new builder is genuinely reusable.
 - Don't commit a personal deck to the public repo. Personal decks must

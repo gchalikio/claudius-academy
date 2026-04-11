@@ -16,11 +16,11 @@ risk surface is:
 Only the latest tagged release on `main` receives fixes. Older versions are
 unsupported.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| `main`  | yes                |
-| latest tag | yes             |
-| anything older | no          |
+| Version        | Supported |
+| -------------- | --------- |
+| `main`         | yes       |
+| latest tag     | yes       |
+| anything older | no        |
 
 ## Reporting a vulnerability
 

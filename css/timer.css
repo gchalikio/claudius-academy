@@ -24,6 +24,11 @@
   animation: timer-pulse 0.8s ease-in-out infinite;
 }
 @keyframes timer-pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
-  50%      { box-shadow: 0 0 18px currentColor; }
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px currentColor;
+  }
 }

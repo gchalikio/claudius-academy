@@ -55,9 +55,11 @@ Use this when the user reports something broken in the engine or a deck.
      change.
 
 5. **Run the full test suite.**
+
    ```bash
    npm test
    ```
+
    Confirm the new test passes and no others regressed.
 
 6. **Smoke-test the deck manually.**

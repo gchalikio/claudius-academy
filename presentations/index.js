@@ -17,9 +17,7 @@
  *      with `local: true` so the loader knows where to find it
  *   3. Open it with  index.html?deck=<your-id>
  */
-window.DECKS = [
-  { id: "examples", title: "Examples — every builder" },
-];
+window.DECKS = [{ id: "examples", title: "Examples — every builder" }];
 
 window.DEFAULT_DECK = "examples";
 

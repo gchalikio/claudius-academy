@@ -96,7 +96,7 @@ doesn't work" bugs.
 5. **Wire the boot sequence.**
    If the feature has an `init()` method, add the call to `Boot.start()`
    in `js/main.js` next to the existing `Modal.init() / Code.init() /
-   Notes.init() / Overview.init() / Timer.init()` calls.
+Notes.init() / Overview.init() / Timer.init()` calls.
 
 6. **Wire the keymap, if applicable.**
    In `js/nav.js`, add a case to the `keydown` switch. **Mind the modal
@@ -130,14 +130,17 @@ doesn't work" bugs.
     - A footgun future contributors might hit → add it to "Anti-patterns"
 
 12. **Update `CHANGELOG.md`** under `[Unreleased]` → `### Added`:
+
     ```md
     - <Feature name>: <one-line description>.
     ```
 
 13. **Run the test suite.**
+
     ```bash
     npm test
     ```
+
     Confirm everything passes — both your new test and the existing ones.
 
 14. **Smoke-test in the browser.**
@@ -160,7 +163,7 @@ doesn't work" bugs.
   the README's Key bindings table first.
 - Don't add a config option without a sensible default. Decks shouldn't
   break when they don't set the new option.
-- Don't implement a feature that *should* be configurable as
+- Don't implement a feature that _should_ be configurable as
   hardcoded code. If a deck author would reasonably want to change the
   behaviour, it goes in `DECK_CONFIG`.
 - Don't ship without a test. CI will catch you and a reviewer will

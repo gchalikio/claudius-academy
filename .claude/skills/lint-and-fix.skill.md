@@ -29,24 +29,30 @@ site — they only touch source files.
 
 1. **Make sure dev deps are installed.**
    If `node_modules/` doesn't exist, run:
+
    ```bash
    npm install
    ```
+
    (One-time per clone — the engine itself doesn't need it.)
 
 2. **Run the auto-fixer first.**
+
    ```bash
    npm run fix
    ```
+
    This runs `eslint . --fix` followed by `prettier --write .`.
    It will rewrite files in place. Most spacing, quoting, semicolons,
    missing trailing commas, and unused-import warnings disappear here.
 
 3. **Re-run the full lint suite.**
+
    ```bash
    npm run lint
    ```
-   This runs ESLint + markdownlint + Prettier in *check* mode (no
+
+   This runs ESLint + markdownlint + Prettier in _check_ mode (no
    writes). Anything that's still red after the auto-fix is a real
    issue that needs human judgement.
 
@@ -57,7 +63,6 @@ site — they only touch source files.
    `.markdownlint.json`, no `prettier-ignore` comments. If a rule is
    firing, the code is wrong (or the rule is wrong for the whole
    project, in which case escalate — see step 5).
-
    - **ESLint `error` (red):** read the rule, read the code, fix the
      code so the rule passes.
    - **ESLint `warning` (yellow):** same — fix it. Most are
@@ -78,9 +83,9 @@ site — they only touch source files.
    - If it requires a design decision (rename a function, split a file,
      change a public API), surface it to the user with the options
      before changing anything.
-   - If a rule is genuinely wrong for the *whole project* (not just one
+   - If a rule is genuinely wrong for the _whole project_ (not just one
      spot), surface it to the user with: which rule, why it doesn't
-     fit, and a proposed *configuration* (e.g. raising MD013's
+     fit, and a proposed _configuration_ (e.g. raising MD013's
      `line_length` parameter, not disabling MD013). The user decides
      whether to accept that config change. **Default is to fix the
      code, not the rule.**
@@ -89,9 +94,11 @@ site — they only touch source files.
    Don't move on while anything is red.
 
 7. **Run the test suite.**
+
    ```bash
    npm test
    ```
+
    The auto-fix can occasionally rewrite something the tests notice
    (e.g. trailing whitespace inside a `code` snippet that matters).
    Catch that here.
@@ -122,7 +129,7 @@ site — they only touch source files.
 - **Don't disable a lint rule to make a warning go away.** Ever.
   The fix is always in the code. If a rule is genuinely wrong for the
   whole project, surface it to the user with a justification and let
-  them decide whether to *configure* (not disable) it.
+  them decide whether to _configure_ (not disable) it.
 - Don't mix lint fixes with feature commits. If the user does ask you
   to commit, keep it scoped.
 - Don't `--no-verify` past a hook to skip lint. The hook is the point.

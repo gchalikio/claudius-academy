@@ -5,7 +5,7 @@ description: Turn a written talk outline into a draft deck — maps sections to 
 
 # Skill: outline → deck
 
-Use this when the user has a *written* outline (in their head, in a doc,
+Use this when the user has a _written_ outline (in their head, in a doc,
 in markdown) and wants Claude to bootstrap a runnable deck from it. The
 goal is a draft they can refine, not a finished talk.
 
@@ -39,12 +39,14 @@ goal is a draft they can refine, not a finished talk.
 
 4. **Map each outline element to a slide config** in your head before
    writing anything. Sketch the result in a small table:
+
    ```
    "I. Why this matters"   → sectionSlide  (numeral I)
    "  - Who I am"           → textSlide
    "  - What this isn't"    → textSlide (or merged)
    "  - The thesis"         → bigTextSlide
    ```
+
    If the table is more than ~25 slides, push back — that's too long for
    most talks. Suggest cuts.
 

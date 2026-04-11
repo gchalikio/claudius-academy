@@ -19,17 +19,17 @@ deck. For starting a brand new deck, use `add-presentation` instead.
 
 Match the user's intent to a builder before writing anything:
 
-| User says…                                  | Builder         |
-| ------------------------------------------- | --------------- |
-| "Add a slide that says X with a paragraph"  | `textSlide`     |
-| "Add a quote"                               | `quoteSlide`    |
-| "Add an act/section divider"                | `sectionSlide`  |
-| "I want bullets that reveal one at a time"  | `listSlide`     |
-| "Two columns side by side"                  | `splitSlide`    |
-| "Wrong vs right"                            | `compareSlide`  |
-| "One sentence in big text"                  | `bigTextSlide`  |
-| "Show an image with a NO overlay"           | `imageSlide`    |
-| "Draw a diagram step by step"               | `diagramSlide`  |
+| User says…                                 | Builder        |
+| ------------------------------------------ | -------------- |
+| "Add a slide that says X with a paragraph" | `textSlide`    |
+| "Add a quote"                              | `quoteSlide`   |
+| "Add an act/section divider"               | `sectionSlide` |
+| "I want bullets that reveal one at a time" | `listSlide`    |
+| "Two columns side by side"                 | `splitSlide`   |
+| "Wrong vs right"                           | `compareSlide` |
+| "One sentence in big text"                 | `bigTextSlide` |
+| "Show an image with a NO overlay"          | `imageSlide`   |
+| "Draw a diagram step by step"              | `diagramSlide` |
 
 If the user wants something none of those cover, go to the
 `add-slide-builder` skill instead.
@@ -37,7 +37,7 @@ If the user wants something none of those cover, go to the
 ## Steps
 
 1. **Ask where the slide goes.**
-   - Which act/section? Which slide should it come *after*?
+   - Which act/section? Which slide should it come _after_?
    - If unclear, list the current slide ids in order so the user can point.
 
 2. **Confirm the slide id.**
@@ -49,7 +49,7 @@ If the user wants something none of those cover, go to the
    - Use the builder reference in `README.md` for the option names.
    - Always include:
      - `id`
-     - `notes` if the slide has anything that's easier to *say* than show
+     - `notes` if the slide has anything that's easier to _say_ than show
      - `snippets` if it makes sense to back the slide with code
    - For `listSlide`, items reveal one per →, so don't put more than 5–6.
    - For `bigTextSlide`, keep `text` to one sentence (≤8 words ideally).
@@ -68,7 +68,7 @@ If the user wants something none of those cover, go to the
      - Pressing `C` shows the snippets you added.
      - The overview (`Esc`) shows the new card with the right title.
 
-6. **If the deck is the *public* one, run the test suite.**
+6. **If the deck is the _public_ one, run the test suite.**
    ```bash
    npm test
    ```
@@ -80,6 +80,6 @@ If the user wants something none of those cover, go to the
   in the URL hash.
 - Don't add a slide that's just a placeholder unless the user explicitly
   asks for one. Empty slides waste audience attention.
-- Don't put the new slide *outside* its act (e.g. a Pillar III bullet
+- Don't put the new slide _outside_ its act (e.g. a Pillar III bullet
   inside Act II). Acts give the talk rhythm.
-- Don't introduce a new slide *type* in this skill. Use `add-slide-builder`.
+- Don't introduce a new slide _type_ in this skill. Use `add-slide-builder`.

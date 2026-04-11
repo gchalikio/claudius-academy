@@ -19,7 +19,11 @@
   font-family: var(--font-display);
   letter-spacing: 0.1em;
 }
-.overview__head h2 { margin: 0; font-size: 1.6rem; color: var(--gold-500); }
+.overview__head h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--gold-500);
+}
 .overview__hint {
   font-family: var(--font-pixel);
   font-size: 0.75rem;
@@ -47,7 +51,10 @@
   grid-template-columns: auto 1fr;
   column-gap: 12px;
   row-gap: 6px;
-  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out), background 160ms;
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out),
+    background 160ms;
   font-family: var(--font-serif);
   color: var(--ink-900);
   outline: none;
@@ -69,7 +76,9 @@
   letter-spacing: 0.2em;
 }
 .ov-card.is-active .ov-card__num,
-.ov-card:hover .ov-card__num { color: var(--ink-900); }
+.ov-card:hover .ov-card__num {
+  color: var(--ink-900);
+}
 
 .ov-card__glyph {
   grid-row: 1;
@@ -100,7 +109,9 @@
   word-break: break-word;
 }
 .ov-card.is-active .ov-card__id,
-.ov-card:hover .ov-card__id { color: var(--ink-700); }
+.ov-card:hover .ov-card__id {
+  color: var(--ink-700);
+}
 
 .ov-card__type {
   grid-row: 4;
@@ -113,4 +124,6 @@
   margin-top: auto;
 }
 .ov-card.is-active .ov-card__type,
-.ov-card:hover .ov-card__type { color: var(--ink-700); }
+.ov-card:hover .ov-card__type {
+  color: var(--ink-700);
+}

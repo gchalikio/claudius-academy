@@ -14,15 +14,52 @@
   // Not a real parser — just enough to add visual rhythm. Order matters:
   // comments first, then strings, then keywords/numbers.
   const KEYWORDS = new Set([
-    "const", "let", "var", "function", "return", "if", "else", "for", "while",
-    "class", "extends", "new", "import", "export", "from", "default", "async",
-    "await", "try", "catch", "throw", "true", "false", "null", "undefined",
-    "def", "elif", "lambda", "pass", "yield", "in", "is", "not", "and", "or",
-    "module", "do", "end", "self", "nil", "puts", "require",
+    "const",
+    "let",
+    "var",
+    "function",
+    "return",
+    "if",
+    "else",
+    "for",
+    "while",
+    "class",
+    "extends",
+    "new",
+    "import",
+    "export",
+    "from",
+    "default",
+    "async",
+    "await",
+    "try",
+    "catch",
+    "throw",
+    "true",
+    "false",
+    "null",
+    "undefined",
+    "def",
+    "elif",
+    "lambda",
+    "pass",
+    "yield",
+    "in",
+    "is",
+    "not",
+    "and",
+    "or",
+    "module",
+    "do",
+    "end",
+    "self",
+    "nil",
+    "puts",
+    "require",
   ]);
 
   function escapeHtml(s) {
-    return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
   }
 
   function highlight(line, lang) {

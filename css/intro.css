@@ -7,8 +7,7 @@
   align-items: center;
   justify-content: center;
   gap: 18px;
-  background:
-    radial-gradient(ellipse at center, #2a1d10 0%, #0d0805 80%);
+  background: radial-gradient(ellipse at center, #2a1d10 0%, #0d0805 80%);
   color: var(--parchment-100);
   text-align: center;
   animation: intro-fade-in var(--t-slow) var(--ease-out);
@@ -38,7 +37,9 @@
   opacity: 0;
   animation: intro-laurel-in 1.4s var(--ease-out) 0.3s both;
 }
-.intro__laurel--right { transform: scaleX(-1); }
+.intro__laurel--right {
+  transform: scaleX(-1);
+}
 
 .intro__title {
   font-family: var(--font-display);
@@ -86,37 +87,81 @@
   opacity: 0;
   animation: intro-fade-up 0.6s var(--ease-out) 3s forwards;
 }
-.intro__skip:hover { color: var(--gold-500); }
+.intro__skip:hover {
+  color: var(--gold-500);
+}
 
-@keyframes intro-fade-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes intro-fade-out { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes intro-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 
 @keyframes intro-logo-in {
-  from { opacity: 0; transform: scale(0.4) rotate(-8deg); filter: blur(8px); }
-  to   { opacity: 1; transform: scale(1) rotate(0); filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-8deg);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+    filter: blur(0);
+  }
 }
 
 @keyframes intro-laurel-in {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 .intro__laurel--right {
   animation-name: intro-laurel-in-right;
 }
 @keyframes intro-laurel-in-right {
-  from { opacity: 0; transform: scaleX(-1) translateX(20px); }
-  to   { opacity: 1; transform: scaleX(-1) translateX(0); }
+  from {
+    opacity: 0;
+    transform: scaleX(-1) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(-1) translateX(0);
+  }
 }
 
 @keyframes intro-type {
-  to { width: 100%; }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes intro-rule {
-  to { width: 60%; }
+  to {
+    width: 60%;
+  }
 }
 
 @keyframes intro-fade-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -14,7 +14,7 @@
 **Live demo:** <https://gchalikio.github.io/claudius-academy/>
 
 Claudius Academy is a single-folder presentation engine you can fork to give
-talks that *look* designed without touching a slide tool. The engine in
+talks that _look_ designed without touching a slide tool. The engine in
 `js/` and `css/` is **theme-agnostic** — it ships with a parchment + pixel
 default look, but every color, font, and layout token is overridable per
 deck via CSS variables (`config.theme`), `@font-face` injection
@@ -28,7 +28,7 @@ the box.
 > **You don't need to be a developer to use this.** The repo ships with a
 > full set of [Claude Code skills](.claude/skills/) — opening it in any
 > AI-aware editor (Claude Code, Cursor, etc.) lets you say things like
-> *"start a new deck called Q4 review"* or *"add a diagram showing X"* and
+> _"start a new deck called Q4 review"_ or _"add a diagram showing X"_ and
 > the AI does the editing. The skills encode every common flow as concrete
 > steps, so the AI never has to guess.
 
@@ -92,14 +92,14 @@ Visit `index.html?deck=<deck-id>` to skip the picker.
 > render them. Suggested set: `intro.png`, `slide.png`, `diagram.png`,
 > `code-modal.png`, `overview.png`.
 
-| | |
-| :---: | :---: |
-| ![Intro sequence](docs/screenshots/intro.png) | ![A text slide](docs/screenshots/slide.png) |
-| **Default intro animation** | **A text slide** |
+|                                                      |                                                              |
+| :--------------------------------------------------: | :----------------------------------------------------------: |
+|    ![Intro sequence](docs/screenshots/intro.png)     |         ![A text slide](docs/screenshots/slide.png)          |
+|             **Default intro animation**              |                       **A text slide**                       |
 | ![Progressive diagram](docs/screenshots/diagram.png) | ![Code modal with snippets](docs/screenshots/code-modal.png) |
-| **Progressive SVG diagram** | **Code modal (press `C`)** |
-| ![Overview grid](docs/screenshots/overview.png) | |
-| **Overview grid (press `Esc`)** | |
+|             **Progressive SVG diagram**              |                  **Code modal (press `C`)**                  |
+|   ![Overview grid](docs/screenshots/overview.png)    |                                                              |
+|           **Overview grid (press `Esc`)**            |                                                              |
 
 ---
 
@@ -157,7 +157,7 @@ cp -r presentations/examples presentations/my-talk
    ```js
    window.DECKS = [
      { id: "examples", title: "Examples — every builder" },
-     { id: "my-talk",  title: "My Talk" },
+     { id: "my-talk", title: "My Talk" },
    ];
    ```
 
@@ -199,17 +199,17 @@ cp -r presentations/examples presentations/local/my-talk
 
 All built-in builders live on `window.Builders`:
 
-| Builder         | Use it for                                          |
-| --------------- | --------------------------------------------------- |
-| `textSlide`     | Eyebrow + title + body HTML                         |
-| `quoteSlide`    | Big centered quotation                              |
-| `sectionSlide`  | Act / pillar divider with a big chapter numeral     |
-| `listSlide`     | Bulleted or numbered list — bullets reveal one per → |
-| `splitSlide`    | Two columns (text + visual / text + text)           |
-| `compareSlide`  | Wrong vs right, two columns with red/green headers   |
-| `bigTextSlide`  | One huge sentence — optional reveal on first →       |
-| `imageSlide`    | Image with a giant red X overlay on first →          |
-| `diagramSlide`  | Progressive SVG diagram with stepwise nodes/arrows  |
+| Builder        | Use it for                                           |
+| -------------- | ---------------------------------------------------- |
+| `textSlide`    | Eyebrow + title + body HTML                          |
+| `quoteSlide`   | Big centered quotation                               |
+| `sectionSlide` | Act / pillar divider with a big chapter numeral      |
+| `listSlide`    | Bulleted or numbered list — bullets reveal one per → |
+| `splitSlide`   | Two columns (text + visual / text + text)            |
+| `compareSlide` | Wrong vs right, two columns with red/green headers   |
+| `bigTextSlide` | One huge sentence — optional reveal on first →       |
+| `imageSlide`   | Image with a giant red X overlay on first →          |
+| `diagramSlide` | Progressive SVG diagram with stepwise nodes/arrows   |
 
 Every builder accepts an optional `notes: "..."` field for the speaker-notes
 pane and `snippets: [...]` for the code modal.
@@ -220,6 +220,7 @@ To see every builder live in the browser, open the **Examples** deck from
 the picker (or visit `index.html?deck=examples`).
 
 **`textSlide`** — eyebrow + title + body HTML.
+
 ```js
 textSlide({
   id: "intro",
@@ -227,11 +228,12 @@ textSlide({
   title: "Hello world",
   body: `<p>Plain HTML body. <strong>Markup works.</strong></p>`,
   notes: "Speaker notes for this slide (press N to view).",
-})
+});
 ```
 
 **`sectionSlide`** — act/pillar divider with a big chapter numeral. The
 `numeral` field is just a string — use `"II"`, `"02"`, `"Ω"`, anything.
+
 ```js
 sectionSlide({
   id: "act-2",
@@ -239,61 +241,67 @@ sectionSlide({
   eyebrow: "Pillar Two",
   title: "Context",
   subtitle: "The single highest-leverage skill you can build.",
-})
+});
 ```
 
 **`listSlide`** — bullets reveal one per →. Set `ordered: true` for numbered items (the default theme renders them as upper-roman; override the counter style in your deck's `theme.css` if you want decimal).
+
 ```js
 listSlide({
   id: "three-things",
   eyebrow: "Three things",
   title: "What you'll learn",
   items: ["Idea one", "Idea two", "Idea three"],
-})
+});
 ```
 
 **`splitSlide`** — two columns. `left` and `right` accept any HTML.
+
 ```js
 splitSlide({
   id: "split",
   title: "Two columns",
-  left:  `<p>Left column text.</p>`,
+  left: `<p>Left column text.</p>`,
   right: `<img src="presentations/my-talk/assets/images/diagram.svg" />`,
   ratio: "1fr 1.4fr", // optional, defaults to "1fr 1fr"
-})
+});
 ```
 
 **`compareSlide`** — wrong vs right, with red/green headers and ✗/✓.
+
 ```js
 compareSlide({
   id: "compare",
   eyebrow: "Side by side",
   title: "Context: wrong vs right",
-  left:  { title: "Wrong", items: ["...", "..."] },
+  left: { title: "Wrong", items: ["...", "..."] },
   right: { title: "Right", items: ["...", "..."] },
-})
+});
 ```
 
 **`quoteSlide`** — big centered quotation.
+
 ```js
 quoteSlide({
   id: "quote",
   quote: "An idea worth sitting with.",
   cite: "anonymous",
-})
+});
 ```
 
 **`bigTextSlide`** — single huge sentence. `reveal: true` makes it appear on the first → instead of immediately (good for dramatic timing).
+
 ```js
 bigTextSlide({
   id: "takeaway",
   text: "Grow with Claude.",
   footnote: "the one thing to remember",
   reveal: true,
-})
+});
 ```
 
 **`imageSlide`** — image with a giant red X overlay on first → (great for "do NOT do this" anti-patterns).
+
 ```js
 imageSlide({
   id: "anti-pattern",
@@ -301,22 +309,42 @@ imageSlide({
   title: "Don't do this",
   image: "presentations/my-talk/assets/images/example.png",
   alt: "Example to avoid",
-})
+});
 ```
 
 **`diagramSlide`** — progressive SVG diagram. Each step adds a node or arrow. Add `fullscreen: true` for an edge-to-edge canvas.
+
 ```js
 diagramSlide({
   id: "context-diagram",
   fullscreen: true,
   viewBox: { width: 1600, height: 900 },
   steps: [
-    { type: "node",  id: "ctx",  shape: "ellipse", x: 800, y: 460, rx: 200, ry: 120, label: "CONTEXT", accent: true },
-    { type: "node",  id: "jira", shape: "ellipse", x: 200, y: 180, rx: 130, ry: 60,  label: "JIRA" },
+    {
+      type: "node",
+      id: "ctx",
+      shape: "ellipse",
+      x: 800,
+      y: 460,
+      rx: 200,
+      ry: 120,
+      label: "CONTEXT",
+      accent: true,
+    },
+    {
+      type: "node",
+      id: "jira",
+      shape: "ellipse",
+      x: 200,
+      y: 180,
+      rx: 130,
+      ry: 60,
+      label: "JIRA",
+    },
     { type: "arrow", from: "jira", to: "ctx", label: "tickets", curve: 0.05 },
     // arrows take an optional `curve` (positive/negative bends opposite ways)
   ],
-})
+});
 ```
 
 Diagram step shapes: `circle` (needs `r`), `ellipse` (needs `rx`/`ry`), `rect` (needs `w`/`h`).
@@ -332,31 +360,33 @@ window.Builders.register("myThing", function ({ id, label }) {
     id,
     type: "myThing",
     title: label,
-    render(root) { root.innerHTML = `<h1>${label}</h1>`; },
+    render(root) {
+      root.innerHTML = `<h1>${label}</h1>`;
+    },
   };
 });
 
 const { myThing } = window.Builders;
-const slides = [ myThing({ id: "x", label: "hi" }) ];
+const slides = [myThing({ id: "x", label: "hi" })];
 ```
 
 ---
 
 ## Key bindings
 
-| Key                | Action                                     |
-| ------------------ | ------------------------------------------ |
-| `→` / `Space`      | next step (or next slide)                  |
-| `←`                | previous step (or previous slide)          |
-| `⇧` + `→` / `←`    | skip to next / previous slide              |
-| `V`                | video panel                                |
-| `C`                | code snippets                              |
-| `N`                | speaker notes                              |
-| `T`                | toggle the talk timer                      |
-| `Esc`              | overview grid (or close any open modal)    |
-| `F`                | browser fullscreen                         |
-| `?`                | hint panel                                 |
-| `1`–`9`            | (in the code modal) jump to that snippet   |
+| Key             | Action                                   |
+| --------------- | ---------------------------------------- |
+| `→` / `Space`   | next step (or next slide)                |
+| `←`             | previous step (or previous slide)        |
+| `⇧` + `→` / `←` | skip to next / previous slide            |
+| `V`             | video panel                              |
+| `C`             | code snippets                            |
+| `N`             | speaker notes                            |
+| `T`             | toggle the talk timer                    |
+| `Esc`           | overview grid (or close any open modal)  |
+| `F`             | browser fullscreen                       |
+| `?`             | hint panel                               |
+| `1`–`9`         | (in the code modal) jump to that snippet |
 
 ---
 
@@ -491,9 +521,9 @@ field, with no build step.
 ## Acknowledgments
 
 - The emperor **Claudius** (41–54 AD) — the project name is a pun on
-  *Claude*; the historical Claudius was famously bookish and scholarly,
-  which felt fitting for an academy of presentations. The choice of *name*
-  is not a choice of *style* — the engine itself is theme-agnostic.
+  _Claude_; the historical Claudius was famously bookish and scholarly,
+  which felt fitting for an academy of presentations. The choice of _name_
+  is not a choice of _style_ — the engine itself is theme-agnostic.
 - The **Contributor Covenant** for the code of conduct.
 - **Playwright** for making browser-driven tests painless.
 
@@ -506,4 +536,3 @@ follows [Semantic Versioning](https://semver.org/) and
 ## License
 
 MIT — see [LICENSE](LICENSE).
-

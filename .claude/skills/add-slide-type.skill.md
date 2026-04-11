@@ -111,14 +111,17 @@ this as a literal checklist and don't merge until every box is ticked.
       section, matching the format of existing entries.
 
 11. **Update `CHANGELOG.md`** under `[Unreleased]` → `### Added`:
+
     ```md
     - New `<name>Slide` builder for <use case>.
     ```
 
 12. **Run the test suite.**
+
     ```bash
     npm test
     ```
+
     Confirm everything passes — both the new test and the existing ones.
 
 13. **Smoke-test in the browser.**

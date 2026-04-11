@@ -38,7 +38,10 @@
       const fromStore = this._loadStored();
       const start = fromHash || fromStore || { id: slides[0]?.id, step: 0 };
 
-      const idx = Math.max(0, slides.findIndex((s) => s.id === start.id));
+      const idx = Math.max(
+        0,
+        slides.findIndex((s) => s.id === start.id)
+      );
       this.index = idx === -1 ? 0 : idx;
       this.step = Math.min(start.step ?? 0, this._stepsOf(this.index));
 

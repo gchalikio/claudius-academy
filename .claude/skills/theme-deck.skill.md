@@ -30,14 +30,14 @@ Never edit anything under `css/` for a single deck. That's engine code.
 ## Steps
 
 1. **Confirm what the user wants to change.**
-   Ask for a sentence: *"Make it dark with cyan accents and a brutalist
-   sans-serif."* If they're vague, push back — vague theming makes everything
+   Ask for a sentence: _"Make it dark with cyan accents and a brutalist
+   sans-serif."_ If they're vague, push back — vague theming makes everything
    look the same.
 
 2. **Map the change to CSS variables.**
    Read `css/theme.css` once and find which variables map to what.
    Token names are historical (named after the default theme) but their
-   *values* are arbitrary — you can set `--parchment-100` to dark blue
+   _values_ are arbitrary — you can set `--parchment-100` to dark blue
    and the engine doesn't care.
    - **Colors:** `--parchment-100/200/300` (background tints),
      `--ink-500/700/900` (text/foreground), `--gold-500/700` (accent),
@@ -48,6 +48,7 @@ Never edit anything under `css/` for a single deck. That's engine code.
 
 3. **Edit `presentations/<deck>/config.js`** under the `theme:` block.
    Keys can be written with or without the leading `--`:
+
    ```js
    theme: {
      "parchment-100": "#0f1117",
@@ -60,6 +61,7 @@ Never edit anything under `css/` for a single deck. That's engine code.
 4. **For custom fonts**, drop the `.woff2` files into
    `presentations/<deck>/assets/fonts/` and declare them in
    `config.fonts`:
+
    ```js
    fonts: [
      {
@@ -71,6 +73,7 @@ Never edit anything under `css/` for a single deck. That's engine code.
      },
    ],
    ```
+
    Then reference the family from `theme["font-display"]` (or
    `font-serif`/`font-pixel`).
 
@@ -88,7 +91,10 @@ Never edit anything under `css/` for a single deck. That's engine code.
      ```
    - Hiding the default scanline / vignette overlays:
      ```css
-     .scanlines, .vignette { display: none; }
+     .scanlines,
+     .vignette {
+       display: none;
+     }
      ```
 
 6. **Tune the intro decorations** in `config.intro`:
