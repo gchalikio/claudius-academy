@@ -47,4 +47,18 @@ test.describe("refresh + boot ordering", () => {
     await expect(page.locator("#intro")).toBeHidden();
     expect(await page.evaluate(() => window.Router.index)).toBe(0);
   });
+
+  test("clearing the hash and revisiting starts from slide 0", async ({ page }) => {
+    // Walk a few slides forward — hash will accumulate state.
+    await page.goto("/?deck=examples&nointro");
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("ArrowRight");
+    expect(await page.evaluate(() => window.Router.index)).toBeGreaterThan(0);
+
+    // Now visit the deck URL with no hash. This must reset to slide 0
+    // (no localStorage fallback). Regression for the resume bug.
+    await page.goto("/?deck=examples&nointro");
+    expect(await page.evaluate(() => window.Router.index)).toBe(0);
+  });
 });

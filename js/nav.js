@@ -95,7 +95,8 @@
           case "Home":
           case ")":
             e.preventDefault();
-            Router.goTo(0, 0);
+            // Back to the deck picker (clears ?deck= and the hash).
+            window.location.href = window.location.pathname;
             break;
         }
       });

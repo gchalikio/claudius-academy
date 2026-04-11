@@ -57,6 +57,21 @@ test.describe("navigation", () => {
     await expect(page.locator("#nav-counter")).toContainText(/^1 \//);
   });
 
+  test("Shift+0 leaves the deck and returns to the picker", async ({ page }) => {
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("Shift+0");
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator(".deck-picker")).toBeVisible();
+  });
+
+  test("Home key also returns to the picker", async ({ page }) => {
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("Home");
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator(".deck-picker")).toBeVisible();
+  });
+
   test("right at the last slide is a no-op", async ({ page }) => {
     const total = await page.evaluate(() => window.SLIDES.length);
     await page.evaluate((n) => window.Router.goTo(n - 1, 0), total);
