@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <!-- Pixel-style placeholder. Replace with your real icon. -->
+  <rect width="64" height="64" fill="#1b120a"/>
+  <g fill="#c9a64a">
+    <!-- Outer ring (chunky pixel C) -->
+    <rect x="20" y="10" width="24" height="4"/>
+    <rect x="14" y="14" width="6"  height="4"/>
+    <rect x="44" y="14" width="6"  height="4"/>
+    <rect x="10" y="18" width="6"  height="6"/>
+    <rect x="48" y="18" width="6"  height="6"/>
+    <rect x="10" y="40" width="6"  height="6"/>
+    <rect x="48" y="40" width="6"  height="6"/>
+    <rect x="14" y="46" width="6"  height="4"/>
+    <rect x="44" y="46" width="6"  height="4"/>
+    <rect x="20" y="50" width="24" height="4"/>
+    <!-- Inner stroke -->
+    <rect x="18" y="22" width="12" height="4"/>
+    <rect x="18" y="38" width="12" height="4"/>
+    <rect x="14" y="26" width="4"  height="12"/>
+  </g>
+  <!-- Laurel hint -->
+  <g fill="#7fdc8c">
+    <rect x="6"  y="30" width="2" height="4"/>
+    <rect x="8"  y="28" width="2" height="2"/>
+    <rect x="56" y="30" width="2" height="4"/>
+    <rect x="54" y="28" width="2" height="2"/>
+  </g>
+</svg>

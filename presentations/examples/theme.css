@@ -1,0 +1,5 @@
+/**
+ * Per-deck stylesheet — overrides engine CSS for THIS deck only.
+ * Most theming should go through `theme: { ... }` in config.js.
+ * Use this file for layout/structure changes that don't fit a CSS variable.
+ */

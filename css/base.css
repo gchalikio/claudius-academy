@@ -1,0 +1,94 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] { display: none !important; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--parchment-100);
+  color: var(--ink-900);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* Parchment grain — pure CSS, no asset needed */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(138, 111, 36, 0.08) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 46, 46, 0.06) 0, transparent 45%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(90, 64, 48, 0.02) 0 2px,
+      transparent 2px 6px
+    );
+  z-index: 1;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(27, 18, 10, 0.55) 100%
+  );
+}
+
+/* Subtle CRT scanlines — the pixel accent */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(27, 18, 10, 0.04) 0 1px,
+    transparent 1px 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  color: var(--ink-900);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1em; }
+
+kbd {
+  font-family: var(--font-pixel);
+  font-size: 0.95em;
+  padding: 1px 6px;
+  background: var(--ink-900);
+  color: var(--crt-green);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-700);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}

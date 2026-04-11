@@ -1,0 +1,54 @@
+name: Bug report
+description: Something is broken or behaving unexpectedly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please give us enough info to reproduce.
+  - type: input
+    id: browser
+    attributes:
+      label: Browser + version
+      placeholder: "Chrome 132 / Safari 18 / Firefox 134"
+    validations:
+      required: true
+  - type: input
+    id: deck
+    attributes:
+      label: Deck
+      description: Which deck were you using when the bug happened?
+      placeholder: "examples / my-talk"
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open index.html
+        2. Press →
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected to happen
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Browser console output
+      description: Paste any errors or warnings from the DevTools console.
+      render: shell
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Screenshots, screen recordings, links to a fork that reproduces it.

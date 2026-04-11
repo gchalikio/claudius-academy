@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#2a1d10"/>
+  <rect x="40" y="40" width="1120" height="620" fill="none" stroke="#c9a64a" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="600" y="340" fill="#c9a64a" font-family="Georgia, serif" font-size="56" text-anchor="middle" letter-spacing="6">DROP YOUR IMAGE HERE</text>
+  <text x="600" y="400" fill="#8a6f24" font-family="monospace" font-size="22" text-anchor="middle" letter-spacing="4">assets/placeholder.svg</text>
+</svg>

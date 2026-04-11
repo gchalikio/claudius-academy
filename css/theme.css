@@ -1,0 +1,34 @@
+/* Design tokens — Roman academy primary, pixel/CRT accent */
+:root {
+  /* Parchment + ink palette */
+  --parchment-100: #f5ecd2;
+  --parchment-200: #ecdfb8;
+  --parchment-300: #d9c79a;
+  --ink-900: #1b120a;
+  --ink-700: #3a2618;
+  --ink-500: #5a4030;
+
+  /* Accents */
+  --gold-500: #c9a64a;
+  --gold-700: #8a6f24;
+  --crimson-600: #8b2e2e;
+  --crt-green: #7fdc8c;
+
+  /* Layout */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --maxw: 1100px;
+  --gutter: clamp(16px, 4vw, 48px);
+
+  /* Typography — system fallbacks; drop .woff2 files in assets/fonts to upgrade */
+  --font-display: "Cinzel", "Trajan Pro", "Iowan Old Style", Georgia, serif;
+  --font-serif: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --font-pixel: "VT323", "Press Start 2P", ui-monospace, "Courier New", monospace;
+  --font-ui: ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 180ms;
+  --t-med: 360ms;
+  --t-slow: 720ms;
+}

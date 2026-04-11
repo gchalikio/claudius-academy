@@ -1,0 +1,22 @@
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+.cursor/
+node_modules/
+.env
+.env.*
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Local-only presentations (personal talks, work content, etc.)
+presentations/local.js
+presentations/claudius-academy/
+
+# Local Claude Code editor settings (skills/ is committed, settings.local.json is not)
+.claude/settings.local.json
+.claude/settings.json

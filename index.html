@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claudius Academy</title>
+
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/intro.css" />
+    <link rel="stylesheet" href="css/slide.css" />
+    <link rel="stylesheet" href="css/diagram.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/code.css" />
+    <link rel="stylesheet" href="css/image.css" />
+    <link rel="stylesheet" href="css/picker.css" />
+    <link rel="stylesheet" href="css/notes.css" />
+    <link rel="stylesheet" href="css/overview.css" />
+    <link rel="stylesheet" href="css/timer.css" />
+    <link rel="stylesheet" href="css/compare.css" />
+    <link rel="stylesheet" href="css/error.css" />
+  </head>
+  <body>
+    <!-- Parchment / scanline overlays -->
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- Intro sequence (plays once, skippable) -->
+    <section id="intro" class="intro" aria-label="Intro">
+      <div class="intro__frame">
+        <div class="intro__laurel intro__laurel--left" aria-hidden="true">❦</div>
+        <img class="intro__logo" src="assets/logo.svg" alt="Claudius logo" />
+        <div class="intro__laurel intro__laurel--right" aria-hidden="true">❦</div>
+      </div>
+      <h1 class="intro__title" data-text="CLAUDIUS">CLAUDIUS</h1>
+      <div class="intro__rule"></div>
+      <p class="intro__subtitle">Academy</p>
+      <button class="intro__skip" type="button" data-action="skip-intro">
+        press any key to enter ▸
+      </button>
+    </section>
+
+    <!-- Slide stage -->
+    <main id="stage" class="stage" hidden>
+      <!-- Slides are injected here by the router -->
+    </main>
+
+    <!-- Navigation chrome -->
+    <nav class="nav" hidden>
+      <button class="nav__btn nav__btn--prev" type="button" data-action="prev" aria-label="Previous">◂</button>
+      <div class="nav__meta">
+        <span class="nav__counter" id="nav-counter">1 / 1</span>
+        <span class="nav__step" id="nav-step"></span>
+      </div>
+      <button class="nav__btn nav__btn--next" type="button" data-action="next" aria-label="Next">▸</button>
+    </nav>
+
+    <div class="progress" hidden>
+      <div class="progress__bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Hotkey hints (toggle with ?) -->
+    <aside class="hints" id="hints" hidden>
+      <h3>Keys</h3>
+      <ul>
+        <li><kbd>→</kbd> / <kbd>Space</kbd> next (step or slide)</li>
+        <li><kbd>←</kbd> previous (step or slide)</li>
+        <li><kbd>⇧</kbd>+<kbd>→</kbd> skip to next slide</li>
+        <li><kbd>⇧</kbd>+<kbd>←</kbd> skip to previous slide</li>
+        <li><kbd>V</kbd> video panel</li>
+        <li><kbd>C</kbd> code snippets</li>
+        <li><kbd>N</kbd> speaker notes</li>
+        <li><kbd>T</kbd> timer</li>
+        <li><kbd>Esc</kbd> overview</li>
+        <li><kbd>F</kbd> fullscreen</li>
+        <li><kbd>?</kbd> this help</li>
+      </ul>
+    </aside>
+
+    <!-- Code modal (opens on C) -->
+    <div class="modal code-modal" id="code-modal" hidden role="dialog" aria-label="Code snippet">
+      <div class="modal__backdrop" data-action="close-code"></div>
+      <div class="modal__panel">
+        <header class="modal__header">
+          <span class="modal__title">Code</span>
+          <button class="modal__close" type="button" data-action="close-code" aria-label="Close">✕</button>
+        </header>
+        <div class="code-tabs"></div>
+        <div class="code-meta">
+          <span class="code-meta__lang"></span>
+          <button class="code-copy" type="button">copy</button>
+        </div>
+        <pre class="code-body"></pre>
+      </div>
+    </div>
+
+    <!-- Video modal (opens on V) -->
+    <div class="modal" id="video-modal" hidden role="dialog" aria-label="Video">
+      <div class="modal__backdrop" data-action="close-modal"></div>
+      <div class="modal__panel">
+        <header class="modal__header">
+          <span class="modal__title">Demo reel</span>
+          <button class="modal__close" type="button" data-action="close-modal" aria-label="Close">✕</button>
+        </header>
+        <video id="video-player" controls preload="metadata">
+          <source src="assets/videos/placeholder.mp4" type="video/mp4" />
+          Drop an .mp4 into <code>assets/videos/</code> and update the source.
+        </video>
+      </div>
+    </div>
+
+    <!-- Scripts (order matters: utilities → engines → registry → boot) -->
+    <!-- Engine -->
+    <script src="js/router.js"></script>
+    <script src="js/diagram.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/code.js"></script>
+    <script src="js/notes.js"></script>
+    <script src="js/overview.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/intro.js"></script>
+    <script src="js/builders.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Presentation registry + dynamic loader -->
+    <script src="presentations/index.js"></script>
+    <!-- Optional gitignored local registry. 404 is fine if absent. -->
+    <script src="presentations/local.js"></script>
+    <script src="js/loader.js"></script>
+  </body>
+</html>

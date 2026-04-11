@@ -1,0 +1,51 @@
+.slide--image {
+  text-align: center;
+}
+
+.image-frame {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.image-frame__img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  border: 6px solid var(--ink-900);
+  border-radius: var(--radius-md);
+  box-shadow: 0 14px 34px rgba(27, 18, 10, 0.35);
+}
+
+/* Fullscreen X overlay — fixed across the entire viewport */
+.slide--image .image-x {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  overflow: visible;
+}
+
+.image-x .laser {
+  stroke: #ff2020;
+  stroke-width: 28;
+  stroke-linecap: round;
+  fill: none;
+  filter:
+    drop-shadow(0 0 14px #ff3030)
+    drop-shadow(0 0 32px #ff5050)
+    drop-shadow(0 0 60px rgba(255, 0, 0, 0.55));
+}
+
+.slide--image.is-x .laser--a {
+  animation: laser-fire 0.5s ease-out forwards;
+}
+.slide--image.is-x .laser--b {
+  animation: laser-fire 0.5s ease-out 0.2s forwards;
+}
+
+@keyframes laser-fire {
+  to { stroke-dashoffset: 0; }
+}

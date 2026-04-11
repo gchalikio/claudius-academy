@@ -1,0 +1,26 @@
+{
+  "name": "claudius-academy",
+  "version": "0.1.0",
+  "description": "A retro Roman-academy themed presentation engine for browser-native talks. No build step.",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "open": "open index.html",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:install": "playwright install --with-deps chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  },
+  "keywords": [
+    "presentation",
+    "slides",
+    "deck",
+    "vanilla-js",
+    "browser",
+    "html"
+  ]
+}

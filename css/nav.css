@@ -1,0 +1,87 @@
+.nav {
+  position: fixed;
+  z-index: 30;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--parchment-200);
+  border: 1px solid var(--gold-700);
+  border-radius: 999px;
+  padding: 8px 18px;
+  box-shadow: 0 8px 24px rgba(27, 18, 10, 0.25);
+}
+
+.nav__btn {
+  background: none;
+  border: 1px solid var(--gold-700);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  color: var(--ink-900);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  transition: background var(--t-fast) var(--ease-out), color var(--t-fast);
+}
+.nav__btn:hover { background: var(--gold-500); color: var(--ink-900); }
+.nav__btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.nav__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-700);
+  min-width: 90px;
+}
+.nav__step { color: var(--gold-700); font-size: 0.75rem; }
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(138, 111, 36, 0.2);
+  z-index: 30;
+}
+.progress__bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold-500), var(--crimson-600));
+  transition: width var(--t-med) var(--ease-out);
+}
+
+.hints {
+  position: fixed;
+  z-index: 40;
+  right: 18px;
+  bottom: 80px;
+  background: var(--ink-900);
+  color: var(--parchment-100);
+  border: 1px solid var(--gold-700);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+}
+.hints h3 { color: var(--gold-500); margin: 0 0 8px; font-family: var(--font-pixel); letter-spacing: 0.2em; }
+.hints ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+
+.author-tag {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 30;
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-700);
+  text-transform: uppercase;
+  pointer-events: none;
+}

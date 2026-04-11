@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract changelog section for this tag
+        id: notes
+        run: |
+          version="${GITHUB_REF#refs/tags/v}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          awk -v ver="$version" '
+            /^## \[/ {
+              if (found) exit;
+              if ($0 ~ "\\[" ver "\\]") { found = 1; next }
+            }
+            found { print }
+          ' CHANGELOG.md > release_notes.md
+          if [ ! -s release_notes.md ]; then
+            echo "Release ${version}" > release_notes.md
+          fi
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "v${{ steps.notes.outputs.version }}"
+          body_path: release_notes.md
+          draft: false
+          prerelease: false

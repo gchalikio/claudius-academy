@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a new feature, slide builder, or improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. Please describe the use case before the
+        feature itself — it helps us understand whether there's a simpler
+        existing way to solve the same problem.
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What are you trying to do? Describe the situation, not the feature.
+      placeholder: "I'm preparing a talk where I need to..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like the engine to do?
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you've thought about.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: This is a new slide builder
+        - label: This is a new key binding
+        - label: This is a new config option
+        - label: This is a developer-experience improvement
+        - label: Other

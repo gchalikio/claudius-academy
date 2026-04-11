@@ -1,0 +1,29 @@
+.timer {
+  position: fixed;
+  z-index: 30;
+  top: 14px;
+  left: 18px;
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-500);
+  background: var(--ink-900);
+  border: 1px solid var(--gold-700);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  pointer-events: none;
+}
+.timer.is-warn {
+  color: #f0c060;
+  border-color: #f0c060;
+  animation: timer-pulse 1.4s ease-in-out infinite;
+}
+.timer.is-over {
+  color: #ff6060;
+  border-color: #ff6060;
+  animation: timer-pulse 0.8s ease-in-out infinite;
+}
+@keyframes timer-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+  50%      { box-shadow: 0 0 18px currentColor; }
+}
