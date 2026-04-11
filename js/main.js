@@ -63,6 +63,7 @@
         stage.hidden = false;
         Nav.init();
         Router.init(window.SLIDES, stage);
+        Touch.init();
         Nav.show();
       };
 

@@ -1,8 +1,13 @@
 .slide--compare .compare {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(20px, 4vw, 48px);
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 4vw, 48px);
   margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .slide--compare .compare {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .compare__col {
@@ -15,10 +20,10 @@
 
 .compare__head {
   font-family: var(--font-pixel);
-  font-size: 0.95rem;
-  letter-spacing: 0.3em;
+  font-size: clamp(0.78rem, 2.8vw, 0.95rem);
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  padding: 12px 18px;
+  padding: 10px 16px;
   color: var(--parchment-100);
 }
 
@@ -32,16 +37,16 @@
 .compare__list {
   list-style: none;
   margin: 0;
-  padding: 18px 22px;
+  padding: clamp(12px, 4vw, 18px) clamp(14px, 4vw, 22px);
   display: grid;
-  gap: 12px;
+  gap: 10px;
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: clamp(0.92rem, 3.4vw, 1.05rem);
   color: var(--ink-700);
 }
 .compare__list li {
   position: relative;
-  padding-left: 28px;
+  padding-left: 26px;
 }
 .compare__col--wrong .compare__list li::before {
   content: "✗";

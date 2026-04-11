@@ -5,7 +5,19 @@
   display: grid;
   place-items: center;
   padding: var(--gutter);
-  padding-bottom: calc(var(--gutter) + 60px);
+  /* Bigger bottom clearance on mobile because the nav pill grows there. */
+  padding-bottom: calc(var(--gutter) + 76px);
+  /* Allow vertical scroll if a slide is taller than the viewport (notes,
+     long lists). Horizontal swipes are intercepted by the touch handler. */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .stage {
+    padding-bottom: calc(var(--gutter) + 60px);
+  }
 }
 
 .slide {
@@ -20,7 +32,7 @@
 
 .slide__eyebrow {
   font-family: var(--font-pixel);
-  font-size: 0.9rem;
+  font-size: clamp(0.72rem, 2.6vw, 0.9rem);
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold-700);
@@ -30,13 +42,14 @@
 .slide__title {
   font-family: var(--font-display);
   border-bottom: 2px solid var(--gold-500);
-  padding-bottom: 12px;
-  margin-bottom: 24px;
+  padding-bottom: clamp(8px, 2vw, 12px);
+  margin-bottom: clamp(16px, 4vw, 24px);
+  word-wrap: break-word;
 }
 
 .slide__body {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: clamp(0.98rem, 3.6vw, 1.15rem);
   max-width: 64ch;
   color: var(--ink-700);
 }
@@ -51,7 +64,7 @@
 }
 .slide--quote blockquote {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.4rem, 6vw, 2.4rem);
   line-height: 1.4;
   color: var(--ink-900);
   margin: 0 auto 16px;
@@ -89,8 +102,8 @@
   border: 1px solid var(--gold-700);
   border-radius: var(--radius-md);
   box-shadow: 0 12px 30px rgba(27, 18, 10, 0.2);
-  padding: 16px;
-  height: clamp(360px, 60vh, 600px);
+  padding: clamp(8px, 2.5vw, 16px);
+  height: clamp(260px, 56vh, 600px);
   position: relative;
 }
 
@@ -130,7 +143,7 @@
 }
 .section__numeral {
   font-family: var(--font-display);
-  font-size: clamp(8rem, 18vw, 14rem);
+  font-size: clamp(5rem, 22vw, 14rem);
   line-height: 1;
   color: var(--gold-500);
   letter-spacing: 0.08em;
@@ -138,14 +151,14 @@
 }
 .section__eyebrow {
   font-family: var(--font-pixel);
-  font-size: 1rem;
-  letter-spacing: 0.4em;
+  font-size: clamp(0.78rem, 2.8vw, 1rem);
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold-700);
 }
 .section__title {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 7vw, 4rem);
   margin: 0;
   letter-spacing: 0.08em;
   border-bottom: 2px solid var(--gold-500);
@@ -155,9 +168,10 @@
   font-family: var(--font-serif);
   font-style: italic;
   color: var(--ink-500);
-  font-size: 1.2rem;
+  font-size: clamp(0.98rem, 3.4vw, 1.2rem);
   margin: 0;
   max-width: 50ch;
+  padding: 0 8px;
 }
 
 /* List slide — bullets reveal one at a time */
@@ -166,15 +180,15 @@
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 18px;
+  gap: clamp(12px, 3vw, 18px);
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: clamp(1.05rem, 4.2vw, 1.4rem);
   color: var(--ink-700);
   max-width: 56ch;
 }
 .list__item {
   position: relative;
-  padding-left: 36px;
+  padding-left: clamp(28px, 8vw, 36px);
   opacity: 0;
   transform: translateX(-12px);
   transition:
@@ -203,16 +217,23 @@
   color: var(--gold-700);
 }
 
-/* Split slide — two columns */
+/* Split slide — stacked on mobile, two columns on tablet+. The builder writes
+   the desired ratio into a `--split-cols` custom property on the .split node. */
 .slide--split .split {
   display: grid;
+  grid-template-columns: 1fr;
   gap: clamp(20px, 4vw, 56px);
   align-items: center;
   margin-top: 16px;
 }
+@media (min-width: 768px) {
+  .slide--split .split {
+    grid-template-columns: var(--split-cols, 1fr 1fr);
+  }
+}
 .slide--split .split__col {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: clamp(0.98rem, 3.6vw, 1.15rem);
   color: var(--ink-700);
 }
 .slide--split .split__col img {
@@ -234,23 +255,25 @@
 }
 .bigtext {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-size: clamp(1.8rem, 9vw, 5rem);
   line-height: 1.15;
   margin: 0;
   max-width: 22ch;
   color: var(--ink-900);
   letter-spacing: 0.04em;
+  padding: 0 12px;
   transition:
     opacity 600ms var(--ease-out),
     transform 600ms var(--ease-out);
 }
 .bigtext__foot {
   font-family: var(--font-pixel);
-  font-size: 0.9rem;
-  letter-spacing: 0.25em;
+  font-size: clamp(0.74rem, 2.6vw, 0.9rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-700);
   margin: 0;
+  text-align: center;
 }
 .slide--bigtext.is-hidden .bigtext,
 .slide--bigtext.is-hidden .bigtext__foot {

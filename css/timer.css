@@ -1,17 +1,24 @@
 .timer {
   position: fixed;
   z-index: 30;
-  top: 14px;
-  left: 18px;
+  top: 12px;
+  left: 12px;
   font-family: var(--font-pixel);
-  font-size: 1rem;
-  letter-spacing: 0.2em;
+  font-size: clamp(0.82rem, 3vw, 1rem);
+  letter-spacing: 0.18em;
   color: var(--gold-500);
   background: var(--ink-900);
   border: 1px solid var(--gold-700);
   border-radius: var(--radius-sm);
-  padding: 6px 12px;
+  padding: 6px 10px;
   pointer-events: none;
+}
+@media (min-width: 768px) {
+  .timer {
+    top: 14px;
+    left: 18px;
+    padding: 6px 12px;
+  }
 }
 .timer.is-warn {
   color: #f0c060;

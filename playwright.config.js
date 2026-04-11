@@ -1,5 +1,5 @@
 // @ts-nocheck
-const { defineConfig } = require("@playwright/test");
+const { defineConfig, devices } = require("@playwright/test");
 
 /**
  * Playwright config — runs the deck through a real browser against a local
@@ -30,8 +30,22 @@ module.exports = defineConfig({
   },
   projects: [
     {
-      name: "chromium",
+      // Desktop suite — runs everything except the mobile-specific specs.
+      name: "desktop",
       use: { browserName: "chromium", viewport: { width: 1280, height: 800 } },
+      testIgnore: /mobile\.spec\.js/,
+    },
+    {
+      // Mobile suite — iPhone 13 viewport with touch events. Forces chromium
+      // (the iPhone descriptor defaults to webkit, which would require an
+      // extra browser download). Only runs the mobile-specific specs.
+      name: "mobile",
+      use: {
+        ...devices["iPhone 13"],
+        browserName: "chromium",
+        defaultBrowserType: "chromium",
+      },
+      testMatch: /mobile\.spec\.js/,
     },
   ],
 });

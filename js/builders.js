@@ -226,9 +226,12 @@
       title,
       render(root) {
         root.classList.add("slide--split");
+        // CSS variable, not direct grid-template-columns, so the mobile-first
+        // stylesheet can stack the columns at narrow widths and apply this
+        // ratio only at md+. See css/slide.css `.slide--split .split`.
         root.innerHTML = `
           ${slideHeader(opts)}
-          <div class="split" style="grid-template-columns: ${ratio || "1fr 1fr"}">
+          <div class="split" style="--split-cols: ${ratio || "1fr 1fr"}">
             <div class="split__col">${left || ""}</div>
             <div class="split__col">${right || ""}</div>
           </div>

@@ -18,6 +18,9 @@ const browserGlobals = {
   sessionStorage: "readonly",
   navigator: "readonly",
   console: "readonly",
+  Event: "readonly",
+  CustomEvent: "readonly",
+  TouchEvent: "readonly",
   setTimeout: "readonly",
   setInterval: "readonly",
   clearInterval: "readonly",
@@ -42,6 +45,7 @@ const engineGlobals = {
   Builders: "writable",
   Boot: "writable",
   Nav: "writable",
+  Touch: "writable",
 };
 
 // Globals attached by deck files (presentations/*/config.js, deck.js)
