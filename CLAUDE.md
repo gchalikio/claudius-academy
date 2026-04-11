@@ -105,6 +105,7 @@ concrete steps.
 | `triage-issue`           | Local: classify a bug/issue, propose options, fix it      |
 | `work-github-issue`      | GitHub: fetch an issue, fix it, open a PR, comment + label both |
 | `fix-a-bug`              | Triaging, reproducing, fixing, and testing a known bug    |
+| `lint-and-fix`           | Run all linters, auto-fix what's fixable, triage the rest |
 | `cut-release`            | Cutting a tagged release of the engine                    |
 
 ## Public API surface (what's stable)

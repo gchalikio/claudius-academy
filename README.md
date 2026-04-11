@@ -5,10 +5,13 @@
 > Comes with a parchment + pixel default theme — fully overridable per deck.
 
 [![Tests](https://github.com/gchalikio/claudius-academy/actions/workflows/test.yml/badge.svg)](https://github.com/gchalikio/claudius-academy/actions/workflows/test.yml)
+[![Pages](https://github.com/gchalikio/claudius-academy/actions/workflows/deploy-pages.yml/badge.svg)](https://gchalikio.github.io/claudius-academy/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 [![No build step](https://img.shields.io/badge/no--build--step-vanilla%20JS-success)](#quick-start)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+**Live demo:** <https://gchalikio.github.io/claudius-academy/>
 
 Claudius Academy is a single-folder presentation engine you can fork to give
 talks that *look* designed without touching a slide tool. The engine in
@@ -33,6 +36,7 @@ the box.
 
 ## Table of contents
 
+- [Live demo](#live-demo)
 - [Quick start](#quick-start)
 - [Screenshots](#screenshots)
 - [Project structure](#project-structure)
@@ -51,6 +55,18 @@ the box.
 - [Editor support](#editor-support)
 - [Acknowledgments](#acknowledgments)
 - [License](#license)
+
+---
+
+## Live demo
+
+The `examples` deck (which exercises every built-in slide builder) is
+deployed to GitHub Pages on every push to `main`:
+
+**<https://gchalikio.github.io/claudius-academy/>**
+
+It auto-loads on bare URL via the picker. To jump straight to the deck,
+use `?deck=examples`.
 
 ---
 
@@ -89,7 +105,7 @@ Visit `index.html?deck=<deck-id>` to skip the picker.
 
 ## Project structure
 
-```
+```text
 .
 ├── index.html                  ← entry point, loads engine + loader
 ├── css/                        ← engine styles (theme tokens, slide layouts, modals…)
@@ -419,6 +435,7 @@ assistants:
   - `triage-issue` — local: classify a bug/issue, propose options, fix it
   - `work-github-issue` — GitHub: fetch issue → fix → PR → comment → label
   - `fix-a-bug` — triage, reproduce, fix, and test a known bug
+  - `lint-and-fix` — run all linters, auto-fix what's fixable
   - `cut-release` — version bump, tag, push, GitHub release
 - **`types.d.ts`** — provides editor autocomplete and inline type checks
   with no build step.
