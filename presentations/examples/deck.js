@@ -90,13 +90,21 @@
       footnote: "the line you want them to quote",
     }),
 
+    imageSlide({
+      id: "image-example",
+      eyebrow: "Anti-pattern",
+      title: "Don't do this",
+      image: "assets/placeholder.svg",
+      alt: "Example to avoid — press → for the X",
+    }),
+
     diagramSlide({
       id: "diagram-example",
-      eyebrow: "Diagram",
-      title: "A simple flow",
+      fullscreen: true,
+      viewBox: { width: 1600, height: 900 },
       steps: [
-        { type: "node", id: "a", shape: "ellipse", x: 200, y: 280, rx: 100, ry: 60, label: "INPUT" },
-        { type: "node", id: "b", shape: "ellipse", x: 800, y: 280, rx: 100, ry: 60, label: "OUTPUT", accent: true },
+        { type: "node", id: "a", shape: "ellipse", x: 320, y: 450, rx: 160, ry: 90, label: "INPUT" },
+        { type: "node", id: "b", shape: "ellipse", x: 1280, y: 450, rx: 160, ry: 90, label: "OUTPUT", accent: true },
         { type: "arrow", from: "a", to: "b", label: "transform" },
       ],
     }),

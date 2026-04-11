@@ -52,28 +52,38 @@ site — they only touch source files.
 
 4. **Triage the remaining issues by category.**
 
-   - **ESLint `error` (red):** must be fixed before commit. Read the
-     rule, read the code, decide between fixing the code or — only if
-     the rule is genuinely wrong for this file — adding a narrowly
-     scoped `// eslint-disable-next-line <rule>` with a comment
-     explaining why.
-   - **ESLint `warning` (yellow):** worth fixing but not blocking. Most
-     are `no-unused-vars`. Either remove the unused thing, or rename it
-     to start with `_` if it's an intentional placeholder.
-   - **Prettier failures:** these should never reach this point — if
-     they do, the auto-fix didn't run on those files. Re-run
-     `prettier --write <file>`.
-   - **Markdownlint failures:** usually MD040 (missing language on a
-     fence — add `text` if there's no obvious one) or MD024 (duplicate
-     heading — rename or restructure). If a rule is consistently wrong
-     for the project, propose adding it to `.markdownlint.json` *with
-     justification*, don't disable it case-by-case.
+   **The hard rule for this skill: always fix the code, never disable
+   the rule.** No `// eslint-disable-next-line`, no removals from
+   `.markdownlint.json`, no `prettier-ignore` comments. If a rule is
+   firing, the code is wrong (or the rule is wrong for the whole
+   project, in which case escalate — see step 5).
 
-5. **For each remaining issue, fix or escalate.**
-   - If it's mechanical (missing language tag, dead variable), just fix it.
+   - **ESLint `error` (red):** read the rule, read the code, fix the
+     code so the rule passes.
+   - **ESLint `warning` (yellow):** same — fix it. Most are
+     `no-unused-vars` (remove the dead thing, or rename to `_name` if
+     it's an intentional placeholder).
+   - **Prettier failures:** auto-fix didn't run on those files. Run
+     `prettier --write <file>` and they'll vanish.
+   - **Markdownlint failures:** fix the markdown. Common ones:
+     - `MD040` — missing language on a fence. Add the right one
+       (`js`, `bash`, `text`, `md`, `yaml`, etc.).
+     - `MD031` — blank lines around fences. Add them.
+     - `MD060` — table column alignment. Use `markdownlint-cli2 --fix`.
+     - `MD024` — duplicate heading. Rename or restructure.
+
+5. **For each remaining issue, fix or escalate — but never disable.**
+   - If it's mechanical (missing language tag, dead variable, blank
+     lines around a fence), just fix it.
    - If it requires a design decision (rename a function, split a file,
      change a public API), surface it to the user with the options
      before changing anything.
+   - If a rule is genuinely wrong for the *whole project* (not just one
+     spot), surface it to the user with: which rule, why it doesn't
+     fit, and a proposed *configuration* (e.g. raising MD013's
+     `line_length` parameter, not disabling MD013). The user decides
+     whether to accept that config change. **Default is to fix the
+     code, not the rule.**
 
 6. **Re-run `npm run lint` until it's clean.**
    Don't move on while anything is red.
@@ -90,35 +100,37 @@ site — they only touch source files.
    Open `index.html?deck=examples` and walk a few slides. Lint passes
    don't catch behavioural breakage; this does.
 
-9. **Commit the fixes.**
-   - If the diff is small and obviously mechanical, one commit:
-     `chore: lint --fix`.
-   - If the diff is large because nothing has been formatted before,
-     split into two commits so reviews are readable:
-     1. `chore: prettier --write everything (no logic changes)`
-     2. `chore: eslint --fix (no logic changes)`
-   - Never mix lint fixes with feature changes in the same commit.
-
-10. **Report back to the user with:**
-    - What was auto-fixed (`<n>` files reformatted, `<m>` ESLint
-      warnings cleared)
-    - What remained and how it was resolved
-    - Any rules you propose changing in `.markdownlint.json` /
-      `eslint.config.js` (with justification)
-    - A reminder to push if they want CI to verify
+9. **Report back to the user with:**
+   - What was auto-fixed (`<n>` files reformatted, `<m>` ESLint
+     warnings cleared)
+   - What remained and how it was resolved
+   - The exact commit message you'd suggest if they want to commit
+   - **Do NOT commit.** Per the global rule in `CLAUDE.md`, no skill
+     creates commits without explicit user confirmation. If the user
+     says "commit it" or "commit and push," then and only then run the
+     commit — and even then, show the message first and wait for OK.
+   - Suggested commit shape (when the user does ask):
+     - If the diff is small/mechanical: one commit, `chore: lint --fix`
+     - If the diff is large: split into two commits, prettier first,
+       eslint second, so reviews stay readable
+     - Never mix lint fixes with feature changes in the same commit
 
 ## Don't
 
-- Don't mix lint fixes with feature commits. Reviewers can't tell
-  signal from noise.
-- Don't blanket-disable rules. If a rule is wrong, change it once with
-  a justification comment. If it's right but the code is wrong, fix
-  the code.
+- **Don't commit.** No skill commits or pushes without explicit user
+  permission per operation. Suggest the commit message; wait for OK.
+- **Don't disable a lint rule to make a warning go away.** Ever.
+  The fix is always in the code. If a rule is genuinely wrong for the
+  whole project, surface it to the user with a justification and let
+  them decide whether to *configure* (not disable) it.
+- Don't mix lint fixes with feature commits. If the user does ask you
+  to commit, keep it scoped.
 - Don't `--no-verify` past a hook to skip lint. The hook is the point.
 - Don't run `npm run fix` on a dirty branch with uncommitted feature
-  work — stash or commit first so the format pass stays clean.
+  work — stash first so the format pass stays clean and reviewable.
 - Don't add files to `.prettierignore` or `.eslintignore` to dodge a
-  rule. Fix the file or change the rule.
-- Don't ignore Prettier conflicts with ESLint. The repo uses
-  `eslint-config-prettier` to disable conflicting rules — if you see
-  one, the config is wrong and needs updating.
+  rule. Fix the file.
+- Don't ignore Prettier/ESLint conflicts. The repo uses
+  `eslint-config-prettier` to silence conflicting ESLint rules — if
+  you see one fire, the config is wrong and needs updating, not the
+  symptom.

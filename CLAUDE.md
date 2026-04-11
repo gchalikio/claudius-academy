@@ -32,6 +32,13 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
    `Overview`, `Timer`, `Builders`, `Boot`).
 6. **Always update tests + types + README** when you add or rename anything
    in the public surface (slide builders, config keys, key bindings).
+7. **Never commit, stage, push, tag, create branches, open PRs, or alter
+   shared state without an explicit user confirmation per operation.**
+   Mutating local files in the working tree is fine. Anything that
+   touches `git`, `gh`, or a remote requires the user's explicit OK
+   *for that specific operation* — not a blanket "yes." Even if a skill
+   is *about* committing (e.g. `cut-release`, `work-github-issue`), each
+   git/gh step inside it stops to confirm before running.
 
 ## Project layout
 

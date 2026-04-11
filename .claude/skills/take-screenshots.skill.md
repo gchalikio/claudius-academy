@@ -82,12 +82,12 @@ shooting.
    (or view it on github.com after pushing). Broken image icons mean a
    filename mismatch.
 
-7. **Commit and push.**
-   ```bash
-   git add docs/screenshots/
-   git commit -m "docs: add README screenshots"
-   git push
-   ```
+7. **Stop. Do NOT commit.**
+   Per the global rule in `CLAUDE.md`, no skill commits or pushes
+   without explicit user confirmation per operation. Report back to the
+   user with the list of files added and the commit message you'd
+   suggest. Wait for them to say "commit it" before running any `git`
+   command.
 
 ## Don't
 

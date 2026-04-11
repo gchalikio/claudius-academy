@@ -17,6 +17,15 @@ skill handles the local steps that trigger it.
 - `.github/workflows/release.yml` — what fires when you push a tag
 - `CONTRIBUTING.md` — to confirm any release rules
 
+## Hard rule for this skill
+
+**Every git operation stops to confirm.** Per the global rule in
+`CLAUDE.md`, no skill commits, tags, or pushes without an explicit
+user OK *for that specific operation*. Even though this skill is
+*about* releasing, each mutating step is a gate: show what you're
+about to run, wait for "yes," then run it. Read-only `git status`,
+`npm test`, and reading files are fine without asking.
+
 ## Steps
 
 1. **Confirm the bump type with the user.**
@@ -57,32 +66,39 @@ skill handles the local steps that trigger it.
    Change the `"version"` field manually (don't run `npm version` — it
    creates its own tag and we want control over that).
 
-6. **Commit the bump.**
+6. **Commit the bump.** *(needs OK)*
+   Show the user the staged files and the proposed message. Wait for
+   confirmation, then:
    ```bash
    git add CHANGELOG.md package.json
    git commit -m "release: v<new-version>"
    ```
 
-7. **Tag and push.**
+7. **Tag.** *(needs OK)*
    ```bash
    git tag v<new-version>
+   ```
+
+8. **Push commit + tag.** *(needs OK — push remote state changes are
+   visible to the world)*
+   ```bash
    git push origin main
    git push origin v<new-version>
    ```
 
-8. **Watch the release workflow.**
+9. **Watch the release workflow.**
    The push of a `v*` tag triggers `.github/workflows/release.yml`. It
    extracts the matching section from `CHANGELOG.md` and creates a
    GitHub release. Confirm in the **Actions** tab that it succeeded.
    Confirm in the **Releases** tab that the release exists with the
    right notes.
 
-9. **If the release workflow fails**, do NOT delete the tag and re-push.
-   Instead:
-   - Open the workflow log, fix the underlying issue.
-   - Run the workflow manually if it supports `workflow_dispatch`,
-     OR delete the GitHub release (not the tag) and create it manually
-     via `gh release create`.
+10. **If the release workflow fails**, do NOT delete the tag and
+    re-push. Instead:
+    - Open the workflow log, fix the underlying issue.
+    - Run the workflow manually if it supports `workflow_dispatch`,
+      OR delete the GitHub release (not the tag) and create it manually
+      via `gh release create`.
 
 ## Don't
 

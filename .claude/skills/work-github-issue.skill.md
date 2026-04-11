@@ -27,26 +27,37 @@ gh auth status
 If `gh` isn't authenticated, ask the user to run `gh auth login` before
 proceeding.
 
+## Hard rule for this skill
+
+**Every git/gh operation stops to confirm.** Per the global rule in
+`CLAUDE.md`, no skill commits, branches, pushes, opens PRs, comments,
+or applies labels without an explicit user OK *for that specific
+operation*. Even though this skill is *about* moving an issue through
+to a PR, each mutating step is a gate: show what you're about to run,
+wait for "yes," then run it. Read-only `gh issue view` and `git
+status` are fine without asking.
+
 ## Steps
 
-1. **Fetch the issue.**
+1. **Fetch the issue.** (read-only — no confirmation needed)
    ```bash
    gh issue view <number> --json number,title,body,labels,state,author,comments
    ```
    Read the title, body, every comment, and the existing labels.
    If the issue is closed, stop and ask the user whether to reopen.
 
-2. **Acknowledge the issue with a triage comment.**
+2. **Acknowledge the issue with a triage comment.** *(needs OK)*
+   Show the user the proposed comment and label change, then wait for
+   confirmation. Only after they say yes:
    ```bash
    gh issue comment <number> --body "Picking this up — investigating now."
-   ```
-   Apply the `status/in-progress` label:
-   ```bash
    gh issue edit <number> --add-label "status/in-progress" --remove-label "status/needs-triage"
    ```
 
 3. **Classify type and priority** if the issue doesn't already have them.
-   Pick one type and one priority from `.github/labels.yml`. Apply both:
+   *(needs OK before applying labels)*
+   Pick one type and one priority from `.github/labels.yml`, propose
+   them to the user with one-line reasoning, wait for confirmation:
    ```bash
    gh issue edit <number> --add-label "type/<x>" --add-label "priority/<x>"
    ```
@@ -69,9 +80,10 @@ proceeding.
      approach and wait for thumbs-up before writing code. Vague issues
      deserve a sketch in the issue thread before a PR appears.
 
-7. **Create a branch.**
-   Use the convention `<type>/<short-description>`, where `<type>` is
-   one of `fix`, `feat`, `docs`, `refactor`, `perf`, `test`, `chore`:
+7. **Create a branch.** *(needs OK)*
+   Propose the branch name (`<type>/<short-description>`, type one of
+   `fix`, `feat`, `docs`, `refactor`, `perf`, `test`, `chore`), wait
+   for confirmation:
    ```bash
    git checkout -b fix/picker-keyboard-loop
    ```
@@ -91,7 +103,9 @@ proceeding.
     ```
     Don't move on until everything passes.
 
-11. **Commit.**
+11. **Commit.** *(needs OK — show the message first)*
+    Show the user the proposed commit message and the list of staged
+    files. Wait for confirmation, then run:
     ```bash
     git add <files>
     git commit -m "$(cat <<'EOF'
@@ -108,12 +122,12 @@ proceeding.
     Use `feat:` / `docs:` / `refactor:` / `perf:` / `test:` / `chore:`
     instead of `fix:` for non-bug work.
 
-12. **Push the branch.**
+12. **Push the branch.** *(needs OK)*
     ```bash
     git push -u origin fix/picker-keyboard-loop
     ```
 
-13. **Open a PR.**
+13. **Open a PR.** *(needs OK — show title + body first)*
     ```bash
     gh pr create \
       --title "fix: <short description>" \
@@ -138,12 +152,12 @@ proceeding.
     ```
     Capture the PR URL from the output.
 
-14. **Apply labels to the PR** matching the issue:
+14. **Apply labels to the PR** matching the issue. *(needs OK)*
     ```bash
     gh pr edit <pr-number> --add-label "type/<x>" --add-label "priority/<x>"
     ```
 
-15. **Comment on the issue with the PR link.**
+15. **Comment on the issue with the PR link.** *(needs OK)*
     ```bash
     gh issue comment <issue-number> --body "Opened #<pr-number> with a fix — please take a look."
     ```
