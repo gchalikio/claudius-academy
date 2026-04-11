@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/slide.css" />
     <link rel="stylesheet" href="css/diagram.css" />
     <link rel="stylesheet" href="css/modal.css" />
-    <link rel="stylesheet" href="css/code.css" />
+    <link rel="stylesheet" href="css/media.css" />
     <link rel="stylesheet" href="css/image.css" />
     <link rel="stylesheet" href="css/picker.css" />
     <link rel="stylesheet" href="css/notes.css" />
@@ -77,8 +77,9 @@
         <li><kbd>←</kbd> previous (step or slide)</li>
         <li><kbd>⇧</kbd>+<kbd>→</kbd> skip to next slide</li>
         <li><kbd>⇧</kbd>+<kbd>←</kbd> skip to previous slide</li>
-        <li><kbd>V</kbd> video panel</li>
+        <li><kbd>V</kbd> videos</li>
         <li><kbd>C</kbd> code snippets</li>
+        <li><kbd>I</kbd> images</li>
         <li><kbd>N</kbd> speaker notes</li>
         <li><kbd>T</kbd> timer</li>
         <li><kbd>Esc</kbd> overview</li>
@@ -88,39 +89,19 @@
       </ul>
     </aside>
 
-    <!-- Code modal (opens on C) -->
-    <div class="modal code-modal" id="code-modal" hidden role="dialog" aria-label="Code snippet">
-      <div class="modal__backdrop" data-action="close-code"></div>
+    <!-- Unified media modal: videos (V), code snippets (C), images (I) -->
+    <div class="modal media-modal" id="media-modal" hidden role="dialog" aria-label="Media">
+      <div class="modal__backdrop" data-action="close-media"></div>
       <div class="modal__panel">
         <header class="modal__header">
-          <span class="modal__title">Code</span>
-          <button class="modal__close" type="button" data-action="close-code" aria-label="Close">
+          <span class="modal__title">Media</span>
+          <div class="media-kinds"></div>
+          <button class="modal__close" type="button" data-action="close-media" aria-label="Close">
             ✕
           </button>
         </header>
-        <div class="code-tabs"></div>
-        <div class="code-meta">
-          <span class="code-meta__lang"></span>
-          <button class="code-copy" type="button">copy</button>
-        </div>
-        <pre class="code-body"></pre>
-      </div>
-    </div>
-
-    <!-- Video modal (opens on V) -->
-    <div class="modal" id="video-modal" hidden role="dialog" aria-label="Video">
-      <div class="modal__backdrop" data-action="close-modal"></div>
-      <div class="modal__panel">
-        <header class="modal__header">
-          <span class="modal__title">Demo reel</span>
-          <button class="modal__close" type="button" data-action="close-modal" aria-label="Close">
-            ✕
-          </button>
-        </header>
-        <video id="video-player" controls preload="metadata">
-          <source src="assets/videos/placeholder.mp4" type="video/mp4" />
-          Drop an .mp4 into <code>assets/videos/</code> and update the source.
-        </video>
+        <div class="media-tabs"></div>
+        <div class="media-body"></div>
       </div>
     </div>
 
@@ -128,8 +109,7 @@
     <!-- Engine -->
     <script src="js/router.js"></script>
     <script src="js/diagram.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/code.js"></script>
+    <script src="js/media.js"></script>
     <script src="js/notes.js"></script>
     <script src="js/overview.js"></script>
     <script src="js/timer.js"></script>

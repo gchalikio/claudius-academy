@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#14100a" />
+  <text x="200" y="120" text-anchor="middle" fill="#e6c87a"
+    font-family="monospace" font-size="40" letter-spacing="8">GLOBAL</text>
+</svg>

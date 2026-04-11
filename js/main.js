@@ -10,15 +10,6 @@
 
     if (cfg.documentTitle) document.title = cfg.documentTitle;
 
-    if (cfg.modals?.videoTitle) {
-      const t = document.querySelector("#video-modal .modal__title");
-      if (t) t.textContent = cfg.modals.videoTitle;
-    }
-    if (cfg.modals?.codeTitle) {
-      const t = document.querySelector("#code-modal .modal__title");
-      if (t) t.textContent = cfg.modals.codeTitle;
-    }
-
     if (cfg.theme) {
       for (const [rawKey, value] of Object.entries(cfg.theme)) {
         const key = rawKey.startsWith("--")
@@ -57,8 +48,7 @@
     start() {
       applyConfig(window.DECK_CONFIG);
 
-      Modal.init();
-      Code.init();
+      Media.init();
       Notes.init();
       Overview.init();
       Timer.init();

@@ -175,7 +175,6 @@
         history.replaceState(null, "", next);
       }
     },
-
   };
 
   window.Router = Router;

@@ -37,9 +37,11 @@ export interface DeckConfig {
     laurel?: { show?: boolean; left?: string; right?: string };
   };
 
-  modals?: {
-    videoTitle?: string;
-    codeTitle?: string;
+  /** Global media — appended to every slide's per-slide arrays. */
+  media?: {
+    videos?: VideoItem[];
+    snippets?: Snippet[];
+    images?: ImageItem[];
   };
 
   nav?: {
@@ -110,6 +112,8 @@ export interface SlideConfig {
   title?: string;
   notes?: string;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   steps?: number;
   render(root: HTMLElement): void;
   onEnter?(ctx: SlideContext): void;
@@ -123,6 +127,21 @@ export interface Snippet {
   lang?: string;
   code: string;
   highlight?: number[];
+}
+
+export interface VideoItem {
+  title?: string;
+  src: string;
+  type?: string;
+  poster?: string;
+  caption?: string;
+}
+
+export interface ImageItem {
+  title?: string;
+  src: string;
+  alt?: string;
+  caption?: string;
 }
 
 /* ─── Diagram step shapes ──────────────────────────────────────── */
@@ -177,6 +196,8 @@ export interface TextSlideOpts {
   body?: string;
   modifier?: string;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -185,6 +206,8 @@ export interface QuoteSlideOpts {
   quote: string;
   cite?: string;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -206,6 +229,8 @@ export interface ImageSlideOpts {
   image: string;
   alt?: string;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -216,6 +241,8 @@ export interface SectionSlideOpts {
   title?: string;
   subtitle?: string;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -226,6 +253,8 @@ export interface ListSlideOpts {
   items: string[];
   ordered?: boolean;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -237,6 +266,8 @@ export interface SplitSlideOpts {
   right?: string;
   ratio?: string;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -246,6 +277,8 @@ export interface BigTextSlideOpts {
   footnote?: string;
   reveal?: boolean;
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 
@@ -256,6 +289,8 @@ export interface CompareSlideOpts {
   left?: { title?: string; items?: string[] };
   right?: { title?: string; items?: string[] };
   snippets?: Snippet[];
+  videos?: VideoItem[];
+  images?: ImageItem[];
   notes?: string;
 }
 

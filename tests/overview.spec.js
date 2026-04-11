@@ -38,11 +38,11 @@ test.describe("overview", () => {
     await expect(page.locator("#nav-counter")).toContainText(/^2 \//);
   });
 
-  test("Esc does not open overview while a modal is open", async ({ page }) => {
+  test("Esc does not open overview while the media modal is open", async ({ page }) => {
     await page.keyboard.press("v");
-    await expect(page.locator("#video-modal")).toBeVisible();
+    await expect(page.locator("#media-modal")).toBeVisible();
     await page.keyboard.press("Escape");
-    await expect(page.locator("#video-modal")).toBeHidden();
+    await expect(page.locator("#media-modal")).toBeHidden();
     await expect(page.locator("#overview")).toBeHidden();
   });
 });

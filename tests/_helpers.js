@@ -8,7 +8,7 @@ const { test } = require("@playwright/test");
 // Some 404s are expected by design and shouldn't trip the console-error guard:
 //   - presentations/local/decks.js — gitignored optional local registry
 //   - assets/videos/placeholder.mp4 — placeholder reference, drop your own
-const EXPECTED_MISSING = [/presentations\/local\/decks\.js/, /assets\/videos\/placeholder\.mp4/];
+const EXPECTED_MISSING = [/presentations\/local\/decks\.js/, /placeholder\.mp4/];
 const isExpectedMissing = (text) => EXPECTED_MISSING.some((rx) => rx.test(text));
 const isGenericResource404 = (text) =>
   /Failed to load resource: the server responded with a status of 404/.test(text);

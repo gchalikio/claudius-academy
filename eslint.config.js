@@ -34,8 +34,7 @@ const browserGlobals = {
 const engineGlobals = {
   Router: "writable",
   Diagram: "writable",
-  Modal: "writable",
-  Code: "writable",
+  Media: "writable",
   Notes: "writable",
   Overview: "writable",
   Timer: "writable",
@@ -87,9 +86,9 @@ module.exports = [
     },
   },
 
-  // Tests + Playwright config (CommonJS, Node)
+  // Tests + Playwright config + scripts (CommonJS, Node)
   {
-    files: ["tests/**/*.js", "playwright.config.js"],
+    files: ["tests/**/*.js", "playwright.config.js", "scripts/**/*.js"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "commonjs",

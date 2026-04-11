@@ -10,7 +10,7 @@
         const action = e.target.closest("[data-action]")?.dataset.action;
         if (action === "next") Router.next();
         if (action === "prev") Router.prev();
-        if (action === "close-code") Code.close();
+        if (action === "close-media") Media.close();
       });
 
       // Keyboard
@@ -18,17 +18,15 @@
         // Ignore when typing in inputs
         if (e.target.matches("input, textarea")) return;
 
-        const videoOpen = !document.getElementById("video-modal").hidden;
-        const codeOpen = Code.isOpen();
+        const mediaOpen = Media.isOpen();
         const overviewOpen = window.Overview && Overview.isOpen();
 
         // Esc behavior:
-        //   1. close any open modal first
+        //   1. close media modal if open
         //   2. otherwise close overview if it's open
         //   3. otherwise open overview
         if (e.key === "Escape") {
-          if (codeOpen) return Code.close();
-          if (videoOpen) return Modal.close();
+          if (mediaOpen) return Media.close();
           if (overviewOpen) return Overview.close();
           return Overview.open();
         }
@@ -36,21 +34,23 @@
         // While overview is open, its own handler runs (added by Overview.open)
         if (overviewOpen) return;
 
-        // Code modal: tab + jump shortcuts intercept arrows/digits/c only.
-        // Everything else (F, V, ?, etc.) falls through to the main switch.
-        if (codeOpen) {
+        // Media modal: ←/→ switch tabs, 1-9 jump, V/C/I switch kinds.
+        if (mediaOpen) {
           if (e.key === "ArrowRight") {
             e.preventDefault();
-            return Code.nextTab();
+            return Media.nextTab();
           }
           if (e.key === "ArrowLeft") {
             e.preventDefault();
-            return Code.prevTab();
+            return Media.prevTab();
           }
           if (/^[1-9]$/.test(e.key)) {
-            return Code.jumpTab(Number(e.key) - 1);
+            e.preventDefault();
+            return Media.jumpTab(Number(e.key) - 1);
           }
-          if (e.key === "c" || e.key === "C") return Code.close();
+          if (e.key === "v" || e.key === "V") return Media.toggle("videos");
+          if (e.key === "c" || e.key === "C") return Media.toggle("snippets");
+          if (e.key === "i" || e.key === "I") return Media.toggle("images");
         }
 
         // Shift+0 → back to picker. Browsers disagree on what key this fires:
@@ -65,26 +65,25 @@
         switch (e.key) {
           case "ArrowRight":
           case " ":
-            if (codeOpen) return; // already handled above
             e.preventDefault();
             if (e.shiftKey) Router.nextSlide();
             else Router.next();
             break;
           case "ArrowLeft":
-            if (codeOpen) return;
             if (e.shiftKey) Router.prevSlide();
             else Router.prev();
             break;
           case "v":
           case "V":
-            // Mutually exclusive — close the other modal first.
-            if (codeOpen) Code.close();
-            Modal.toggle();
+            Media.toggle("videos");
             break;
           case "c":
           case "C":
-            if (videoOpen) Modal.close();
-            Code.toggle();
+            Media.toggle("snippets");
+            break;
+          case "i":
+          case "I":
+            Media.toggle("images");
             break;
           case "f":
           case "F":

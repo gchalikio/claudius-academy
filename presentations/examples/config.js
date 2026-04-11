@@ -19,9 +19,29 @@ window.DECK_CONFIG = {
     laurel: { show: true, left: "❦", right: "❦" },
   },
 
-  modals: {
-    videoTitle: "Demo",
-    codeTitle: "Code",
+  // Global media — appended to every slide's own videos / snippets / images.
+  media: {
+    videos: [
+      {
+        title: "Global demo",
+        src: "presentations/examples/assets/videos/placeholder.mp4",
+        type: "video/mp4",
+      },
+    ],
+    snippets: [
+      {
+        title: "global hint",
+        lang: "md",
+        code: "# Global snippet\n\nShown on every slide via DECK_CONFIG.media.snippets.",
+      },
+    ],
+    images: [
+      {
+        title: "global logo",
+        src: "presentations/examples/assets/images/global-logo.svg",
+        alt: "Global logo placeholder",
+      },
+    ],
   },
 
   nav: {
@@ -39,8 +59,9 @@ window.DECK_CONFIG = {
       { keys: ["→", "Space"], label: "next" },
       { keys: ["←"], label: "previous" },
       { keys: ["⇧", "→"], label: "skip slide" },
-      { keys: ["V"], label: "video" },
+      { keys: ["V"], label: "videos" },
       { keys: ["C"], label: "code" },
+      { keys: ["I"], label: "images" },
       { keys: ["N"], label: "notes" },
       { keys: ["T"], label: "timer" },
       { keys: ["Esc"], label: "overview" },

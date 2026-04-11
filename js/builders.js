@@ -9,13 +9,15 @@
  * `type` is used by the overview to show a small icon per slide kind.
  */
 (function () {
-  function textSlide({ id, eyebrow, title, body, modifier, snippets, notes }) {
+  function textSlide({ id, eyebrow, title, body, modifier, snippets, videos, images, notes }) {
     return {
       id,
       type: "text",
       title,
       notes,
       snippets,
+      videos,
+      images,
       render(root) {
         root.classList.add("slide--text");
         if (modifier) root.classList.add(`slide--${modifier}`);
@@ -28,13 +30,15 @@
     };
   }
 
-  function quoteSlide({ id, quote, cite, snippets, notes }) {
+  function quoteSlide({ id, quote, cite, snippets, videos, images, notes }) {
     return {
       id,
       type: "quote",
       title: quote,
       notes,
       snippets,
+      videos,
+      images,
       render(root) {
         root.classList.add("slide--quote");
         root.innerHTML = `
@@ -45,7 +49,18 @@
     };
   }
 
-  function diagramSlide({ id, eyebrow, title, steps, snippets, notes, fullscreen, viewBox }) {
+  function diagramSlide({
+    id,
+    eyebrow,
+    title,
+    steps,
+    snippets,
+    videos,
+    images,
+    notes,
+    fullscreen,
+    viewBox,
+  }) {
     let diagram = null;
     return {
       id,
@@ -53,6 +68,8 @@
       title: title || "Diagram",
       notes,
       snippets,
+      videos,
+      images,
       steps: steps.length,
       render(root) {
         root.classList.add("slide--diagram");
@@ -83,7 +100,7 @@
     };
   }
 
-  function imageSlide({ id, eyebrow, title, image, alt, snippets, notes }) {
+  function imageSlide({ id, eyebrow, title, image, alt, snippets, videos, images, notes }) {
     let rootEl = null;
     let xSvg = null;
     let lineA = null;
@@ -120,6 +137,8 @@
       title: title || "Image",
       notes,
       snippets,
+      videos,
+      images,
       steps: 1,
       render(root) {
         root.classList.add("slide--image");
@@ -154,13 +173,25 @@
     };
   }
 
-  function sectionSlide({ id, numeral, eyebrow, title, subtitle, snippets, notes }) {
+  function sectionSlide({
+    id,
+    numeral,
+    eyebrow,
+    title,
+    subtitle,
+    snippets,
+    videos,
+    images,
+    notes,
+  }) {
     return {
       id,
       type: "section",
       title: title || numeral || "Section",
       notes,
       snippets,
+      videos,
+      images,
       render(root) {
         root.classList.add("slide--section");
         root.innerHTML = `
@@ -175,7 +206,7 @@
     };
   }
 
-  function listSlide({ id, eyebrow, title, items, ordered, snippets, notes }) {
+  function listSlide({ id, eyebrow, title, items, ordered, snippets, videos, images, notes }) {
     let listEl = null;
     return {
       id,
@@ -183,6 +214,8 @@
       title,
       notes,
       snippets,
+      videos,
+      images,
       steps: items.length,
       render(root) {
         root.classList.add("slide--list");
@@ -209,13 +242,15 @@
     };
   }
 
-  function splitSlide({ id, eyebrow, title, left, right, ratio, snippets, notes }) {
+  function splitSlide({ id, eyebrow, title, left, right, ratio, snippets, videos, images, notes }) {
     return {
       id,
       type: "split",
       title,
       notes,
       snippets,
+      videos,
+      images,
       render(root) {
         root.classList.add("slide--split");
         root.innerHTML = `
@@ -230,7 +265,7 @@
     };
   }
 
-  function bigTextSlide({ id, text, footnote, reveal, snippets, notes }) {
+  function bigTextSlide({ id, text, footnote, reveal, snippets, videos, images, notes }) {
     let textEl = null;
     return {
       id,
@@ -238,6 +273,8 @@
       title: text,
       notes,
       snippets,
+      videos,
+      images,
       steps: reveal ? 1 : 0,
       render(root) {
         root.classList.add("slide--bigtext");
@@ -268,7 +305,7 @@
    *     right: { title: "Right", items: ["...", "..."] }
    *   })
    */
-  function compareSlide({ id, eyebrow, title, left, right, snippets, notes }) {
+  function compareSlide({ id, eyebrow, title, left, right, snippets, videos, images, notes }) {
     const renderCol = (col, kind) => `
       <div class="compare__col compare__col--${kind}">
         <div class="compare__head">${col?.title || ""}</div>
@@ -283,6 +320,8 @@
       title,
       notes,
       snippets,
+      videos,
+      images,
       render(root) {
         root.classList.add("slide--compare");
         root.innerHTML = `

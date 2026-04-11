@@ -383,12 +383,14 @@ const slides = [myThing({ id: "x", label: "hi" })];
 | `→` / `Space`   | next step (or next slide)                |
 | `←`             | previous step (or previous slide)        |
 | `⇧` + `→` / `←` | skip to next / previous slide            |
-| `V`             | video panel                              |
-| `C`             | code snippets                            |
+| `V`             | media modal — videos                     |
+| `C`             | media modal — code snippets              |
+| `I`             | media modal — image gallery              |
 | `N`             | speaker notes                            |
 | `T`             | toggle the talk timer                    |
 | `Esc`           | overview grid (or close any open modal)  |
 | `F`             | browser fullscreen                       |
+| `Home` / `⇧+0`  | back to deck picker                      |
 | `?`             | hint panel                               |
 | `1`–`9`         | (in the code modal) jump to that snippet |
 
@@ -401,7 +403,8 @@ for that deck:
 
 - `documentTitle`, `author`
 - `intro` — title, subtitle, logo, skip text, autoAdvanceMs, laurel decorations
-- `modals.videoTitle`, `modals.codeTitle`
+- `media.videos`, `media.snippets`, `media.images` — global items shown
+  in every slide's media modal alongside per-slide ones
 - `nav.counterFormat`
 - `timer.show`, `timer.target`
 - `hints` — your own list of `{ keys: [...], label }`

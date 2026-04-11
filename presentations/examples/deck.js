@@ -31,8 +31,9 @@
       id: "hello",
       eyebrow: "Welcome",
       title: "Hello world",
-      body: `<p>This is a plain <code>textSlide</code>. It also has speaker
-      notes (press <kbd>N</kbd>) and code snippets (press <kbd>C</kbd>).</p>`,
+      body: `<p>This is a plain <code>textSlide</code>. It carries notes
+      (<kbd>N</kbd>), code snippets (<kbd>C</kbd>), images (<kbd>I</kbd>),
+      and a video (<kbd>V</kbd>).</p>`,
       notes: "Speaker notes shown when the user presses N.",
       snippets: [
         {
@@ -44,6 +45,27 @@
           title: "deck.js",
           lang: "js",
           code: `const slides = [\n  textSlide({ id: "hello", title: "Hi" }),\n];\nwindow.SLIDES = slides;`,
+        },
+      ],
+      images: [
+        {
+          title: "sample 1",
+          src: "presentations/examples/assets/images/sample-1.svg",
+          alt: "Sample 1 placeholder",
+          caption: "first per-slide image",
+        },
+        {
+          title: "sample 2",
+          src: "presentations/examples/assets/images/sample-2.svg",
+          alt: "Sample 2 placeholder",
+          caption: "second per-slide image",
+        },
+      ],
+      videos: [
+        {
+          title: "intro reel",
+          src: "presentations/examples/assets/videos/placeholder.mp4",
+          type: "video/mp4",
         },
       ],
     }),
