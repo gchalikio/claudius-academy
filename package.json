@@ -11,9 +11,9 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:install": "playwright install --with-deps chromium",
-    "lint": "eslint . && markdownlint-cli2 \"**/*.md\" && prettier --check .",
+    "lint": "eslint . && markdownlint-cli2 \"**/*.md\" \"!node_modules\" && prettier --check .",
     "lint:js": "eslint .",
-    "lint:md": "markdownlint-cli2 \"**/*.md\"",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules\"",
     "lint:fmt": "prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
     "format": "prettier --write ."

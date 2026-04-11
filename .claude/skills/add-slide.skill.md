@@ -69,9 +69,11 @@ If the user wants something none of those cover, go to the
      - The overview (`Esc`) shows the new card with the right title.
 
 6. **If the deck is the _public_ one, run the test suite.**
+
    ```bash
    npm test
    ```
+
    Personal decks (gitignored) don't need this — tests target `examples`.
 
 ## Don't

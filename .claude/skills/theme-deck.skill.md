@@ -84,12 +84,15 @@ Never edit anything under `css/` for a single deck. That's engine code.
    - A different background texture
    - Changing the list slide's `ordered: true` counter from upper-roman
      to decimal:
+
      ```css
      .slide--list ol.list .list__item::before {
        content: counter(li) ".";
      }
      ```
+
    - Hiding the default scanline / vignette overlays:
+
      ```css
      .scanlines,
      .vignette {

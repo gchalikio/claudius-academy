@@ -1,10 +1,12 @@
+# Pull request
+
 ## What
 
-<short description of what this PR does>
+A short description of what this PR does.
 
 ## Why
 
-<the motivation — link the issue if there is one: "fixes #123">
+The motivation — link the issue if there is one: "fixes #123".
 
 ## How to test
 
@@ -15,7 +17,7 @@
 
 ## Screenshots / recordings (visual changes)
 
-<drag images here>
+Drag images here.
 
 ## Checklist
 

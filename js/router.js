@@ -143,7 +143,7 @@
       });
     },
 
-    _activate(isInitial) {
+    _activate(_isInitial) {
       this.slides.forEach((s) => s._el.classList.remove("is-active"));
       const slide = this.current();
       slide._el.classList.add("is-active");
@@ -187,13 +187,15 @@
           STORAGE_KEY,
           JSON.stringify({ id: this.current().id, step: this.step })
         );
-      } catch (e) {}
+      } catch {
+        // localStorage may be unavailable (private mode, quota); ignore.
+      }
     },
 
     _loadStored() {
       try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY));
-      } catch (e) {
+      } catch {
         return null;
       }
     },

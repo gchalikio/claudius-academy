@@ -42,7 +42,7 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
 
 ## Project layout
 
-```
+```text
 .
 ├── index.html                  ← entry point
 ├── css/                        ← engine styles, one file per concern

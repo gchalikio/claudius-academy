@@ -27,9 +27,11 @@ Use this when the user has just cloned the repo and wants to start using it.
      browsers, but the dynamic deck loader needs the picker to live in the
      same directory tree, which is fine for `file://`.
    - **Option B — local server (recommended):**
+
      ```bash
      python3 -m http.server 8000
      ```
+
      Then visit <http://localhost:8000>.
 
    When the picker shows, the engine is working.

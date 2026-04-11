@@ -91,9 +91,11 @@ Use this when the user wants to start a brand new talk in this repo.
    - Press `Esc` to open the overview and confirm titles + ids are sensible.
 
 7. **For public decks only — run the test suite:**
+
    ```bash
    npm test
    ```
+
    Tests target `presentations/examples`, so a new public deck shouldn't
    break them. If it does, you've likely changed something in the engine
    inadvertently — investigate.

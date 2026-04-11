@@ -40,7 +40,7 @@ goal is a draft they can refine, not a finished talk.
 4. **Map each outline element to a slide config** in your head before
    writing anything. Sketch the result in a small table:
 
-   ```
+   ```text
    "I. Why this matters"   → sectionSlide  (numeral I)
    "  - Who I am"           → textSlide
    "  - What this isn't"    → textSlide (or merged)

@@ -80,7 +80,7 @@ For a known bug you're already fixing, use `fix-a-bug`.
 7. **Propose 1–3 solutions to the user, with tradeoffs.**
    Format:
 
-   ```
+   ```text
    Option A — <one-line description>
      Pros: <...>
      Cons: <...>

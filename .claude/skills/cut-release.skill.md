@@ -61,6 +61,7 @@ about to run, wait for "yes," then run it. Read-only `git status`,
    - Add today's date in ISO format: `## [0.2.0] - 2026-04-12`
    - Add a fresh empty `[Unreleased]` section at the top.
    - Update the link references at the bottom of the file:
+
      ```md
      [Unreleased]: https://github.com/gchalikio/claudius-academy/compare/v0.2.0...HEAD
      [0.2.0]: https://github.com/gchalikio/claudius-academy/compare/v0.1.0...v0.2.0

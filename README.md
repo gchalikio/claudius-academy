@@ -244,7 +244,9 @@ sectionSlide({
 });
 ```
 
-**`listSlide`** — bullets reveal one per →. Set `ordered: true` for numbered items (the default theme renders them as upper-roman; override the counter style in your deck's `theme.css` if you want decimal).
+**`listSlide`** — bullets reveal one per →. Set `ordered: true` for numbered
+items (the default theme renders them as upper-roman; override the counter
+style in your deck's `theme.css` if you want decimal).
 
 ```js
 listSlide({
@@ -289,7 +291,8 @@ quoteSlide({
 });
 ```
 
-**`bigTextSlide`** — single huge sentence. `reveal: true` makes it appear on the first → instead of immediately (good for dramatic timing).
+**`bigTextSlide`** — single huge sentence. `reveal: true` makes it appear on
+the first → instead of immediately (good for dramatic timing).
 
 ```js
 bigTextSlide({
@@ -312,7 +315,8 @@ imageSlide({
 });
 ```
 
-**`diagramSlide`** — progressive SVG diagram. Each step adds a node or arrow. Add `fullscreen: true` for an edge-to-edge canvas.
+**`diagramSlide`** — progressive SVG diagram. Each step adds a node or arrow.
+Add `fullscreen: true` for an edge-to-edge canvas.
 
 ```js
 diagramSlide({

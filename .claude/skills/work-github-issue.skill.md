@@ -179,7 +179,7 @@ status` are fine without asking.
     ```
 
 16. **Report back to the user with a summary:**
-    - Issue: `#<n>` "<title>"
+    - Issue: `#<n>` `"<title>"`
     - Type: `type/<x>` · Priority: `priority/<x>`
     - Branch: `<branch-name>`
     - PR: `<pr-url>`

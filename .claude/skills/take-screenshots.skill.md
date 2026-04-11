@@ -33,7 +33,7 @@ shooting.
 1. **Use the Examples deck**, not your personal one. The screenshots
    ship in the public repo.
 
-   ```
+   ```text
    index.html?deck=examples
    ```
 
