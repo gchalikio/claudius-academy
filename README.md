@@ -310,7 +310,7 @@ imageSlide({
   id: "anti-pattern",
   eyebrow: "Anti-pattern",
   title: "Don't do this",
-  image: "presentations/my-talk/assets/images/example.png",
+  src: "presentations/my-talk/assets/images/example.png",
   alt: "Example to avoid",
 });
 ```

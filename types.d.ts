@@ -226,7 +226,7 @@ export interface ImageSlideOpts {
   id: string;
   eyebrow?: string;
   title?: string;
-  image: string;
+  src: string;
   alt?: string;
   snippets?: Snippet[];
   videos?: VideoItem[];

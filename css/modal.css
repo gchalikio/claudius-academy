@@ -52,16 +52,6 @@
   color: var(--parchment-100);
 }
 
-.modal video {
-  display: block;
-  width: 100%;
-  flex: 1 1 auto;
-  min-height: min(72vh, 680px);
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  background: #000;
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;

@@ -102,32 +102,6 @@
       mkMarker("arrowhead", "var(--ink-900)");
       mkMarker("arrowhead-accent", "var(--crimson-600)");
 
-      // Hand-drawn wobble — turbulence + displacement
-      const filter = el("filter", {
-        id: "sketch",
-        x: "-10%",
-        y: "-10%",
-        width: "120%",
-        height: "120%",
-      });
-      filter.appendChild(
-        el("feTurbulence", {
-          type: "fractalNoise",
-          baseFrequency: "0.018",
-          numOctaves: "2",
-          seed: "4",
-          result: "noise",
-        })
-      );
-      filter.appendChild(
-        el("feDisplacementMap", {
-          in: "SourceGraphic",
-          in2: "noise",
-          scale: "1.6",
-        })
-      );
-      defs.appendChild(filter);
-
       svg.appendChild(defs);
 
       const layers = {

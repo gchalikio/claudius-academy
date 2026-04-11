@@ -116,7 +116,7 @@
       id: "image-example",
       eyebrow: "Anti-pattern",
       title: "Don't do this",
-      image: "assets/placeholder.svg",
+      src: "assets/placeholder.svg",
       alt: "Example to avoid — press → for the X",
     }),
 

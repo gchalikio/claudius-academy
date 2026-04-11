@@ -2,43 +2,62 @@
  * Builders — reusable slide constructors used by presentations.
  *
  * Every builder returns a slide config the Router understands. The shape is:
- *   { id, type, title?, notes?, snippets?, steps?, render(), onEnter?, ... }
+ *   { id, type, title?, notes?, snippets?, videos?, images?, steps?,
+ *     render(), onEnter?, onStep?, onUnstep?, onLeave? }
  *
- * `title` is read by the overview mode for card labels.
- * `notes` is read by the speaker-notes pane.
- * `type` is used by the overview to show a small icon per slide kind.
+ * `title`    is read by the overview mode for card labels.
+ * `notes`    is read by the speaker-notes pane.
+ * `snippets`/`videos`/`images` are read by the unified Media modal.
+ * `type`     is used by the overview to show a small icon per slide kind.
+ *
+ * To avoid forgetting to forward those fields when adding a new builder,
+ * always go through `baseSlide(opts, type, extra)`.
  */
 (function () {
-  function textSlide({ id, eyebrow, title, body, modifier, snippets, videos, images, notes }) {
+  /**
+   * Compose a slide config from caller opts + the builder's specifics.
+   * Forwards every "media" field automatically so a new builder never
+   * has to remember to plumb them through.
+   */
+  function baseSlide(opts, type, extra) {
     return {
-      id,
-      type: "text",
+      id: opts.id,
+      type,
+      notes: opts.notes,
+      snippets: opts.snippets,
+      videos: opts.videos,
+      images: opts.images,
+      ...extra,
+    };
+  }
+
+  /** Standard eyebrow + h2 header used by most builders. */
+  function slideHeader({ eyebrow, title }) {
+    return `
+      ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
+      ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+    `;
+  }
+
+  function textSlide(opts) {
+    const { title, body, modifier } = opts;
+    return baseSlide(opts, "text", {
       title,
-      notes,
-      snippets,
-      videos,
-      images,
       render(root) {
         root.classList.add("slide--text");
         if (modifier) root.classList.add(`slide--${modifier}`);
         root.innerHTML = `
-          ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
-          ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+          ${slideHeader(opts)}
           <div class="slide__body">${body || ""}</div>
         `;
       },
-    };
+    });
   }
 
-  function quoteSlide({ id, quote, cite, snippets, videos, images, notes }) {
-    return {
-      id,
-      type: "quote",
+  function quoteSlide(opts) {
+    const { quote, cite } = opts;
+    return baseSlide(opts, "quote", {
       title: quote,
-      notes,
-      snippets,
-      videos,
-      images,
       render(root) {
         root.classList.add("slide--quote");
         root.innerHTML = `
@@ -46,30 +65,14 @@
           ${cite ? `<cite>— ${cite}</cite>` : ""}
         `;
       },
-    };
+    });
   }
 
-  function diagramSlide({
-    id,
-    eyebrow,
-    title,
-    steps,
-    snippets,
-    videos,
-    images,
-    notes,
-    fullscreen,
-    viewBox,
-  }) {
+  function diagramSlide(opts) {
+    const { title, steps, fullscreen, viewBox } = opts;
     let diagram = null;
-    return {
-      id,
-      type: "diagram",
+    return baseSlide(opts, "diagram", {
       title: title || "Diagram",
-      notes,
-      snippets,
-      videos,
-      images,
       steps: steps.length,
       render(root) {
         root.classList.add("slide--diagram");
@@ -78,8 +81,7 @@
           root.innerHTML = `<div class="diagram-wrap"></div>`;
         } else {
           root.innerHTML = `
-            ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
-            ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+            ${slideHeader(opts)}
             <div class="diagram-wrap"></div>
           `;
         }
@@ -91,16 +93,17 @@
       onEnter() {
         if (diagram) diagram.playTo(0, { animate: false });
       },
-      onStep(stepIndex, _ctx, opts = {}) {
-        if (diagram) diagram.playTo(stepIndex, { animate: !opts.replay });
+      onStep(stepIndex, _ctx, runOpts = {}) {
+        if (diagram) diagram.playTo(stepIndex, { animate: !runOpts.replay });
       },
       onUnstep(stepIndex) {
         if (diagram) diagram.playTo(stepIndex - 1, { animate: false });
       },
-    };
+    });
   }
 
-  function imageSlide({ id, eyebrow, title, image, alt, snippets, videos, images, notes }) {
+  function imageSlide(opts) {
+    const { title, src, alt } = opts;
     let rootEl = null;
     let xSvg = null;
     let lineA = null;
@@ -131,22 +134,15 @@
       });
     }
 
-    return {
-      id,
-      type: "image",
+    return baseSlide(opts, "image", {
       title: title || "Image",
-      notes,
-      snippets,
-      videos,
-      images,
       steps: 1,
       render(root) {
         root.classList.add("slide--image");
         root.innerHTML = `
-          ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
-          ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+          ${slideHeader(opts)}
           <div class="image-frame">
-            <img class="image-frame__img" src="${image}" alt="${alt || ""}" />
+            <img class="image-frame__img" src="${src}" alt="${alt || ""}" />
           </div>
           <svg class="image-x" xmlns="http://www.w3.org/2000/svg">
             <line class="laser laser--a" />
@@ -158,11 +154,14 @@
         lineA = xSvg.querySelector(".laser--a");
         lineB = xSvg.querySelector(".laser--b");
         setupLines();
-        window.addEventListener("resize", setupLines);
       },
       onEnter() {
         setupLines();
         if (rootEl) rootEl.classList.remove("is-x");
+        window.addEventListener("resize", setupLines);
+      },
+      onLeave() {
+        window.removeEventListener("resize", setupLines);
       },
       onStep(stepIndex) {
         if (stepIndex === 1 && rootEl) rootEl.classList.add("is-x");
@@ -170,28 +169,13 @@
       onUnstep() {
         if (rootEl) rootEl.classList.remove("is-x");
       },
-    };
+    });
   }
 
-  function sectionSlide({
-    id,
-    numeral,
-    eyebrow,
-    title,
-    subtitle,
-    snippets,
-    videos,
-    images,
-    notes,
-  }) {
-    return {
-      id,
-      type: "section",
+  function sectionSlide(opts) {
+    const { numeral, eyebrow, title, subtitle } = opts;
+    return baseSlide(opts, "section", {
       title: title || numeral || "Section",
-      notes,
-      snippets,
-      videos,
-      images,
       render(root) {
         root.classList.add("slide--section");
         root.innerHTML = `
@@ -203,27 +187,21 @@
           </div>
         `;
       },
-    };
+    });
   }
 
-  function listSlide({ id, eyebrow, title, items, ordered, snippets, videos, images, notes }) {
+  function listSlide(opts) {
+    const { title, items, ordered } = opts;
     let listEl = null;
-    return {
-      id,
-      type: "list",
+    return baseSlide(opts, "list", {
       title,
-      notes,
-      snippets,
-      videos,
-      images,
       steps: items.length,
       render(root) {
         root.classList.add("slide--list");
         const tag = ordered ? "ol" : "ul";
         const lis = items.map((it) => `<li class="list__item">${it}</li>`).join("");
         root.innerHTML = `
-          ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
-          ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+          ${slideHeader(opts)}
           <${tag} class="list">${lis}</${tag}>
         `;
         listEl = root.querySelector(".list");
@@ -232,49 +210,38 @@
         listEl?.querySelectorAll(".list__item").forEach((el) => el.classList.remove("is-revealed"));
       },
       onStep(stepIndex) {
-        const items = listEl?.querySelectorAll(".list__item");
-        if (items && items[stepIndex - 1]) items[stepIndex - 1].classList.add("is-revealed");
+        const els = listEl?.querySelectorAll(".list__item");
+        if (els && els[stepIndex - 1]) els[stepIndex - 1].classList.add("is-revealed");
       },
       onUnstep(stepIndex) {
-        const items = listEl?.querySelectorAll(".list__item");
-        if (items && items[stepIndex - 1]) items[stepIndex - 1].classList.remove("is-revealed");
+        const els = listEl?.querySelectorAll(".list__item");
+        if (els && els[stepIndex - 1]) els[stepIndex - 1].classList.remove("is-revealed");
       },
-    };
+    });
   }
 
-  function splitSlide({ id, eyebrow, title, left, right, ratio, snippets, videos, images, notes }) {
-    return {
-      id,
-      type: "split",
+  function splitSlide(opts) {
+    const { title, left, right, ratio } = opts;
+    return baseSlide(opts, "split", {
       title,
-      notes,
-      snippets,
-      videos,
-      images,
       render(root) {
         root.classList.add("slide--split");
         root.innerHTML = `
-          ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
-          ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+          ${slideHeader(opts)}
           <div class="split" style="grid-template-columns: ${ratio || "1fr 1fr"}">
             <div class="split__col">${left || ""}</div>
             <div class="split__col">${right || ""}</div>
           </div>
         `;
       },
-    };
+    });
   }
 
-  function bigTextSlide({ id, text, footnote, reveal, snippets, videos, images, notes }) {
+  function bigTextSlide(opts) {
+    const { text, footnote, reveal } = opts;
     let textEl = null;
-    return {
-      id,
-      type: "bigtext",
+    return baseSlide(opts, "bigtext", {
       title: text,
-      notes,
-      snippets,
-      videos,
-      images,
       steps: reveal ? 1 : 0,
       render(root) {
         root.classList.add("slide--bigtext");
@@ -294,7 +261,7 @@
       onUnstep() {
         if (reveal) textEl?.classList.add("is-hidden");
       },
-    };
+    });
   }
 
   /**
@@ -305,7 +272,8 @@
    *     right: { title: "Right", items: ["...", "..."] }
    *   })
    */
-  function compareSlide({ id, eyebrow, title, left, right, snippets, videos, images, notes }) {
+  function compareSlide(opts) {
+    const { title, left, right } = opts;
     const renderCol = (col, kind) => `
       <div class="compare__col compare__col--${kind}">
         <div class="compare__head">${col?.title || ""}</div>
@@ -314,26 +282,19 @@
         </ul>
       </div>
     `;
-    return {
-      id,
-      type: "compare",
+    return baseSlide(opts, "compare", {
       title,
-      notes,
-      snippets,
-      videos,
-      images,
       render(root) {
         root.classList.add("slide--compare");
         root.innerHTML = `
-          ${eyebrow ? `<div class="slide__eyebrow">${eyebrow}</div>` : ""}
-          ${title ? `<h2 class="slide__title">${title}</h2>` : ""}
+          ${slideHeader(opts)}
           <div class="compare">
             ${renderCol(left, "wrong")}
             ${renderCol(right, "right")}
           </div>
         `;
       },
-    };
+    });
   }
 
   window.Builders = {
@@ -350,8 +311,11 @@
     /**
      * Register a custom slide builder from a deck file:
      *
-     *   Builders.register('myThing', function ({ id, ... }) {
-     *     return { id, type: 'myThing', title, render(root) { ... } };
+     *   Builders.register('myThing', function (opts) {
+     *     return Builders._baseSlide(opts, 'myThing', {
+     *       title: opts.title,
+     *       render(root) { ... }
+     *     });
      *   });
      *
      *   const { myThing } = window.Builders;
@@ -365,5 +329,9 @@
       }
       this[name] = factory;
     },
+
+    // Exposed so custom builders registered from deck files can use them.
+    _baseSlide: baseSlide,
+    _slideHeader: slideHeader,
   };
 })();
