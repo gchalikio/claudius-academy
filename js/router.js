@@ -20,7 +20,7 @@
  * array into js/slides.js and you have a new presentation.
  */
 (function () {
-  const STORAGE_KEY = "claudius-academy:position";
+  const STORAGE_KEY = "deck:position";
 
   const Router = {
     slides: [],

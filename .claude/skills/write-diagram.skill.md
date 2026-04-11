@@ -12,9 +12,8 @@ that.
 ## Read first
 
 - `js/diagram.js` — to understand how shapes/arrows are drawn
-- `presentations/examples/deck.js` — the simple `diagram-example`
-- `presentations/claudius-academy/deck.js` (if it exists) — the
-  fullscreen `context-diagram` is a richer reference
+- `presentations/examples/deck.js` — the `diagram-example` slide is a
+  fullscreen reference with three steps
 - `types.d.ts` — the `DiagramStep` type for exact field names
 
 ## Mental model

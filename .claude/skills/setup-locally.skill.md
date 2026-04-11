@@ -46,17 +46,27 @@ Use this when the user has just cloned the repo and wants to start using it.
    All tests should pass on a fresh clone. If anything fails, do NOT
    proceed to authoring — open the `fix-a-bug` skill instead.
 
-5. **Optional — set up `presentations/local.js` for personal decks.**
-   The file is gitignored, so anything you register here won't be
-   committed. Create it only if the user wants a personal/work-only deck:
+5. **Optional — set up the personal-deck folder.**
+   `presentations/local/` is gitignored — anything inside it stays on
+   the user's machine. Create it only if the user wants a
+   personal/work-only deck:
+   ```bash
+   mkdir -p presentations/local
+   ```
+   Then create `presentations/local/decks.js` to register their decks:
    ```js
-   // presentations/local.js
+   // presentations/local/decks.js
    if (window.DECKS) {
-     window.DECKS.push({ id: "my-personal-talk", title: "My Personal Talk" });
+     window.DECKS.push({
+       id: "my-personal-talk",
+       title: "My Personal Talk",
+       local: true,
+     });
    }
    ```
-   Then create `presentations/my-personal-talk/` (also gitignored if you
-   add it to `.gitignore`).
+   The deck files themselves go under
+   `presentations/local/my-personal-talk/`. The `local: true` flag tells
+   the loader to look there instead of `presentations/<id>/`.
 
 6. **Smoke-test from the picker.**
    - Pick the **Examples** deck.

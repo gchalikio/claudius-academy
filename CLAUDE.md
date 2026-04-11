@@ -58,13 +58,15 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
 │   └── main.js                 ← Boot.start()
 ├── assets/                     ← shared assets (default logo, placeholder)
 ├── presentations/
-│   ├── index.js                ← registry of available decks (DECKS, PICKER)
-│   ├── examples/               ← sampler showing every builder
-│   └── claudius-academy/       ← the example talk
-│       ├── config.js           ← branding, theme, fonts, hints, timer
-│       ├── deck.js             ← slide content (the spine of the talk)
-│       ├── theme.css           ← optional per-deck CSS overrides
-│       └── assets/             ← per-deck images, fonts, videos
+│   ├── index.js                ← public registry of available decks (DECKS, PICKER)
+│   ├── examples/               ← public sampler showing every builder
+│   │   ├── config.js           ← branding, theme, fonts, hints, timer
+│   │   ├── deck.js             ← slide content
+│   │   ├── theme.css           ← optional per-deck CSS overrides
+│   │   └── assets/             ← per-deck images, fonts, videos
+│   └── local/                  ← gitignored — personal/work decks live here
+│       ├── decks.js            ← gitignored local registry (uses `local: true`)
+│       └── <your-deck>/        ← any number of personal decks
 ├── tests/                      ← Playwright smoke + integration tests
 ├── types.d.ts                  ← editor type hints (no build step)
 ├── .claude/skills/             ← reusable skills for Claude Code (see below)

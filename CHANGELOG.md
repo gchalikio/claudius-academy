@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Per-deck configuration: branding, intro text, modal labels, hint panel,
   theme variables, font injection, optional per-deck CSS.
 - Public/local deck registry split — personal decks live in
-  `presentations/local.js` (gitignored).
+  `presentations/local/` (gitignored folder containing decks + registry).
 - Friendly load-error overlay when a deck fails to resolve.
 - Playwright smoke + integration tests covering boot, navigation, modals,
   overview, and the diagram engine.

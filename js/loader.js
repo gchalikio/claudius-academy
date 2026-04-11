@@ -58,7 +58,12 @@
   }
 
   async function loadDeck(deckId) {
-    const base = `presentations/${deckId}`;
+    // Decks marked `local: true` in the registry live under
+    // presentations/local/<id>/ instead of presentations/<id>/.
+    const entry = (window.DECKS || []).find((d) => d.id === deckId);
+    const base = entry?.local
+      ? `presentations/local/${deckId}`
+      : `presentations/${deckId}`;
     window.DECK_PATH = base;
 
     // 1. Config first — defines everything else.

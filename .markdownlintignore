@@ -3,5 +3,4 @@ test-results/
 playwright-report/
 playwright/.cache/
 LICENSE
-presentations/local.js
-presentations/claudius-academy/
+presentations/local/

@@ -7,9 +7,8 @@ playwright/.cache/
 package-lock.json
 LICENSE
 
-# Local-only
-presentations/local.js
-presentations/claudius-academy/
+# Local-only deck folder + its registry (whole tree is gitignored).
+presentations/local/
 
 # Visual assets
 *.svg

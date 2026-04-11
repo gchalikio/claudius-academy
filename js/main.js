@@ -2,7 +2,7 @@
  * Boot — exposes start() so the loader can call it after a deck is loaded.
  *
  * To launch directly into the deck (skip intro), append `?nointro` to the URL
- * or set localStorage.setItem('claudius:skipIntro', '1').
+ * or set localStorage.setItem('deck:skipIntro', '1').
  */
 (function () {
   function applyConfig(cfg) {
@@ -68,7 +68,7 @@
       const stage = document.getElementById("stage");
       const skipIntro =
         new URLSearchParams(location.search).has("nointro") ||
-        localStorage.getItem("claudius:skipIntro") === "1";
+        localStorage.getItem("deck:skipIntro") === "1";
 
       const startDeck = () => {
         stage.hidden = false;

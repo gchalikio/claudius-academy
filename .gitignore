@@ -13,9 +13,10 @@ test-results/
 playwright-report/
 playwright/.cache/
 
-# Local-only presentations (personal talks, work content, etc.)
-presentations/local.js
-presentations/claudius-academy/
+# Local-only decks live under presentations/local/ together with their
+# own registry file (presentations/local/decks.js). The whole folder is
+# gitignored so the public repo never sees personal decks or their names.
+presentations/local/
 
 # Local Claude Code editor settings (skills/ is committed, settings.local.json is not)
 .claude/settings.local.json

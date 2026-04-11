@@ -17,15 +17,27 @@ Use this when the user wants to start a brand new talk in this repo.
 
 1. **Confirm the deck name and id with the user.**
    - Suggest a kebab-case id (e.g. `intro-to-rust`, `q4-review`).
-   - Ask whether the deck should be **public** (committed to the repo) or
-     **personal** (gitignored — only registered in `presentations/local.js`).
+   - Ask whether the deck should be **public** (committed to the repo,
+     under `presentations/<id>/`) or **personal** (gitignored, under
+     `presentations/local/<id>/`).
 
-2. **Copy the examples folder.**
+2. **Copy the examples folder into the right place.**
+
+   **Public deck:**
    ```bash
    cp -r presentations/examples presentations/<deck-id>
    ```
 
-3. **Edit `presentations/<deck-id>/config.js`:**
+   **Personal deck:**
+   ```bash
+   mkdir -p presentations/local
+   cp -r presentations/examples presentations/local/<deck-id>
+   ```
+   The whole `presentations/local/` tree is gitignored, so nothing
+   inside it ever gets committed.
+
+3. **Edit `<base>/<deck-id>/config.js`** (where `<base>` is either
+   `presentations` or `presentations/local`):
    - `documentTitle` — browser tab text
    - `intro.title`, `intro.subtitle`, `intro.logo` (point at the new
      `presentations/<deck-id>/assets/logo.svg` if you have a custom logo)
@@ -49,15 +61,21 @@ Use this when the user wants to start a brand new talk in this repo.
    **Public deck** → edit `presentations/index.js`:
    ```js
    window.DECKS = [
-     { id: "examples", title: "Examples — every builder" },
+     { id: "examples",  title: "Examples — every builder" },
      { id: "<deck-id>", title: "Human Title" },
    ];
    ```
 
-   **Personal deck** → edit `presentations/local.js` (gitignored):
+   **Personal deck** → create or edit `presentations/local/decks.js`
+   (the whole `local/` folder is gitignored). Set `local: true` so the
+   loader looks under `presentations/local/<id>/`:
    ```js
    if (window.DECKS) {
-     window.DECKS.push({ id: "<deck-id>", title: "Human Title" });
+     window.DECKS.push({
+       id: "<deck-id>",
+       title: "Human Title",
+       local: true,
+     });
    }
    ```
 
@@ -81,6 +99,7 @@ Use this when the user wants to start a brand new talk in this repo.
 - Don't edit `js/builders.js` to add a slide type *for one specific deck* —
   use `Builders.register("name", factory)` from inside the deck file. Only
   add to `js/builders.js` if the new builder is genuinely reusable.
-- Don't commit a personal deck to the public repo. If `presentations/<id>/`
-  is meant to be local-only, add it to `.gitignore` next to the existing
-  `presentations/claudius-academy/` line.
+- Don't commit a personal deck to the public repo. Personal decks must
+  live under `presentations/local/<id>/` (the whole `local/` tree is
+  already gitignored) and be registered from
+  `presentations/local/decks.js` with `local: true`.

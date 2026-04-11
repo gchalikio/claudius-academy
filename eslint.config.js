@@ -56,15 +56,16 @@ const deckGlobals = {
 };
 
 module.exports = [
-  // Ignore generated and vendored paths
+  // Ignore generated and vendored paths. The `presentations/local/` tree
+  // is gitignored AND listed here so any personal decks living under it
+  // are never linted, whether or not they exist.
   {
     ignores: [
       "node_modules/**",
       "test-results/**",
       "playwright-report/**",
       "playwright/.cache/**",
-      "presentations/local.js",
-      "presentations/claudius-academy/**",
+      "presentations/local/**",
     ],
   },
 

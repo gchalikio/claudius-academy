@@ -91,8 +91,9 @@ shooting.
 
 ## Don't
 
-- Don't shoot the personal `claudius-academy` deck. It's gitignored;
-  the screenshots go in the public repo.
+- Don't shoot any local-only deck (anything under `presentations/local/`).
+  Those decks are gitignored; their content must not appear in the
+  public repo.
 - Don't include the OS chrome (window title bar, taskbar). Crop it out.
 - Don't use JPEG — text and crisp UI compress poorly. PNG always.
 - Don't shoot at retina without downsizing. A 5K screenshot bloats the

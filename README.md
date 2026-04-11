@@ -123,12 +123,14 @@ Visit `index.html?deck=<deck-id>` to skip the picker.
 ├── assets/                     ← shared assets (default logo, placeholder image)
 ├── presentations/              ← every deck lives here
 │   ├── index.js                ← public registry of available decks
-│   ├── local.js                ← gitignored, registers personal decks
-│   └── examples/               ← public showcase deck (every builder)
-│       ├── config.js           ← branding, theme, fonts, hints, timer
-│       ├── deck.js             ← slide content
-│       ├── theme.css           ← optional per-deck CSS overrides
-│       └── assets/             ← per-deck images, fonts, videos
+│   ├── examples/               ← public showcase deck (every builder)
+│   │   ├── config.js           ← branding, theme, fonts, hints, timer
+│   │   ├── deck.js             ← slide content
+│   │   ├── theme.css           ← optional per-deck CSS overrides
+│   │   └── assets/             ← per-deck images, fonts, videos
+│   └── local/                  ← gitignored — drop personal decks here
+│       ├── decks.js            ← gitignored local registry
+│       └── <your-deck>/        ← any number of personal/work decks
 ├── tests/                      ← Playwright smoke + integration tests
 ├── docs/screenshots/           ← drop README screenshots here
 ├── .claude/skills/             ← reusable skills for AI assistants
@@ -142,6 +144,8 @@ Visit `index.html?deck=<deck-id>` to skip the picker.
 
 ## Authoring a new deck
 
+### Public deck (committed to the repo)
+
 ```bash
 cp -r presentations/examples presentations/my-talk
 ```
@@ -149,13 +153,45 @@ cp -r presentations/examples presentations/my-talk
 1. Edit `presentations/my-talk/config.js` — title, intro text, theme, fonts.
 2. Edit `presentations/my-talk/deck.js` — your slides.
 3. Register it in `presentations/index.js`:
+
    ```js
    window.DECKS = [
-     { id: "claudius-academy", title: "Claudius Academy" },
-     { id: "my-talk",          title: "My Talk" },
+     { id: "examples", title: "Examples — every builder" },
+     { id: "my-talk",  title: "My Talk" },
    ];
    ```
+
 4. Open `index.html?deck=my-talk`.
+
+### Personal/local deck (never committed)
+
+`presentations/local/` is gitignored — anything you put inside stays
+on your machine. This is the right place for talks you don't want to
+publish, work-confidential content, or in-progress drafts.
+
+```bash
+mkdir -p presentations/local
+cp -r presentations/examples presentations/local/my-talk
+```
+
+1. Edit `presentations/local/my-talk/config.js` and `deck.js`.
+2. Create or edit `presentations/local/decks.js`:
+
+   ```js
+   if (window.DECKS) {
+     window.DECKS.push({
+       id: "my-talk",
+       title: "My Talk",
+       local: true,
+     });
+   }
+   ```
+
+   The `local: true` flag tells the loader to look under
+   `presentations/local/<id>/` instead of `presentations/<id>/`.
+
+3. Open `index.html?deck=my-talk`. The picker on the bare URL also
+   shows your local decks.
 
 ---
 
