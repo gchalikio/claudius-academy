@@ -20,12 +20,13 @@ module.exports = defineConfig({
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: "python3 -m http.server 8000",
+    command: "node scripts/serve.js 8000",
     port: 8000,
     reuseExistingServer: !process.env.CI,
     timeout: 30000,
     stdout: "ignore",
     stderr: "ignore",
+    env: { QUIET: "1" },
   },
   projects: [
     {

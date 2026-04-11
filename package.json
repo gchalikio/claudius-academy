@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "python3 -m http.server 8000",
+    "start": "node scripts/serve.js 8000",
     "open": "open index.html",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
