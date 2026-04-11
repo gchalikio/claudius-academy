@@ -14,7 +14,7 @@ goal is a draft they can refine, not a finished talk.
 - The outline (ask the user to paste it or point at the file)
 - `presentations/examples/deck.js` — every builder, used as a reference
 - `README.md` — Slide builders table
-- `add-presentation.skill.md` — for the prerequisite folder/registry setup
+- `add-presentation/SKILL.md` — for the prerequisite folder/registry setup
 
 ## Steps
 
