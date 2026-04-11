@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   nodes, and per-step play/unplay.
 - Video modal (`V`), code snippet modal (`C`) with tab navigation,
   speaker notes (`N`), overview grid (`Esc`), talk timer (`T`).
-- Roman/parchment intro sequence with pixel accent.
+- Default intro sequence (parchment + pixel) — fully overridable per deck.
 - Per-deck configuration: branding, intro text, modal labels, hint panel,
   theme variables, font injection, optional per-deck CSS.
 - Public/local deck registry split — personal decks live in

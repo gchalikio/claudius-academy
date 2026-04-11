@@ -28,7 +28,7 @@ unsupported.
 
 1. Open a private security advisory on GitHub:
    `Security` tab → `Advisories` → `New draft security advisory`
-2. Or email the maintainer at `REPLACE@example.com`.
+2. Or email the maintainer at `chalikiopoulosgr@gmail.com`.
 
 You'll get an acknowledgement within 7 days. If the issue is confirmed, a
 fix will be prepared in a private branch and disclosed coordinately.

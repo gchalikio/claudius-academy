@@ -1,7 +1,8 @@
 # Claudius Academy
 
-> A retro Roman-academy themed presentation engine for browser-native talks.
+> A vanilla-JS presentation engine for browser-native talks.
 > No build step, no framework, no `node_modules`. Open `index.html` and present.
+> Comes with a parchment + pixel default theme — fully overridable per deck.
 
 [![Tests](https://github.com/gchalikio/claudius-academy/actions/workflows/test.yml/badge.svg)](https://github.com/gchalikio/claudius-academy/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -11,12 +12,22 @@
 
 Claudius Academy is a single-folder presentation engine you can fork to give
 talks that *look* designed without touching a slide tool. The engine in
-`js/` and `css/` is generic — author your own deck by dropping a folder
-under `presentations/` and editing two files. Slide types include text,
-quotes, lists, splits, comparisons, big-text, images with a "no" overlay,
-and progressive SVG diagrams that draw themselves step by step. Speaker
+`js/` and `css/` is **theme-agnostic** — it ships with a parchment + pixel
+default look, but every color, font, and layout token is overridable per
+deck via CSS variables (`config.theme`), `@font-face` injection
+(`config.fonts`), and an optional per-deck stylesheet
+(`presentations/<deck>/theme.css`). Slide types include text, quotes,
+lists, splits, comparisons, big-text, images with a "no" overlay, and
+progressive SVG diagrams that draw themselves step by step. Speaker
 notes, an overview grid, a talk timer, and video/code modals all ship in
 the box.
+
+> **You don't need to be a developer to use this.** The repo ships with a
+> full set of [Claude Code skills](.claude/skills/) — opening it in any
+> AI-aware editor (Claude Code, Cursor, etc.) lets you say things like
+> *"start a new deck called Q4 review"* or *"add a diagram showing X"* and
+> the AI does the editing. The skills encode every common flow as concrete
+> steps, so the AI never has to guess.
 
 ---
 
@@ -68,7 +79,7 @@ Visit `index.html?deck=<deck-id>` to skip the picker.
 | | |
 | :---: | :---: |
 | ![Intro sequence](docs/screenshots/intro.png) | ![A text slide](docs/screenshots/slide.png) |
-| **Pixel-Roman intro** | **A text slide** |
+| **Default intro animation** | **A text slide** |
 | ![Progressive diagram](docs/screenshots/diagram.png) | ![Code modal with snippets](docs/screenshots/code-modal.png) |
 | **Progressive SVG diagram** | **Code modal (press `C`)** |
 | ![Overview grid](docs/screenshots/overview.png) | |
@@ -140,7 +151,7 @@ All built-in builders live on `window.Builders`:
 | --------------- | --------------------------------------------------- |
 | `textSlide`     | Eyebrow + title + body HTML                         |
 | `quoteSlide`    | Big centered quotation                              |
-| `sectionSlide`  | Act / pillar divider with a roman numeral           |
+| `sectionSlide`  | Act / pillar divider with a big chapter numeral     |
 | `listSlide`     | Bulleted or numbered list — bullets reveal one per → |
 | `splitSlide`    | Two columns (text + visual / text + text)           |
 | `compareSlide`  | Wrong vs right, two columns with red/green headers   |
@@ -167,7 +178,8 @@ textSlide({
 })
 ```
 
-**`sectionSlide`** — act/pillar divider with a big roman numeral.
+**`sectionSlide`** — act/pillar divider with a big chapter numeral. The
+`numeral` field is just a string — use `"II"`, `"02"`, `"Ω"`, anything.
 ```js
 sectionSlide({
   id: "act-2",
@@ -178,7 +190,7 @@ sectionSlide({
 })
 ```
 
-**`listSlide`** — bullets reveal one per →. Set `ordered: true` for roman numerals.
+**`listSlide`** — bullets reveal one per →. Set `ordered: true` for numbered items (the default theme renders them as upper-roman; override the counter style in your deck's `theme.css` if you want decimal).
 ```js
 listSlide({
   id: "three-things",
@@ -391,11 +403,23 @@ assistants:
 - **`CLAUDE.md`** — project context loaded by AI tools at the start of any
   session. Documents the hard rules (no build step, vanilla JS only, engine
   vs content separation) and the public API surface.
-- **`.claude/skills/`** — reusable skills that encode the project's
-  conventions as concrete steps. Existing skills:
+- **`.claude/skills/`** — reusable skills covering every user flow.
+  Drop into a Claude Code session and ask for the skill by name:
+  - `setup-locally` — first-time setup after cloning
   - `add-presentation` — author a brand new deck
-  - `add-slide-builder` — add a new reusable slide kind
-  - `fix-a-bug` — triage, reproduce, fix, and test
+  - `add-slide` — add/edit a slide in an existing deck
+  - `write-diagram` — author a progressive SVG diagram
+  - `theme-deck` — customise colors, fonts, intro decorations
+  - `add-video` — wire a video file into the V key modal
+  - `outline-to-deck` — turn a written outline into a draft deck
+  - `rehearse-talk` — pre-talk rehearsal with timer + notes
+  - `take-screenshots` — capture the README screenshots
+  - `add-slide-type` — add a new reusable slide kind to the engine
+  - `add-feature` — add any other engine feature (key, modal, config option)
+  - `triage-issue` — local: classify a bug/issue, propose options, fix it
+  - `work-github-issue` — GitHub: fetch issue → fix → PR → comment → label
+  - `fix-a-bug` — triage, reproduce, fix, and test a known bug
+  - `cut-release` — version bump, tag, push, GitHub release
 - **`types.d.ts`** — provides editor autocomplete and inline type checks
   with no build step.
 
@@ -413,13 +437,12 @@ field, with no build step.
 
 ## Acknowledgments
 
-- The Roman emperor **Claudius** (41–54 AD) — bookish, scholarly, the
-  emperor your toga-clad professor would have actually liked. Lent his name
-  to the project as a pun on a different Claude.
+- The emperor **Claudius** (41–54 AD) — the project name is a pun on
+  *Claude*; the historical Claudius was famously bookish and scholarly,
+  which felt fitting for an academy of presentations. The choice of *name*
+  is not a choice of *style* — the engine itself is theme-agnostic.
 - The **Contributor Covenant** for the code of conduct.
 - **Playwright** for making browser-driven tests painless.
-- Every typewriter, terminal, and chalkboard whose aesthetic this engine
-  shamelessly borrows.
 
 ## Changelog
 
@@ -431,13 +454,3 @@ follows [Semantic Versioning](https://semver.org/) and
 
 MIT — see [LICENSE](LICENSE).
 
----
-
-## Suggested GitHub repo topics
-
-After pushing the repo, set these topics from the GitHub web UI (the gear
-icon next to "About") so the project shows up in topic searches:
-
-`presentation`, `slides`, `deck`, `slideshow`, `vanilla-js`, `no-build`,
-`browser`, `html`, `css`, `playwright`, `keynote`, `talks`, `claude`,
-`ai-friendly`

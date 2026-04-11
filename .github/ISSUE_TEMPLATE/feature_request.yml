@@ -1,6 +1,6 @@
 name: Feature request
 description: Suggest a new feature, slide builder, or improvement
-labels: ["enhancement"]
+labels: ["type/feature", "status/needs-triage"]
 body:
   - type: markdown
     attributes:

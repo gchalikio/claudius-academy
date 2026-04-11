@@ -12,7 +12,7 @@ The full text is published at:
 If you experience or witness unacceptable behavior, please report it
 privately to the project maintainer:
 
-- **Email:** `REPLACE@example.com`
+- **Email:** `chalikiopoulosgr@gmail.com`
 - Or open a private security advisory on GitHub (Security tab → "Report a
   vulnerability")
 

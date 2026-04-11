@@ -1,4 +1,5 @@
-/* Design tokens — Roman academy primary, pixel/CRT accent */
+/* Design tokens — default theme (parchment + serif + pixel accent).
+   Override any of these per-deck via `theme: { ... }` in config.js. */
 :root {
   /* Parchment + ink palette */
   --parchment-100: #f5ecd2;

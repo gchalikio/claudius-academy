@@ -82,15 +82,30 @@ folder under `presentations/` with a `config.js` (branding/theme) and a
   `Builders.register("name", factory)` from inside the deck file — never by
   editing engine code from a deck.
 
-## How to add things
+## How to do things — skills
 
-The `.claude/skills/` directory contains step-by-step skills for the most
-common contributions. **If you're an AI assistant, prefer these skills over
-freeform editing** — they encode the rules above as concrete steps.
+The `.claude/skills/` directory contains step-by-step skills covering
+every common user/contributor flow. **If you're an AI assistant, prefer
+these skills over freeform editing** — they encode the project rules as
+concrete steps.
 
-- `add-presentation.skill.md` — how to author a brand new deck
-- `add-slide-builder.skill.md` — how to add a new reusable slide kind
-- `fix-a-bug.skill.md` — how to triage, reproduce, fix, and test a bug
+| Skill                    | Use it when…                                              |
+| ------------------------ | --------------------------------------------------------- |
+| `setup-locally`          | The user just cloned the repo and wants to start using it |
+| `add-presentation`       | Authoring a brand new deck                                |
+| `add-slide`              | Adding/editing a single slide in an existing deck         |
+| `write-diagram`          | Authoring a progressive SVG `diagramSlide`                |
+| `theme-deck`             | Customising colors, fonts, intro decorations              |
+| `add-video`              | Wiring a video file into the V key modal                  |
+| `outline-to-deck`        | Turning a written outline into a draft deck               |
+| `rehearse-talk`          | Pre-talk rehearsal flow with timer + notes                |
+| `take-screenshots`       | Capturing the README screenshots                          |
+| `add-slide-type`         | Adding a new reusable slide kind to the engine            |
+| `add-feature`            | Adding any other engine feature (key binding, modal, config option) |
+| `triage-issue`           | Local: classify a bug/issue, propose options, fix it      |
+| `work-github-issue`      | GitHub: fetch an issue, fix it, open a PR, comment + label both |
+| `fix-a-bug`              | Triaging, reproducing, fixing, and testing a known bug    |
+| `cut-release`            | Cutting a tagged release of the engine                    |
 
 ## Public API surface (what's stable)
 

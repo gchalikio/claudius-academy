@@ -1,7 +1,7 @@
 {
   "name": "claudius-academy",
   "version": "0.1.0",
-  "description": "A retro Roman-academy themed presentation engine for browser-native talks. No build step.",
+  "description": "Vanilla-JS presentation engine for browser-native talks. Theme-agnostic, AI-first authoring via Claude Code skills, no build step.",
   "license": "MIT",
   "private": false,
   "scripts": {
