@@ -53,6 +53,15 @@
           if (e.key === "c" || e.key === "C") return Code.close();
         }
 
+        // Shift+0 → back to picker. Browsers disagree on what key this fires:
+        // some report e.key === ")" (the typed char), some keep e.key === "0"
+        // with shiftKey=true. Handle both.
+        if (e.shiftKey && (e.key === "0" || e.key === ")")) {
+          e.preventDefault();
+          window.location.href = window.location.pathname;
+          return;
+        }
+
         switch (e.key) {
           case "ArrowRight":
           case " ":
@@ -93,7 +102,6 @@
             document.getElementById("hints").hidden = !document.getElementById("hints").hidden;
             break;
           case "Home":
-          case ")":
             e.preventDefault();
             // Back to the deck picker (clears ?deck= and the hash).
             window.location.href = window.location.pathname;

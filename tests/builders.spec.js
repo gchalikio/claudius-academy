@@ -120,9 +120,15 @@ test.describe("slide builders", () => {
   test("step counter shows step N / total when on a stepped slide", async ({ page }) => {
     await page.goto("/?deck=examples&nointro#/list-example");
     await expect(page.locator('.slide[data-slide-id="list-example"].is-active')).toBeVisible();
-    await expect(page.locator("#nav-step")).toHaveText("");
+    await expect(page.locator("#nav-step")).toHaveText(/step 0 \/ 3/);
     await page.keyboard.press("ArrowRight");
     await expect(page.locator("#nav-step")).toHaveText(/step 1 \/ 3/);
+  });
+
+  test("step counter is empty on a static (no-step) slide", async ({ page }) => {
+    await page.goto("/?deck=examples&nointro#/quote-example");
+    await expect(page.locator('.slide[data-slide-id="quote-example"].is-active')).toBeVisible();
+    await expect(page.locator("#nav-step")).toHaveText("");
   });
 
   test("progress bar advances as the index grows", async ({ page }) => {
