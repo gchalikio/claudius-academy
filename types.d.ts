@@ -97,6 +97,7 @@ export type SlideType =
   | "split"
   | "bigtext"
   | "compare"
+  | "media"
   | string;
 
 export interface SlideContext {
@@ -185,6 +186,7 @@ export interface BuildersAPI {
   splitSlide(opts: SplitSlideOpts): SlideConfig;
   bigTextSlide(opts: BigTextSlideOpts): SlideConfig;
   compareSlide(opts: CompareSlideOpts): SlideConfig;
+  mediaSlide(opts: MediaSlideOpts): SlideConfig;
   register(name: string, factory: (opts: any) => SlideConfig): void;
   [extra: string]: any;
 }
@@ -291,6 +293,19 @@ export interface CompareSlideOpts {
   snippets?: Snippet[];
   videos?: VideoItem[];
   images?: ImageItem[];
+  notes?: string;
+}
+
+export interface MediaSlideOpts {
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  /** Optional shown text when no videos/images are wired yet. */
+  placeholder?: string;
+  videos?: VideoItem[];
+  images?: ImageItem[];
+  snippets?: Snippet[];
   notes?: string;
 }
 

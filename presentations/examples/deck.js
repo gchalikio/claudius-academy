@@ -16,6 +16,7 @@
     splitSlide,
     bigTextSlide,
     compareSlide,
+    mediaSlide,
   } = window.Builders;
 
   const slides = [
@@ -110,6 +111,15 @@
       id: "bigtext-example",
       text: "One sentence to remember.",
       footnote: "the line you want them to quote",
+    }),
+
+    mediaSlide({
+      id: "media-example-empty",
+      eyebrow: "Demo",
+      title: "mediaSlide — placeholder mode",
+      body: `<p>When you haven't wired media yet, the slide shows a
+      placeholder card so nothing breaks on stage.</p>`,
+      placeholder: "TODO — placeholder demo",
     }),
 
     imageSlide({

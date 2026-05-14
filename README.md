@@ -114,6 +114,7 @@ each one live; the snippets below show the minimum to get a slide on screen.
 | `quoteSlide`   | Big centered quotation                           |
 | `bigTextSlide` | One huge sentence; optional reveal on first →    |
 | `imageSlide`   | Image with a giant red X overlay on first →      |
+| `mediaSlide`   | Demo-intro slide; placeholder card if no media   |
 | `diagramSlide` | Progressive SVG diagram, one node/arrow per step |
 
 Every builder also accepts `notes`, `snippets`, `videos`, and `images` —
@@ -173,6 +174,18 @@ imageSlide({
   title: "Don't do this",
   src: "presentations/my-talk/assets/images/example.png",
   alt: "Example to avoid",
+});
+
+mediaSlide({
+  id: "demo-intro",
+  eyebrow: "Demo",
+  title: "Watch this happen",
+  body: `<p>One short sentence to set up the recording.</p>`,
+  // Wire either or both once captured; both can be omitted to render
+  // a placeholder card on the slide so nothing is broken on stage.
+  videos: [{ title: "Demo", src: "presentations/my-talk/assets/demo.mp4" }],
+  images: [{ title: "Still", src: "presentations/my-talk/assets/demo-1.png" }],
+  placeholder: "Demo placeholder — record before the talk",
 });
 
 diagramSlide({

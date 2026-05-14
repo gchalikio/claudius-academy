@@ -142,4 +142,13 @@ test.describe("slide builders", () => {
     const laterWidth = await bar.evaluate((el) => el.style.width);
     expect(parseFloat(laterWidth)).toBeGreaterThan(parseFloat(startWidth) || 0);
   });
+
+  test("mediaSlide renders placeholder card when no media is wired", async ({ page }) => {
+    await page.goto("/?deck=examples&nointro#/media-example-empty");
+    const slide = page.locator('.slide[data-slide-id="media-example-empty"].is-active');
+    await expect(slide).toBeVisible();
+    await expect(slide).toHaveClass(/slide--media/);
+    await expect(slide.locator(".media-placeholder")).toBeVisible();
+    await expect(slide.locator(".media-placeholder")).toContainText(/TODO|placeholder/i);
+  });
 });

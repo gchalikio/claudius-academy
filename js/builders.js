@@ -73,7 +73,8 @@
     let diagram = null;
     return baseSlide(opts, "diagram", {
       title: title || "Diagram",
-      steps: steps.length,
+      // The first step is shown on entry, so it doesn't consume a press.
+      steps: Math.max(0, steps.length - 1),
       render(root) {
         root.classList.add("slide--diagram");
         if (fullscreen) {
@@ -91,13 +92,13 @@
         diagram.defineSteps(steps);
       },
       onEnter() {
-        if (diagram) diagram.playTo(0, { animate: false });
+        if (diagram) diagram.playTo(1, { animate: false });
       },
       onStep(stepIndex, _ctx, runOpts = {}) {
-        if (diagram) diagram.playTo(stepIndex, { animate: !runOpts.replay });
+        if (diagram) diagram.playTo(stepIndex + 1, { animate: !runOpts.replay });
       },
       onUnstep(stepIndex) {
-        if (diagram) diagram.playTo(stepIndex - 1, { animate: false });
+        if (diagram) diagram.playTo(stepIndex, { animate: false });
       },
     });
   }
@@ -300,6 +301,50 @@
     });
   }
 
+  /**
+   * mediaSlide — a text-frame slide whose payload is a recorded demo.
+   * Pass `videos` and/or `images` for the V / I modals. When neither is
+   * provided, render a labelled placeholder card so the slide is never
+   * blank or broken on stage.
+   *
+   *   mediaSlide({
+   *     id, eyebrow, title, body,
+   *     videos: [...],   // optional — V opens the video modal
+   *     images: [...],   // optional — I opens the image modal
+   *     placeholder: "Demo placeholder — record before the talk",
+   *   })
+   */
+  function mediaSlide(opts) {
+    const { title, body, videos, images, placeholder } = opts;
+    const hasMedia = (videos && videos.length) || (images && images.length);
+    const placeholderHtml = hasMedia
+      ? ""
+      : `<div class="media-placeholder">
+           <div class="media-placeholder__icon">▶</div>
+           <div class="media-placeholder__label">${placeholder || "Demo placeholder — record before the talk"}</div>
+         </div>`;
+    const hintParts = [];
+    if (videos && videos.length) hintParts.push("press <kbd>V</kbd> for the recording");
+    if (images && images.length) hintParts.push("press <kbd>I</kbd> for stills");
+    const hintHtml = hintParts.length
+      ? `<p class="media-hints">${hintParts.join(" · ")}</p>`
+      : "";
+    return baseSlide(opts, "media", {
+      title,
+      render(root) {
+        root.classList.add("slide--media");
+        root.innerHTML = `
+          ${slideHeader(opts)}
+          <div class="slide__body">
+            ${body || ""}
+            ${placeholderHtml}
+            ${hintHtml}
+          </div>
+        `;
+      },
+    });
+  }
+
   window.Builders = {
     textSlide,
     quoteSlide,
@@ -310,6 +355,7 @@
     splitSlide,
     bigTextSlide,
     compareSlide,
+    mediaSlide,
 
     /**
      * Register a custom slide builder from a deck file:
