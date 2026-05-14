@@ -115,6 +115,7 @@ each one live; the snippets below show the minimum to get a slide on screen.
 | `bigTextSlide` | One huge sentence; optional reveal on first →    |
 | `imageSlide`   | Image with a giant red X overlay on first →      |
 | `mediaSlide`   | Demo-intro slide; placeholder card if no media   |
+| `qrSlide`      | Big QR + URL + tagline outro slide               |
 | `diagramSlide` | Progressive SVG diagram, one node/arrow per step |
 
 Every builder also accepts `notes`, `snippets`, `videos`, and `images` —
@@ -186,6 +187,15 @@ mediaSlide({
   videos: [{ title: "Demo", src: "presentations/my-talk/assets/demo.mp4" }],
   images: [{ title: "Still", src: "presentations/my-talk/assets/demo-1.png" }],
   placeholder: "Demo placeholder — record before the talk",
+});
+
+qrSlide({
+  id: "repo-outro",
+  eyebrow: "This deck",
+  title: "Fork it",
+  url: "https://github.com/you/your-deck",
+  qrSrc: `${window.DECK_PATH}/assets/repo-qr.svg`, // generate offline
+  tagline: "Make it yours.",
 });
 
 diagramSlide({

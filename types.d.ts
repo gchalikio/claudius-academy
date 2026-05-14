@@ -98,6 +98,7 @@ export type SlideType =
   | "bigtext"
   | "compare"
   | "media"
+  | "qr"
   | string;
 
 export interface SlideContext {
@@ -187,6 +188,7 @@ export interface BuildersAPI {
   bigTextSlide(opts: BigTextSlideOpts): SlideConfig;
   compareSlide(opts: CompareSlideOpts): SlideConfig;
   mediaSlide(opts: MediaSlideOpts): SlideConfig;
+  qrSlide(opts: QrSlideOpts): SlideConfig;
   register(name: string, factory: (opts: any) => SlideConfig): void;
   [extra: string]: any;
 }
@@ -307,6 +309,19 @@ export interface MediaSlideOpts {
   images?: ImageItem[];
   snippets?: Snippet[];
   notes?: string;
+}
+
+export interface QrSlideOpts {
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  /** URL the QR encodes; also rendered as plain text under the QR. */
+  url: string;
+  /** Path to a static QR image (SVG/PNG); generate offline. */
+  qrSrc: string;
+  tagline?: string;
+  notes?: string;
+  snippets?: Snippet[];
 }
 
 export {};

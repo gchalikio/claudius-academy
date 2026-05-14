@@ -345,6 +345,41 @@
     });
   }
 
+  /**
+   * qrSlide — big QR + URL + tagline, sized for back-of-room visibility.
+   * QR is a static image path (runtime generation is forbidden by the
+   * no-runtime-deps rule). Generate the QR offline and drop it under
+   * the deck's assets folder.
+   *
+   *   qrSlide({
+   *     id, eyebrow, title,
+   *     url:     "https://github.com/.../claudius-academy",
+   *     qrSrc:   `${window.DECK_PATH}/assets/repo-qr.svg`,
+   *     tagline: "Fork it. Make it yours.",
+   *   })
+   */
+  function qrSlide(opts) {
+    const { eyebrow, title, url, qrSrc, tagline } = opts;
+    return baseSlide(opts, "qr", {
+      title: title || url || "QR",
+      render(root) {
+        root.classList.add("slide--qr");
+        root.innerHTML = `
+          ${slideHeader({ eyebrow, title })}
+          <div class="qr">
+            <div class="qr-frame">
+              <img class="qr-frame__img" src="${qrSrc}" alt="QR code for ${url || ""}" />
+            </div>
+            <div class="qr-meta">
+              <div class="qr-url">${url || ""}</div>
+              ${tagline ? `<div class="qr-tagline">${tagline}</div>` : ""}
+            </div>
+          </div>
+        `;
+      },
+    });
+  }
+
   window.Builders = {
     textSlide,
     quoteSlide,
@@ -356,6 +391,7 @@
     bigTextSlide,
     compareSlide,
     mediaSlide,
+    qrSlide,
 
     /**
      * Register a custom slide builder from a deck file:

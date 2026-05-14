@@ -143,6 +143,16 @@ test.describe("slide builders", () => {
     expect(parseFloat(laterWidth)).toBeGreaterThan(parseFloat(startWidth) || 0);
   });
 
+  test("qrSlide renders qr image, url, and tagline", async ({ page }) => {
+    await page.goto("/?deck=examples&nointro#/qr-example");
+    const slide = page.locator('.slide[data-slide-id="qr-example"].is-active');
+    await expect(slide).toBeVisible();
+    await expect(slide).toHaveClass(/slide--qr/);
+    await expect(slide.locator(".qr-frame__img")).toBeVisible();
+    await expect(slide.locator(".qr-url")).toContainText("github.com");
+    await expect(slide.locator(".qr-tagline")).toBeVisible();
+  });
+
   test("mediaSlide renders placeholder card when no media is wired", async ({ page }) => {
     await page.goto("/?deck=examples&nointro#/media-example-empty");
     const slide = page.locator('.slide[data-slide-id="media-example-empty"].is-active');

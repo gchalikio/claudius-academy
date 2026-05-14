@@ -323,3 +323,46 @@
   border: 1px solid currentColor;
   border-radius: 4px;
 }
+
+/* qrSlide — big QR on the left, URL + tagline on the right */
+.slide--qr .qr {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3em;
+  align-items: center;
+  margin-top: 1.5em;
+}
+.slide--qr .qr-frame {
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.slide--qr .qr-frame__img {
+  width: 320px;
+  height: 320px;
+  display: block;
+}
+.slide--qr .qr-url {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.4em;
+  word-break: break-all;
+  color: var(--gold-700, #b8902f);
+}
+.slide--qr .qr-tagline {
+  margin-top: 1em;
+  font-size: 1.6em;
+  font-style: italic;
+  color: var(--ink-900, #1a1a1a);
+}
+@media (max-width: 720px) {
+  .slide--qr .qr {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .slide--qr .qr-frame__img {
+    width: 220px;
+    height: 220px;
+  }
+}

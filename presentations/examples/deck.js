@@ -17,6 +17,7 @@
     bigTextSlide,
     compareSlide,
     mediaSlide,
+    qrSlide,
   } = window.Builders;
 
   const slides = [
@@ -158,6 +159,15 @@
         },
         { type: "arrow", from: "a", to: "b", label: "transform" },
       ],
+    }),
+
+    qrSlide({
+      id: "qr-example",
+      eyebrow: "Outro",
+      title: "Fork this deck",
+      url: "https://github.com/example/claudius-academy",
+      qrSrc: `${window.DECK_PATH}/assets/qr-placeholder.svg`,
+      tagline: "Make it yours.",
     }),
 
     sectionSlide({
