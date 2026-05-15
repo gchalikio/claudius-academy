@@ -101,6 +101,7 @@
             document.getElementById("hints").hidden = !document.getElementById("hints").hidden;
             break;
           case "Home":
+          case "Backspace":
             e.preventDefault();
             // Back to the deck picker (clears ?deck= and the hash).
             window.location.href = window.location.pathname;

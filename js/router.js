@@ -135,8 +135,33 @@
         section.dataset.slideId = slide.id;
         slide._el = section;
         slide.render(section);
+        this._appendMediaCues(section, slide);
         this.container.appendChild(section);
       });
+    },
+
+    // Tiny corner indicator showing which media keys (V / I / C) have
+    // content behind them on the active slide. Reflects per-slide AND
+    // global DECK_CONFIG.media availability.
+    _appendMediaCues(section, slide) {
+      const global = (window.DECK_CONFIG && window.DECK_CONFIG.media) || {};
+      const has = (kind) =>
+        (slide[kind] && slide[kind].length) || (global[kind] && global[kind].length);
+      const cues = [];
+      if (has("videos"))   cues.push(["V", "video"]);
+      if (has("images"))   cues.push(["I", "image"]);
+      if (has("snippets")) cues.push(["C", "code"]);
+      if (!cues.length) return;
+      const wrap = document.createElement("div");
+      wrap.className = "slide-media-cues";
+      wrap.setAttribute("aria-hidden", "true");
+      wrap.innerHTML = cues
+        .map(
+          ([k, kind]) =>
+            `<kbd class="media-cue media-cue--${kind}" title="press ${k} for ${kind}">${k}</kbd>`
+        )
+        .join("");
+      section.appendChild(wrap);
     },
 
     _activate(_isInitial) {

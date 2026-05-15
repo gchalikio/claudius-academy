@@ -119,7 +119,10 @@ each one live; the snippets below show the minimum to get a slide on screen.
 | `diagramSlide` | Progressive SVG diagram, one node/arrow per step |
 
 Every builder also accepts `notes`, `snippets`, `videos`, and `images` —
-all read by the speaker-notes pane and the unified media modal.
+all read by the speaker-notes pane and the unified media modal. Slides
+that have any of these wired show a small `V` / `I` / `C` indicator in
+the top-right corner so you (and the audience) know there's content
+behind the key.
 
 ### Examples
 
@@ -264,7 +267,7 @@ window.Builders.register("myThing", function (opts) {
 | `T`             | talk timer                              |
 | `Esc`           | overview grid (or close any open modal) |
 | `F`             | browser fullscreen                      |
-| `Home` / `⇧+0`  | back to deck picker                     |
+| `Home` / `⇧+0` / `Backspace` | back to deck picker         |
 | `?`             | hint panel                              |
 | `1`–`9`         | (in the media modal) jump to that tab   |
 

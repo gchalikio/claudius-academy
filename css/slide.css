@@ -366,3 +366,33 @@
     height: 220px;
   }
 }
+
+/* Media cues — small top-right indicators on slides that have
+   videos / images / snippets wired. Fixed to the viewport so they
+   anchor consistently regardless of slide chrome (fullscreen diagrams
+   etc.). Visible only on the active slide. */
+.slide-media-cues {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top, 14px));
+  right: max(14px, env(safe-area-inset-right, 14px));
+  display: none;
+  gap: 0.35em;
+  z-index: 5;
+  pointer-events: none;
+}
+.slide.is-active .slide-media-cues {
+  display: flex;
+}
+.slide-media-cues .media-cue {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--gold-700, #b8902f);
+  color: var(--gold-700, #b8902f);
+  background: rgba(216, 178, 82, 0.12);
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}

@@ -153,7 +153,20 @@ test.describe("slide builders", () => {
     await expect(slide.locator(".qr-tagline")).toBeVisible();
   });
 
-  test("mediaSlide renders placeholder card when no media is wired", async ({ page }) => {
+  test("media cues — slide with images and snippets shows I + C in the corner", async ({ page }) => {
+    // The "hello" slide in the examples deck has both images and snippets wired
+    // (and videos), so all three cues should appear.
+    await page.goto("/?deck=examples&nointro#/hello");
+    const slide = page.locator('.slide[data-slide-id="hello"].is-active');
+    await expect(slide).toBeVisible();
+    const cues = slide.locator(".slide-media-cues .media-cue");
+    await expect(cues).toHaveCount(3);
+    await expect(slide.locator(".media-cue--video")).toHaveText("V");
+    await expect(slide.locator(".media-cue--image")).toHaveText("I");
+    await expect(slide.locator(".media-cue--code")).toHaveText("C");
+  });
+
+test("mediaSlide renders placeholder card when no media is wired", async ({ page }) => {
     await page.goto("/?deck=examples&nointro#/media-example-empty");
     const slide = page.locator('.slide[data-slide-id="media-example-empty"].is-active');
     await expect(slide).toBeVisible();
