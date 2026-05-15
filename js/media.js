@@ -119,16 +119,39 @@
     `;
   }
 
+  // YouTube URL → embed URL. Returns null if not a YouTube URL.
+  function youtubeEmbedUrl(src) {
+    if (!src) return null;
+    const patterns = [
+      /(?:youtube\.com\/(?:shorts|embed|v)\/)([A-Za-z0-9_-]{6,})/,
+      /youtube\.com\/watch\?v=([A-Za-z0-9_-]{6,})/,
+      /youtu\.be\/([A-Za-z0-9_-]{6,})/,
+    ];
+    for (const rx of patterns) {
+      const m = src.match(rx);
+      if (m) return `https://www.youtube.com/embed/${m[1]}`;
+    }
+    return null;
+  }
+
   function renderVideo(video) {
     const src = video.src || "";
     const type = video.type || "video/mp4";
     const poster = video.poster ? ` poster="${escapeHtml(video.poster)}"` : "";
+    const embed = youtubeEmbedUrl(src);
+    const player = embed
+      ? `<iframe class="media-video__iframe" src="${escapeHtml(embed)}"
+           title="${escapeHtml(video.title || "Video")}"
+           data-testid="media-video-iframe"
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+           allowfullscreen></iframe>`
+      : `<video controls preload="metadata"${poster} data-testid="media-video-el">
+           <source src="${escapeHtml(src)}" type="${escapeHtml(type)}" />
+           Your browser cannot play this video.
+         </video>`;
     return `
       <div class="media-video">
-        <video controls preload="metadata"${poster} data-testid="media-video-el">
-          <source src="${escapeHtml(src)}" type="${escapeHtml(type)}" />
-          Your browser cannot play this video.
-        </video>
+        ${player}
         ${video.caption ? `<p class="media-caption">${escapeHtml(video.caption)}</p>` : ""}
       </div>
     `;
@@ -207,6 +230,13 @@
       this.el.hidden = true;
       // Pause any playing video so it doesn't keep rolling in the background.
       this.el.querySelectorAll("video").forEach((v) => v.pause());
+      // YouTube iframes don't have a pause API across origins — blank the
+      // src to stop playback (and free the audio channel).
+      this.el.querySelectorAll(".media-video__iframe").forEach((f) => {
+        const url = f.getAttribute("src");
+        f.setAttribute("src", "");
+        if (url) f.setAttribute("data-src", url);
+      });
     },
 
     switchKind(kind) {
