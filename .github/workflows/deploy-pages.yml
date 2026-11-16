@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
       # Upload the entire repo root as the Pages artifact. The .nojekyll file
       # at root tells GitHub Pages not to run the Jekyll build pipeline.
